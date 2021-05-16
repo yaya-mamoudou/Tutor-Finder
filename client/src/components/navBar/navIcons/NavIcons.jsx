@@ -1,5 +1,4 @@
 import React from "react";
-import "./NavIcons.css";
 
 export default function NavIcons({ icon, className, label }) {
   const _iconFocus = () => {};

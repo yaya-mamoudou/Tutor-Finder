@@ -1,6 +1,8 @@
 import React, { createRef } from "react";
+import CenterNavIcons from "./centerNavIcons/CenterNavIcons";
+import Logout from "./logout/Logout";
+import Menu from "./menu/Menu";
 import "./Navbar.css";
-import NavIcons from "./NavIcons";
 
 const menu = createRef();
 
@@ -23,63 +25,18 @@ const Navbar = () => {
   };
 
   const _iconFocus = () => {};
+  const _logout = () => {};
 
   return (
     <div className="main">
       <div ref={menu} className="sideNav reduced ">
         <div className="navContainer justify-content-between">
-          <div
-            onClick={() => _toggleMenu()}
-            className="menu text-white d-flex h4 align-items-center justify-content-center"
-          >
-            <i className="fas fa-bars"></i>
-          </div>
-          <div className="iconsInCenter d-flex flex-column pt-3">
-            {/* //Home icon andlabel view 
-            // 
-            //
-            //
-            */}
-            <NavIcons
-              className={"iconBoxColor"}
-              icon={"fas fa-home"}
-              label={"Home"}
-            />
-
-            <NavIcons
-              className={"iconBox"}
-              icon={"far fa-comment-dots"}
-              label={"Chat message"}
-            />
-
-            <NavIcons
-              className={"iconBox"}
-              icon={"fas fa-book"}
-              label={"Classroom"}
-            />
-
-            <NavIcons
-              className={"iconBox"}
-              icon={"far fa-user"}
-              label={"Profile"}
-            />
-          </div>
-
-          <div className="d-flex">
-            <div
-              onClick={() => _iconFocus()}
-              className="logout text-warning d-flex justify-content-center align-items-center h4 mb-5"
-            >
-              <i className="icon fas fa-sign-out-alt"></i>
-            </div>
-            <div className="label mb-5">
-              <span className="text-warning">Profile</span>
-            </div>
-          </div>
+          <Menu _toggleMenu={_toggleMenu} />
+          <CenterNavIcons _iconFocus={_iconFocus} />
+          <Logout _logout={_logout} />
         </div>
       </div>
-
-      <div className="body bg-warning"></div>
+      {/* <div className="body bg-warning"></div> */}
     </div>
   );
 };
