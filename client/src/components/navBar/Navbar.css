@@ -45,29 +45,9 @@
   align-items: center;
   white-space: nowrap;
 }
-.iconBoxColor {
-  width: 40px;
-  height: 40px;
-  background-color: #ccfdeb;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #385f8c !important;
-}
+
 .icons {
   width: 50px;
-}
-.iconBox {
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: aliceblue !important;
 }
 
 .icon {

@@ -1,5 +1,6 @@
 import React, { createRef } from "react";
 import "./Navbar.css";
+import NavIcons from "./NavIcons";
 
 const menu = createRef();
 
@@ -34,42 +35,34 @@ const Navbar = () => {
             <i className="fas fa-bars"></i>
           </div>
           <div className="iconsInCenter d-flex flex-column pt-3">
-            {/* //Home icon andlabel view */}
-            <div className="d-flex">
-              <div onClick={() => _iconFocus()} className="iconBoxColor">
-                <i className="icon fas fa-home "></i>
-              </div>
-              <div className="label">
-                <span className="text-white ">Home</span>
-              </div>
-            </div>
+            {/* //Home icon andlabel view 
+            // 
+            //
+            //
+            */}
+            <NavIcons
+              className={"iconBoxColor"}
+              icon={"fas fa-home"}
+              label={"Home"}
+            />
 
-            <div className="d-flex">
-              <div onClick={() => _iconFocus()} className="iconBox">
-                <i className="icon far fa-comment-dots "></i>
-              </div>
-              <div className="label">
-                <span className=" text-white ">Chat message</span>
-              </div>
-            </div>
+            <NavIcons
+              className={"iconBox"}
+              icon={"far fa-comment-dots"}
+              label={"Chat message"}
+            />
 
-            <div className="d-flex">
-              <div onClick={() => _iconFocus()} className="iconBox">
-                <i className="icon fas fa-book"></i>
-              </div>
-              <div className="label">
-                <span className=" text-white ">Classroom</span>
-              </div>
-            </div>
+            <NavIcons
+              className={"iconBox"}
+              icon={"fas fa-book"}
+              label={"Classroom"}
+            />
 
-            <div className="d-flex">
-              <div onClick={() => _iconFocus()} className="iconBox">
-                <i className="icon far fa-user"></i>
-              </div>
-              <div className="label">
-                <span className=" text-white">Profile</span>
-              </div>
-            </div>
+            <NavIcons
+              className={"iconBox"}
+              icon={"far fa-user"}
+              label={"Profile"}
+            />
           </div>
 
           <div className="d-flex">
@@ -86,7 +79,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="body bg-light"></div>
+      <div className="body bg-warning"></div>
     </div>
   );
 };
