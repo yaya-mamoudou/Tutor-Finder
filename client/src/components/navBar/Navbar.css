@@ -1,0 +1,94 @@
+.main {
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+}
+.iconsInCenter {
+  position: relative;
+  top: -10%;
+}
+
+.sideNav {
+  background-color: #385f8c;
+  width: 50px;
+  height: 100vh;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.navContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  position: relative;
+  left: 0;
+}
+
+.expanded {
+  width: 250px;
+  transition: width 0.4s;
+  align-items: flex-start;
+}
+
+.reduced {
+  transition: width 0.4s;
+}
+.label {
+  position: absolute;
+  left: 50px;
+  width: 50;
+  height: 50;
+  letter-spacing: 1.2;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.iconBoxColor {
+  width: 40px;
+  height: 40px;
+  background-color: #ccfdeb;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #385f8c !important;
+}
+.icons {
+  width: 50px;
+}
+.iconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue !important;
+}
+
+.icon {
+  font-size: 22px;
+}
+.menu {
+  width: 40px;
+  height: 40px;
+}
+.menu:hover,
+.logout:hover,
+.iconBox:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.logout {
+  width: 40px;
+  height: 40px;
+}
+
+.body {
+  height: 100vh;
+  width: 100vw;
+}
