@@ -34,6 +34,7 @@ route.post(
       const payload = {
         user: {
           id: user.id,
+          username: user.username,
         },
       };
       await jwt.sign(

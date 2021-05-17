@@ -50,6 +50,7 @@ route.post(
       const payload = {
         user: {
           id: user.id,
+          username: user.username,
         },
       };
       await jwt.sign(payload, 'athena', { expiresIn: 36000 }, (err, token) => {

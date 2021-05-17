@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ClassroomSchema = mongoose.Schema({
-  user: {
+  tutor_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'usermodels',
   },
