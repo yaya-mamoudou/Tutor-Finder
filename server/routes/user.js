@@ -6,6 +6,7 @@ const User = require('../models/User');
 
 const route = express.Router();
 
+//login:PUBLIC
 route.post(
   '/',
   [
@@ -37,7 +38,7 @@ route.post(
       };
       await jwt.sign(
         payload,
-        'alyatech',
+        'athena',
         {
           expiresIn: 36000,
         },
