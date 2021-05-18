@@ -119,6 +119,7 @@
   width: 200px;
   text-align: center;
   margin: 10px;
+  list-style: none;
 }
 .footerList li {
   padding: 5px !important;
