@@ -4,8 +4,8 @@ import Nav from "./nav/Nav";
 
 export default function Hero() {
   return (
-    <div className="hero vw-100 vh-100 bg-dark">
-      <div className="heroDarkLayer d-flex vw-100 vh-100 container-fluid">
+    <div className="hero">
+      <div className="heroDarkLayer d-flex container-fluid">
         <Nav />
         <div className="heroText text-center w-100 h-50  d-flex flex-column text-white justify-content-center">
           <p className="font-weight-bold mt-5">Get in touch</p>
