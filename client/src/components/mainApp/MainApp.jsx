@@ -1,12 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './mainApp.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./mainApp.css";
 
-import SideNav from './sideNav/SideNav';
-import Home from './home/Home';
-import Chat from './chat/Chat';
-import Classroom from './classroom/Classroom';
-import Profile from './profile/Profile';
+import SideNav from "./sideNav/SideNav";
+import Home from "./home/Home";
+import Chat from "./chat/Chat";
+import Classroom from "./classroom/Classroom";
+import Profile from "./profile/Profile";
 
 const Navbar = () => {
   return (

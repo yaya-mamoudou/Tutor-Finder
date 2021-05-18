@@ -3,15 +3,25 @@
   background-size: cover;
   width: 100%;
   height: 100vh;
+  position: relative;
 }
 .heroDarkLayer {
   background-color: rgba(0, 0, 0, 0.54);
   flex-direction: column;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 .heroText {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* background-color: aliceblue; */
+}
+
+.trustAndExperience {
+  width: 54%;
+  text-align: center;
 }
 .logo {
   width: 7.3em;
@@ -23,23 +33,22 @@
 }
 .navItem {
   color: white;
-  font-weight: 300;
+  font-weight: 400;
   width: auto;
   white-space: nowrap;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   font-size: 20px;
 }
 
 .navItemFocus {
-  color: white;
-  font-weight: 300;
+  color: #ec5a65;
+  font-weight: 400;
   width: auto;
   white-space: nowrap;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   font-size: 20px;
-  border-bottom: solid 4px #ec5a65;
 }
 
 .navElements {
@@ -47,9 +56,7 @@
 }
 
 .svgBottomHero {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  width: 100vw;
 }
 
 .EnrolButton {
@@ -58,6 +65,7 @@
   padding: 0.7rem !important;
   border-color: transparent;
   background-color: #ec5a65;
+  color: white;
 }
 
 .landingPage {
@@ -78,16 +86,95 @@
   border-radius: 0px;
 }
 
+.teachersmallSvg {
+  width: 60%;
+  position: relative;
+  right: -100px;
+}
+
+.textSide {
+  width: 45%;
+  /* background-color: antiquewhite; */
+  padding: 5rem;
+}
+.svgTeacher {
+  position: relative;
+  width: 55%;
+  /* background-color: tomato; */
+  padding: 5rem;
+}
+
+.footer {
+  width: 100vw;
+  height: fit-content;
+}
+
+.legend {
+  width: 100vw;
+  background-color: #385f8c;
+  padding: 1rem !important;
+  color: white;
+}
+.footerList {
+  width: 200px;
+  text-align: center;
+  margin: 10px;
+  list-style: none;
+}
+.footerList li {
+  padding: 5px !important;
+}
+
+.img {
+  background: url(../assets/landingPagePics/bg.svg);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+.teacher {
+  width: 100%;
+  height: 100%;
+}
+
+.TextSvg {
+  width: 65px;
+}
+.athena {
+  width: 100vw;
+  display: flex;
+}
+.athenaCard {
+  margin-bottom: 3px !important;
+  display: flex;
+  width: 100%;
+  margin-bottom: 40px !important;
+  /* background-color: teal; */
+}
+.icon {
+  width: 18%;
+  padding: 1rem;
+}
+.athenaText {
+  /* background-color: teal; */
+  width: 60%;
+  padding: 1rem;
+}
+
 @media only screen and (min-width: 750px) {
   /*Tablets [768px -> 1200px]*/
   .menuIcon {
     display: none;
   }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 792px) {
   /*Big smartphones [426px -> 600px]*/
   .hide {
     display: none;
+  }
+
+  .trustAndExperience {
+    width: 70%;
   }
 
   .show {
@@ -105,5 +192,32 @@
   .menuIcon {
     display: block;
     position: relative;
+  }
+  .textSide {
+    width: 100%;
+  }
+  .svgTeacher {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .athena {
+    flex-direction: column;
+  }
+
+  .icon {
+    width: 20%;
+    padding: 1rem;
+  }
+  .athenaText {
+    /* background-color: teal; */
+    width: 80%;
+    padding: 1rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .trustAndExperience {
+    width: 90%;
   }
 }
