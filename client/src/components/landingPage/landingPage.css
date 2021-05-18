@@ -1,0 +1,109 @@
+.hero {
+  background-image: url("../assets/landingPagePics/HeroImg.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.heroDarkLayer {
+  background-color: rgba(0, 0, 0, 0.54);
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.heroText {
+  position: relative;
+}
+.logo {
+  width: 7.3em;
+  font-size: 18px;
+}
+.navItem:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+.navItem {
+  color: white;
+  font-weight: 300;
+  width: auto;
+  white-space: nowrap;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  font-size: 20px;
+}
+
+.navItemFocus {
+  color: white;
+  font-weight: 300;
+  width: auto;
+  white-space: nowrap;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  font-size: 20px;
+  border-bottom: solid 4px #ec5a65;
+}
+
+.navElements {
+  display: flex;
+}
+
+.svgBottomHero {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.EnrolButton {
+  align-self: center;
+  border-radius: 0.6px !important;
+  padding: 0.7rem !important;
+  border-color: transparent;
+  background-color: #ec5a65;
+}
+
+.landingPage {
+  overflow-y: hidden;
+  width: 100vw;
+  height: fit-content;
+}
+.cardImage {
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+}
+.myCard {
+  margin: auto !important;
+  margin-top: 60px !important;
+  min-height: 400px;
+  box-shadow: 1px 2px 13px #888888;
+  border-radius: 0px;
+}
+
+@media only screen and (min-width: 750px) {
+  /*Tablets [768px -> 1200px]*/
+  .menuIcon {
+    display: none;
+  }
+}
+@media only screen and (max-width: 750px) {
+  /*Big smartphones [426px -> 600px]*/
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    z-index: 1;
+    right: 3px;
+  }
+
+  .navElements {
+    display: block;
+  }
+
+  .menuIcon {
+    display: block;
+    position: relative;
+  }
+}
