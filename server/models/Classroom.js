@@ -18,6 +18,10 @@ const ClassroomSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  participants: {
+    type: [String],
+    default: null,
+  },
 });
 
 module.exports = mongoose.model('ClassroomModel', ClassroomSchema);
