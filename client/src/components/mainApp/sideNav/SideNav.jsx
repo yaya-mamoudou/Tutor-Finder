@@ -1,21 +1,21 @@
-import React, { createRef } from "react";
-import CenterNavIcons from "./centerNavIcons/CenterNavIcons";
-import Menu from "./menu/Menu";
-import Logout from "./logout/Logout";
+import React, { createRef } from 'react';
+import CenterNavIcons from './centerNavIcons/CenterNavIcons';
+import Menu from './menu/Menu';
+import Logout from './logout/Logout';
 const menu = createRef();
 
 export default function SideNav() {
   const _toggleMenu = () => {
-    const reduced = menu.current.className.includes("reduced");
+    const reduced = menu.current.className.includes('reduced');
     if (reduced) {
       menu.current.className = menu.current.className.replace(
-        "reduced",
-        "expanded"
+        'reduced',
+        'expanded'
       );
     } else {
       menu.current.className = menu.current.className.replace(
-        "expanded",
-        "reduced"
+        'expanded',
+        'reduced'
       );
     }
   };
