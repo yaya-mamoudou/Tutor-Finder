@@ -25,7 +25,7 @@ route.get('/viewAllTutors', Auth, async (req, res) => {
 route.post('/createClass', Auth, async (req, res) => {
   let check = await Users.findById(req.user.id);
   if (check.status === 'tutor') {
-    let { className, tutorName, classCode, tutor_id } = req.body;
+    let { className, tutorName, classCode, tutor_id, participants } = req.body;
     try {
       let classroom = await Classroom.findOne({ className });
       if (classroom) {
@@ -36,6 +36,7 @@ route.post('/createClass', Auth, async (req, res) => {
         tutorName: req.user.username,
         classCode,
         tutor_id: req.user.id,
+        participants,
       });
 
       await classroom.save();
@@ -88,6 +89,33 @@ route.get('/viewAllMyCreatedClasses', Auth, async (req, res) => {
         .where('tutor_id')
         .equals(req.user.id);
       res.json({ classroom });
+    } catch (err) {
+      res.status(500).json({ msg: 'Server Error' });
+      console.log(err.message);
+    }
+  } else {
+    res.status(404).json({ msg: 'Only tutors can create classrooms' });
+    console.log(err.message);
+  }
+});
+
+//Add to class PRIVATE-TUTORS
+route.put('/AddToClass/:id', Auth, async (req, res) => {
+  let check = await Users.findById(req.user.id);
+  if (check.status === 'tutor') {
+    try {
+      let updateClassParticipant = await Classroom.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          runValidators: true,
+          new: true,
+        }
+      );
+      if (!updateClassParticipant) {
+        return res.status(400).json({ msg: 'Invalid classroom' });
+      }
+      res.json({ updateClassParticipant });
     } catch (err) {
       res.status(500).json({ msg: 'Server Error' });
       console.log(err.message);
