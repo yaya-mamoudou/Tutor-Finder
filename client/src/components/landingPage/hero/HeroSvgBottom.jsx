@@ -3,7 +3,7 @@ import React from "react";
 export default function HeroSvgBottom() {
   return (
     <svg
-      className="vw-100 svgBottomHero"
+      className="svgBottomHero"
       viewBox="0 0 2112 99"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
