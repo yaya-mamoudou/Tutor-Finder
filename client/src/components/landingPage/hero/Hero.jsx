@@ -1,6 +1,6 @@
-import React from "react";
-import HeroSvgBottom from "./HeroSvgBottom";
-import Nav from "./nav/Nav";
+import React from 'react';
+import HeroSvgBottom from './HeroSvgBottom';
+import Nav from './nav/Nav';
 
 export default function Hero() {
   return (
