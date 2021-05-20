@@ -15,7 +15,7 @@ export default function Hero() {
           <p className="mb-4 h6">
             Tailored to your career goals and busy schedule
           </p>
-          <button className="btn btn-warning EnrolButton ">Enrol now</button>
+          <button className="btn EnrolButton ">Enrol now</button>
         </div>
         <Particles
           width={"100%"}

@@ -67,6 +67,11 @@
   background-color: #ec5a65;
   color: white;
 }
+.EnrolButton:hover {
+  /* opacity: 0.7; */
+  background-color: #ec8d95 !important;
+  color: white;
+}
 
 .landingPage {
   overflow-y: hidden;
@@ -179,7 +184,7 @@
 
   .show {
     display: block;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     z-index: 1;
     right: 3px;
