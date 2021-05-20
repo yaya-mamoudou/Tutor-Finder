@@ -126,4 +126,26 @@ route.put('/AddToClass/:id', Auth, async (req, res) => {
   }
 });
 
+// route.get('/find/members', Auth, async (req, res) => {
+//   let members = await Classroom.find({}).populate('participants');
+// });
+
+// get all useers in a classroom
+
+route.get('/find/members/:id', Auth, async (req, res) => {
+  let check = await Users.findById(req.user.id);
+  if (check.status === 'tutor') {
+    try {
+      let getMembers = await Classroom.find({}).populate('participants');
+      res.status(200).json({ getMembers });
+    } catch (err) {
+      res.status(500).json({ msg: 'Server Error' });
+      console.log(err.message);
+    }
+  } else {
+    res.status(404).json({ msg: 'Only tutors can edit any classroom info' });
+    console.log(err.message);
+  }
+});
+
 module.exports = route;
