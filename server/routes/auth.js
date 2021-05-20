@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Auth = require('../middleware/Auth');
 
 //create account
 route.post(
@@ -66,4 +67,14 @@ route.post(
   }
 );
 
+//Get all users in the system : PRIVATE
+route.get('/all/users', Auth, async (req, res) => {
+  try {
+    let getUser = await User.find({}).select('-password');
+    res.status(200).json({ getUser });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(error.message);
+  }
+});
 module.exports = route;

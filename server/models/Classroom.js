@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ClassroomSchema = mongoose.Schema({
   tutor_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'usermodels',
+    ref: 'USER',
   },
 
   className: {
@@ -19,9 +19,10 @@ const ClassroomSchema = mongoose.Schema({
     required: true,
   },
   participants: {
-    type: [String],
+    type: [mongoose.Schema.Types.ObjectId],
     default: null,
+    ref: 'USER',
   },
 });
 
-module.exports = mongoose.model('ClassroomModel', ClassroomSchema);
+module.exports = mongoose.model('CLASSROOM', ClassroomSchema);

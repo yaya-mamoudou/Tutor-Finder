@@ -41,4 +41,4 @@ const AthenaSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('AthenasUserModel', AthenaSchema);
+module.exports = mongoose.model('USER', AthenaSchema);
