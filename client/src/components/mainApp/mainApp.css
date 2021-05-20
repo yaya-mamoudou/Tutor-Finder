@@ -46,7 +46,8 @@
 
 .iconsInCenter {
   position: relative;
-  top: -10%;
+  top: -5%;
+  padding: 5px !important;
 }
 
 .sideNav {
