@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 export default function CustomCard({ url, text, style }) {
   return (
     <div className=" myCard col-lg-3 col-md-5 col-sm-5 col-xs-10">

@@ -66,6 +66,17 @@ route.post(
     }
   }
 );
+// @desc      Get logged in user
+// @access    Private
+route.get('/loadUser', Auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 //Get all users in the system : PRIVATE
 route.get('/all/users', Auth, async (req, res) => {
@@ -73,6 +84,22 @@ route.get('/all/users', Auth, async (req, res) => {
     let getUser = await User.find({}).select('-password');
     res.status(200).json({ getUser });
   } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(error.message);
+  }
+});
+//update profile info:PRIVATE
+route.put('/update/:id', Auth, async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    }).select('-password');
+    if (!user) {
+      return res.status(400).json({ msg: 'No such user' });
+    }
+    return res.status(200).json({ user });
+  } catch (error) {
     res.status(500).json({ msg: 'Server Error' });
     console.log(error.message);
   }
