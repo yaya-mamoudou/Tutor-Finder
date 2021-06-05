@@ -1,9 +1,8 @@
-import React, { createRef, useContext, useState } from 'react';
+import React, { createRef, useContext } from 'react';
 import CenterNavIcons from './centerNavIcons/CenterNavIcons';
 import Menu from './menu/Menu';
 import Logout from './logout/Logout';
 import AuthContext from '../../../context/auth/AuthContext';
-import { useEffect } from 'react';
 const menu = createRef();
 
 let activePath = window.location.pathname;
@@ -40,8 +39,6 @@ const icons = [
 ];
 
 export default function SideNav() {
-  const [icon, setIcon] = useState(icons);
-
   const authContext = useContext(AuthContext);
   const { logout } = authContext;
   const _toggleMenu = () => {
@@ -59,27 +56,15 @@ export default function SideNav() {
       );
     }
   };
-
-  const _setFocus = async (id) => {
-    let temp = await [...icon];
-    await temp.map((icon) => {
-      return icon.key === id
-        ? (icon.className = 'iconBoxColor')
-        : (icon.className = 'iconBox');
-    });
-    setIcon(temp);
-    console.log(activePath);
-  };
-
-  const _logout = async () => {
-    await logout();
+  const _logout = () => {
+    logout();
   };
 
   return (
     <div ref={menu} className="sideNav reduced ">
       <div className="navContainer justify-content-between">
         <Menu _toggleMenu={_toggleMenu} />
-        <CenterNavIcons _setFocus={_setFocus} icon={icon} />
+        <CenterNavIcons />
         <Logout _logout={_logout} />
       </div>
     </div>
