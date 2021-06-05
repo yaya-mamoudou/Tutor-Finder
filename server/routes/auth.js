@@ -66,6 +66,17 @@ route.post(
     }
   }
 );
+// @desc      Get logged in user
+// @access    Private
+route.get('/loadUser', Auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 //Get all users in the system : PRIVATE
 route.get('/all/users', Auth, async (req, res) => {
