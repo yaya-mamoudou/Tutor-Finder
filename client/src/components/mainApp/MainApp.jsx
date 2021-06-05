@@ -7,18 +7,20 @@ import Home from './home/Home';
 import Chat from './chat/Chat';
 import Classroom from './classroom/Classroom';
 import Profile from './Profile/Profile';
-
+import PrivateRoute from '../PrivateRouting/PrivateRoute';
 const Navbar = () => {
   return (
     <Router>
       <div className="main">
-        <SideNav />
+        {/* <SideNav /> */}
+        <PrivateRoute path="/sidenav" exact component={SideNav} />
+
         <div className="body">
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/chat" component={Chat} />
-            <Route path="/classroom" component={Classroom} />
-            <Route path="/profile" component={Profile} />
+            <PrivateRoute path="/home" exact component={Home} />
+            <PrivateRoute path="/chat" component={Chat} />
+            <PrivateRoute path="/classroom" component={Classroom} />
+            <PrivateRoute path="/profile" component={Profile} />
           </Switch>
         </div>
       </div>

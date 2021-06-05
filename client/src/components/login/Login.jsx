@@ -3,7 +3,7 @@ import AuthContext from '../../context/auth/AuthContext';
 import { Link } from 'react-router-dom';
 function Login(props) {
   const authContext = useContext(AuthContext);
-  const { login, isAuthenticated } = authContext;
+  const { login, isAuthenticated, store } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -27,6 +27,8 @@ function Login(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // store(user);
+
     login({ email, password });
   };
   return (

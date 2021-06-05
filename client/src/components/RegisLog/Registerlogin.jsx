@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Registerlogin(props) {
   const authContext = useContext(AuthContext);
-  const { register, isAuthenticated } = authContext;
+  const { register, isAuthenticated, store } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -39,7 +39,7 @@ function Registerlogin(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    // store(user);
     register({ username, email, password, speciality, gender, bio, status });
   };
   return (
@@ -121,6 +121,18 @@ function Registerlogin(props) {
             onChange={onChange}
             required
             minLength="6"
+            className="mb-3"
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Speciality</label>
+          <br />
+          <input
+            id="name"
+            type="text"
+            name="speciality"
+            value={speciality}
+            onChange={onChange}
             className="mb-3"
           />
         </div>

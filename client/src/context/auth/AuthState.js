@@ -7,10 +7,11 @@ import React, { useReducer } from 'react';
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem('token'),
-    isAuthenticated: false,
+    isAuthenticated: null,
     loading: true,
     user: null,
     error: null,
+    dataStore: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -81,6 +82,45 @@ const AuthState = (props) => {
       type: 'LOGOUT',
     });
   };
+
+  //store data
+  const store = (data) => {
+    dispatch({
+      type: 'STORE_SUCCESS',
+      payload: data,
+    });
+  };
+  const reset = () => {
+    dispatch({
+      type: 'STORE_RESET',
+    });
+    loadUser();
+  };
+
+  //edit profile
+  const editProfile = async (userData) => {
+    const config = {
+      header: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(
+        `/athena/auth/update/${userData._id}`,
+        userData,
+        config
+      );
+      dispatch({
+        type: 'UPDATE_PROFILE',
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'FAIL',
+        payload: err.response.data.msg,
+      });
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -88,10 +128,15 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
+        dataStore: state.dataStore,
+        isAuth: state.isAuth,
+        editProfile,
         register,
         loadUser,
         login,
         logout,
+        store,
+        reset,
       }}
     >
       {props.children}

@@ -13,7 +13,7 @@ export default (state, action) => {
     case 'REGISTER_SUCCESS':
     case 'LOGIN_SUCCESS':
       localStorage.setItem('token', action.payload.token);
-      console.log(action.payload.token);
+
       return {
         ...state,
         ...action.payload,
@@ -24,6 +24,7 @@ export default (state, action) => {
     case 'FAIL':
     case 'LOGOUT':
       localStorage.removeItem('token');
+
       return {
         ...state,
         isAuthenticated: false,
@@ -31,6 +32,30 @@ export default (state, action) => {
         token: null,
         user: null,
         error: action.payload,
+      };
+    case 'STORE_SUCCESS':
+      return {
+        ...state,
+        isAuthenticated: true,
+
+        dataStore: action.payload,
+      };
+    case 'STORE_RESET':
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        error: null,
+        user: action.payload,
+        dataStore: null,
+      };
+    case 'UPDATE_PROFILE':
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        loading: false,
+        error: null,
       };
   }
 };

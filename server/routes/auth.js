@@ -88,4 +88,20 @@ route.get('/all/users', Auth, async (req, res) => {
     console.log(error.message);
   }
 });
+//update profile info:PRIVATE
+route.put('/update/:id', Auth, async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    }).select('-password');
+    if (!user) {
+      return res.status(400).json({ msg: 'No such user' });
+    }
+    return res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(error.message);
+  }
+});
 module.exports = route;
