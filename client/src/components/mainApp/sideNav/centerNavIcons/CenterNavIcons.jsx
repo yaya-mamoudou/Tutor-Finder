@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import NavIcons from "../navIcons/NavIcons";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 let activePath = window.location.pathname;
 console.log(activePath);
 const icons = [
   {
     icon: "fas fa-home",
     label: "Home",
-    className: "iconBoxColor",
-    link: "/mainapp/home",
+    link: "/home",
     key: 0,
     className: activePath === "/home" ? "iconBoxColor" : "iconBox",
   },
   {
     icon: "far fa-comment-dots",
     label: "Chat message",
-    className: "iconBox",
-    link: "/mainapp/chat",
+    className: activePath === "/chat" ? "iconBoxColor" : "iconBox",
+    link: "/chat",
     key: 1,
   },
   {
     icon: "fas fa-book",
     label: "Classroom",
-    className: "iconBox",
-    link: "/mainapp/classroom",
+    className: activePath === "/classroom" ? "iconBoxColor" : "iconBox",
+    link: "/classroom",
     key: 2,
   },
   {
     icon: "fas fa-user",
     label: "Profile",
-    className: "iconBox",
-    link: "/mainapp/profile",
+    className: activePath === "/profile" ? "iconBoxColor" : "iconBox",
+    link: "/profile",
     key: 3,
   },
 ];
