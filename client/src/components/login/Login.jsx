@@ -7,7 +7,7 @@ function Login(props) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/mainapp");
+      props.history.push("/home");
     }
   }, [isAuthenticated, props.history]);
 

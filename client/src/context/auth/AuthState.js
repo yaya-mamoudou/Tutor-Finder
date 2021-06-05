@@ -12,6 +12,7 @@ const AuthState = (props) => {
     user: null,
     error: null,
     dataStore: null,
+    allTutor: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -76,6 +77,22 @@ const AuthState = (props) => {
     }
   };
 
+  //view all tutors
+  const ViewAllTutors = async () => {
+    try {
+      const res = await axios.get('/athena/tutors/viewAllTutors');
+      await dispatch({
+        type: 'VIEW_ALL_TUTORS',
+        payload: await res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'FAIL',
+        payload: err.response.msg,
+      });
+    }
+  };
+
   //logout
   const logout = async () => {
     dispatch({
@@ -130,9 +147,11 @@ const AuthState = (props) => {
         user: state.user,
         dataStore: state.dataStore,
         isAuth: state.isAuth,
+        allTutor: state.allTutor,
         editProfile,
         register,
         loadUser,
+        ViewAllTutors,
         login,
         logout,
         store,

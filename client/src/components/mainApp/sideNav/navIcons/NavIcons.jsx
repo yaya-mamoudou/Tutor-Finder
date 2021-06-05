@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function NavIcons({ id, icon, className, label, _setFocus }) {
   return (
@@ -8,7 +8,7 @@ export default function NavIcons({ id, icon, className, label, _setFocus }) {
       </div>
       <div className="label">
         <span
-          className={className === "iconBoxColor" ? "labelColor" : "text-white"}
+          className={className === 'iconBoxColor' ? 'labelColor' : 'text-white'}
         >
           {label}
         </span>
