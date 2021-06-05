@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './register.css';
 import AuthContext from '../../context/auth/AuthContext';
+import { Link } from 'react-router-dom';
 
 function Registerlogin(props) {
   const authContext = useContext(AuthContext);
@@ -8,7 +9,7 @@ function Registerlogin(props) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/profile');
     }
   }, [isAuthenticated, props.history]);
 
@@ -150,6 +151,9 @@ function Registerlogin(props) {
         </div>
         <input type="submit" value="Register" />
       </form>
+      <h2>
+        Already Have an account ? <Link to="/login">Login</Link>
+      </h2>
     </div>
   );
 }

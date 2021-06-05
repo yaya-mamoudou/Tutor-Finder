@@ -25,7 +25,7 @@ const AuthState = (props) => {
       });
     } catch (err) {
       dispatch({
-        type: 'REGISTER_FAIL',
+        type: 'FAIL',
         payload: err.response.data.msg,
       });
     }
@@ -47,12 +47,40 @@ const AuthState = (props) => {
       loadUser();
     } catch (err) {
       dispatch({
-        type: 'REGISTER_FAIL',
+        type: 'FAIL',
         payload: err.response.data.msg,
       });
     }
   };
 
+  //login
+  const login = async (formData) => {
+    const config = {
+      header: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post('/athena/login', formData, config);
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: res.data,
+      });
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: 'FAIL',
+        payload: err.response.data.msg,
+      });
+    }
+  };
+
+  //logout
+  const logout = async () => {
+    dispatch({
+      type: 'LOGOUT',
+    });
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -61,6 +89,9 @@ const AuthState = (props) => {
         loading: state.loading,
         user: state.user,
         register,
+        loadUser,
+        login,
+        logout,
       }}
     >
       {props.children}
