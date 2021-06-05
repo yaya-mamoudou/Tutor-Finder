@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./mainApp.css";
 
 import SideNav from "./sideNav/SideNav";
-import Home from "../ViewAllTutors/ViewAllTutors";
+import Home from "../mainApp/home/Home";
 import Chat from "./chat/Chat";
 import Classroom from "./classroom/Classroom";
 import Profile from "./Profile/Profile";
