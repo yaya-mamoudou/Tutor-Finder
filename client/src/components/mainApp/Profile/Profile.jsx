@@ -45,7 +45,7 @@ function Profile() {
         speciality: '',
         gender: '',
         bio: '',
-        status: 'learner',
+        status: '',
       });
     }
     //eslint-disable-next-line
@@ -58,7 +58,17 @@ function Profile() {
   const editMyProfile = (e) => {
     e.preventDefault();
     editProfile(info);
-    console.log(info);
+    reset();
+    setInfo({
+      username: '',
+      email: '',
+      password: '',
+      speciality: '',
+      gender: '',
+      bio: '',
+      status: '',
+    });
+    setToggle(0);
   };
   const data = (
     <Fragment>

@@ -37,7 +37,6 @@ export default (state, action) => {
       return {
         ...state,
         isAuthenticated: true,
-
         dataStore: action.payload,
       };
     case 'STORE_RESET':
@@ -46,7 +45,6 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
         error: null,
-        user: action.payload,
         dataStore: null,
       };
     case 'UPDATE_PROFILE':
@@ -56,6 +54,13 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
         error: null,
+      };
+    case 'VIEW_ALL_TUTORS':
+      return {
+        ...state,
+        allTutor: action.payload,
+        loading: false,
+        isAuthenticated: true,
       };
   }
 };
