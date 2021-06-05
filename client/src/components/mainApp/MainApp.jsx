@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './mainApp.css';
 
 import SideNav from './sideNav/SideNav';
-import Home from '../ViewAllTutors/ViewAllTutors';
+// import Home from './home/Home';
 import Chat from './chat/Chat';
+import Home from '../ViewAllTutors/ViewAllTutors';
 import Classroom from './classroom/Classroom';
 import Profile from './Profile/Profile';
 import PrivateRoute from '../PrivateRouting/PrivateRoute';
