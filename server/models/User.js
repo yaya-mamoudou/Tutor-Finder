@@ -39,6 +39,13 @@ const AthenaSchema = mongoose.Schema({
     type: String,
     required: 'true',
   },
+  location: {
+    type: String,
+    required: 'true',
+  },
+  tel: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('USER', AthenaSchema);

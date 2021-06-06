@@ -10,6 +10,7 @@ import Login from './components/login/Login';
 import PrivateRoute from './components/PrivateRouting/PrivateRoute';
 import TutorState from './context/tutors/TutorState';
 import TutorProfile from './components/ViewAllTutors/ViewAllTutors';
+import TutorIndProfile from './components/ViewAllTutors/TutorProfile';
 
 function App() {
   return (

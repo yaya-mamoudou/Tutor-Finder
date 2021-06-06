@@ -51,7 +51,7 @@ route.post(
       );
     } catch (err) {
       res.status(500).json({ msg: 'Server Error' });
-      console.log(error.message);
+      console.log(err.message);
     }
   }
 );
