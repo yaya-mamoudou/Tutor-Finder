@@ -30,6 +30,8 @@ route.post(
       speciality,
       bio,
       status,
+      location,
+      tel,
     } = req.body;
     try {
       let user = await User.findOne({ email });
@@ -44,6 +46,8 @@ route.post(
         speciality,
         bio,
         status,
+        location,
+        tel,
       });
       const salt = await bcrypt.genSalt(11);
       user.password = await bcrypt.hash(password, salt);

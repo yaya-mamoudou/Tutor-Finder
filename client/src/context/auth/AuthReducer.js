@@ -56,10 +56,20 @@ export default (state, action) => {
         error: null,
       };
     case 'VIEW_ALL_TUTORS':
+      // console.log('data here' + action.payload + 'aki');
+
       return {
         ...state,
         allTutor: action.payload,
         loading: false,
+        isAuthenticated: true,
+      };
+    case 'VIEW_A_TUTOR':
+      return {
+        ...state,
+        ...action.payload,
+        loading: false,
+        tutData: action.payload,
         isAuthenticated: true,
       };
   }

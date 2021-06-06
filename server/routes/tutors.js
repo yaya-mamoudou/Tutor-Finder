@@ -19,7 +19,27 @@ route.get('/viewAllTutors', Auth, async (req, res) => {
     console.log(err.message);
   }
 });
+//view tutors profile : PRIVATE
+route.get('/view/profile/tutors/:id', Auth, async (req, res) => {
+  try {
+    let user = await Users.findById(req.params.id);
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(err.message);
+  }
+});
 
+//test : PRIVATE
+route.get('/test', Auth, async (req, res) => {
+  try {
+    let user = await Users.findById(req.params.id);
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(err.message);
+  }
+});
 //create classroom : PRIVATE-TUTORS
 
 route.post('/createClass', Auth, async (req, res) => {

@@ -13,6 +13,7 @@ const AuthState = (props) => {
     error: null,
     dataStore: null,
     allTutor: null,
+    tutData: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -81,15 +82,17 @@ const AuthState = (props) => {
   const ViewAllTutors = async () => {
     try {
       const res = await axios.get('/athena/tutors/viewAllTutors');
+
       await dispatch({
         type: 'VIEW_ALL_TUTORS',
         payload: await res.data,
       });
     } catch (err) {
-      dispatch({
-        type: 'FAIL',
-        payload: err.response.msg,
-      });
+      // dispatch({
+      //   type: 'FAIL',
+      //   payload: err.response.msg,
+      // });
+      console.log(err.message);
     }
   };
 
@@ -138,6 +141,26 @@ const AuthState = (props) => {
       });
     }
   };
+
+  //view a tutors profile
+  const viewTutProfiles = async (tut) => {
+    try {
+      // const res = await axios.get(`view/profile/tutors/${tut._id}`);
+      dispatch({
+        type: 'VIEW_A_TUTOR',
+        payload: tut,
+      });
+      // console.log('tutor data :' + tut);
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: 'FAIL',
+        payload: err.response.data.msg,
+      });
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -148,6 +171,7 @@ const AuthState = (props) => {
         dataStore: state.dataStore,
         isAuth: state.isAuth,
         allTutor: state.allTutor,
+        tutData: state.tutData,
         editProfile,
         register,
         loadUser,
@@ -156,6 +180,7 @@ const AuthState = (props) => {
         logout,
         store,
         reset,
+        viewTutProfiles,
       }}
     >
       {props.children}

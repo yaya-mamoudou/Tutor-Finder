@@ -22,6 +22,8 @@ function Registerlogin(props) {
     gender: "",
     bio: "",
     status: "learner",
+    location: "",
+    tel: "",
   });
 
   const {
@@ -33,6 +35,8 @@ function Registerlogin(props) {
     gender,
     bio,
     status,
+    location,
+    tel,
   } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -40,7 +44,16 @@ function Registerlogin(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     // store(user);
-    register({ username, email, password, speciality, gender, bio, status });
+    register({
+      username,
+      email,
+      password,
+      speciality,
+      gender,
+      bio,
+      status,
+      location,
+    });
   };
   return (
     <div>
@@ -132,6 +145,31 @@ function Registerlogin(props) {
             type="text"
             name="speciality"
             value={speciality}
+            onChange={onChange}
+            className="mb-3"
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Telephon Number</label>
+          <br />
+          <input
+            id="name"
+            type="text"
+            name="tel"
+            value={tel}
+            onChange={onChange}
+            className="mb-3"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="name">location</label>
+          <br />
+          <input
+            id="name"
+            type="text"
+            name="location"
+            value={location}
             onChange={onChange}
             className="mb-3"
           />
