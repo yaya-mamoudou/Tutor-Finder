@@ -55,7 +55,8 @@
 .iconsInCenter {
   position: relative;
   top: -5%;
-  padding: 5px 0 !important;
+  width: 50px;
+  /* padding: 5px 0 !important; */
   /* background-color: red; */
 }
 
@@ -63,7 +64,7 @@
   background-color: #385f8c;
   width: 50px;
   height: 100vh;
-  padding: 5px;
+  /* padding: 5px; */
   overflow: hidden;
   /* position: fixed; */
   top: 0px;
@@ -92,21 +93,17 @@
 }
 
 .menu {
-  width: 40px;
+  width: 50px;
   height: 40px;
+  font-size: 20px;
 }
 
 .logout {
   width: 40px;
   height: 40px;
 }
-.icons {
-  width: 50px;
-}
-
 .icon {
-  font-size: 50px;
-  /* background-color: green; */
+  font-size: 19px;
 }
 
 .menu:hover,
