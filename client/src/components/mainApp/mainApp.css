@@ -28,11 +28,8 @@
   align-items: center;
   color: aliceblue !important;
 }
-.icon {
-  font-size: 22px;
-}
 
-.label {
+/* .label {
   position: absolute;
   left: 50px;
   width: 100%;
@@ -42,12 +39,24 @@
   align-items: center !important;
   white-space: nowrap;
   font-weight: bolder;
+} */
+
+.label {
+  position: absolute;
+  left: 50px;
+  width: 100%;
+  height: 40px;
+  letter-spacing: 1.2;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .iconsInCenter {
   position: relative;
   top: -5%;
-  padding: 5px !important;
+  padding: 5px 0 !important;
+  /* background-color: red; */
 }
 
 .sideNav {
@@ -81,16 +90,7 @@
 .reduced {
   transition: width 0.4s;
 }
-.label {
-  position: absolute;
-  left: 50px;
-  width: 50;
-  height: 50;
-  letter-spacing: 1.2;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
+
 .menu {
   width: 40px;
   height: 40px;
@@ -105,7 +105,8 @@
 }
 
 .icon {
-  font-size: 22px;
+  font-size: 50px;
+  /* background-color: green; */
 }
 
 .menu:hover,
