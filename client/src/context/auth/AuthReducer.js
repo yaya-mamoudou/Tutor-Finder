@@ -72,5 +72,10 @@ export default (state, action) => {
         tutData: action.payload,
         isAuthenticated: true,
       };
+    case 'I_STORE':
+      return {
+        ...state,
+        ikeep: action.payload,
+      };
   }
 };

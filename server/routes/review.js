@@ -21,7 +21,7 @@ route.post(
     }
     try {
       let { body, rating, reviewers_id, selectedTutor_id } = req.body;
-      let currentReview = await Review.create({
+      let currentReview = new Review({
         body,
         rating,
         reviewers_id: req.user.id,
@@ -40,6 +40,7 @@ route.post(
 route.get('/viewTutorsReview', Auth, async (req, res) => {
   try {
     let ViewReview = await Review.find({})
+      .populate('reviewers_id')
       .where('selectedTutor_id')
       .equals(req.user.id);
     res.json({ ViewReview });
@@ -53,6 +54,7 @@ route.get('/viewTutorsReview', Auth, async (req, res) => {
 route.get('/AllReviewsView/:id', Auth, async (req, res) => {
   try {
     let ViewReview = await Review.find({})
+      .populate('reviewers_id')
       .where('selectedTutor_id')
       .equals(req.params.id);
     res.json({ ViewReview });

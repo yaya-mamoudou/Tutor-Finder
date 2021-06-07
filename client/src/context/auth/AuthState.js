@@ -14,6 +14,7 @@ const AuthState = (props) => {
     dataStore: null,
     allTutor: null,
     tutData: null,
+    ikeep: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -161,6 +162,18 @@ const AuthState = (props) => {
     }
   };
 
+  //keep data
+  const iStore = async (userD) => {
+    try {
+      dispatch({
+        type: 'I_STORE',
+        payload: userD,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -172,6 +185,8 @@ const AuthState = (props) => {
         isAuth: state.isAuth,
         allTutor: state.allTutor,
         tutData: state.tutData,
+        ikeep: state.ikeep,
+        iStore,
         editProfile,
         register,
         loadUser,

@@ -11,26 +11,29 @@ import PrivateRoute from './components/PrivateRouting/PrivateRoute';
 import TutorState from './context/tutors/TutorState';
 import TutorProfile from './components/ViewAllTutors/ViewAllTutors';
 import TutorIndProfile from './components/ViewAllTutors/TutorProfile';
+import ReviewState from './context/reviews/ReviewState';
 
 function App() {
   return (
     <Router>
       <AuthState>
-        <TutorState>
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/mainapp" component={MainApp} />
-            <Route exact path="/register" component={Registerlogin} />
-            <PrivateRoute
-              exact
-              path="/ViewTutorProfile"
-              component={TutorProfile}
-            />
+        <ReviewState>
+          <TutorState>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/mainapp" component={MainApp} />
+              <Route exact path="/register" component={Registerlogin} />
+              <PrivateRoute
+                exact
+                path="/ViewTutorProfile"
+                component={TutorProfile}
+              />
 
-            <MainApp />
-          </Switch>
-        </TutorState>
+              <MainApp />
+            </Switch>
+          </TutorState>
+        </ReviewState>
       </AuthState>
     </Router>
   );

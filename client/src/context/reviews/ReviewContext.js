@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const TutorContext = createContext();
+const ReviewContext = createContext();
 
-export default TutorContext;
+export default ReviewContext;

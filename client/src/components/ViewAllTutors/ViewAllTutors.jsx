@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 // import TutorsContext from '../../context/tutors/TutorContext';
 import AuthContext from '../../context/auth/AuthContext';
+import ReviewContext from '../../context/reviews/ReviewContext';
+
 import TutProofile from './TutorProfile';
 import { Link } from 'react-router-dom';
 
@@ -9,17 +11,21 @@ const ViewAllTutorProfilePage = (props) => {
   const [aTutData, setATutData] = useState();
 
   const authContext = useContext(AuthContext);
+  const reviewContext = useContext(ReviewContext);
+  const { clearReview } = reviewContext;
   const {
     allTutor,
     ViewAllTutors,
     loadUser,
     viewTutProfiles,
     tutData,
+    iStore,
   } = authContext;
 
   useEffect(async () => {
     loadUser();
     ViewAllTutors();
+    clearReview();
   }, []);
 
   useEffect(async () => {
@@ -42,6 +48,7 @@ const ViewAllTutorProfilePage = (props) => {
               <h5 className="text-white">{tut.gender}</h5>
               <h5 className="text-white">{tut.speciality}</h5>
               <Link
+                // onClick={() => iStore(tut)}
                 to={{
                   pathname: '/tut/profile',
                   myData: {
