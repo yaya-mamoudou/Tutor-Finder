@@ -6,7 +6,7 @@ import SideNav from "./sideNav/SideNav";
 // import Home from './home/Home';
 import Chat from "./chat/Chat";
 import Home from "../ViewAllTutors/ViewAllTutors";
-import Classroom from "./classroom/Classroom";
+import Classroom from "./classroom/MainClassEntry";
 import Profile from "./Profile/Profile";
 import PrivateRoute from "../PrivateRouting/PrivateRoute";
 import TutorIndProfile from "../ViewAllTutors/TutorProfile";
@@ -14,7 +14,6 @@ const Navbar = () => {
   return (
     <div className="main">
       <SideNav />
-      {/* <PrivateRoute path="/sidenav" exact component={SideNav} /> */}
 
       <div className="body">
         <Switch>

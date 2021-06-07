@@ -1,11 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/auth/AuthContext';
 import './tutProfile.css';
-
+import CreateReview from './reviews/Review';
+import AllReviews from './ViewAllReviews/AllReviews';
 function App(props) {
   const authContext = useContext(AuthContext);
+  const { ikeep, iStore } = authContext;
+  // const [userD, setUserD] = useState();
+  // //  const [userDa, setUserDa] = useState();
+
+  // // const call = async () => {
+  // //   try {
+  // //   } catch (error) {
+  // //     console.log(error);
+  // //   }
+  // // };
+
+  // // useEffect(async () => {
+  // //   await call();
+  // //   await setUserD(userD);
+  // // }, []);
+
   let userD = props.location.myData.aTutData;
-  // console.log(userD.status);
+
   return (
     <div className="main-content ">
       <div className="header">
@@ -71,84 +88,13 @@ function App(props) {
             <a href="#" className="fa fa-twitter"></a>
           </div>
         </div>
+
         <div className="col-md-6">
-          <div className="row3 row m-5">
-            <div className="search-wrapper ">
-              <input type="search" placeholder="Leave your review..." />
-            </div>
-            <br />
-            <div className="bt pt-3">
-              <input className="btn btn-warning " type="button" value="send" />
-            </div>
-          </div>
+          <CreateReview tut_id={userD._id} />
+
           <div className="m-5 row row3 ">
             <h3>Reviews</h3>
-            <div className="row">
-              <div class="review">
-                <div class="r">
-                  <div>
-                    <p></p>
-                  </div>
-                  <div class="icons">
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    ipsum error, accusantium harum temporibus necessitatibus
-                    dicta dolores? Dolor ad ut ullam, quia, nihil quae labore
-                    libero, similique iusto rem nemo.
-                  </p>
-                </div>
-              </div>
-              <div class="review">
-                <div class="r">
-                  <div>
-                    <p></p>
-                  </div>
-                  <div class="icons">
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    ipsum error, accusantium harum temporibus necessitatibus
-                    dicta dolores? Dolor ad ut ullam, quia, nihil quae labore
-                    libero, similique iusto rem nemo.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <AllReviews tut_id={userD._id} />
           </div>
         </div>
       </div>

@@ -1,38 +1,85 @@
 import React, { useReducer } from 'react';
-import TutorReducer from './TutorReducer';
-import TutorContext from './TutorContext';
+import ReviewReducer from './ReviewReducer';
+import ReviewContext from './ReviewContext';
 import axios from 'axios';
-const TutorState = (props) => {
+
+const ReviewState = (props) => {
   const initialState = {
-    tutors: null,
+    reviews: null,
+    myReview: null,
+    aTutsReview: null,
   };
-  const [state, dispatch] = useReducer(TutorReducer, initialState);
+  const [state, dispatch] = useReducer(ReviewReducer, initialState);
 
   //view all tutors
-  const ViewAllTutors = async () => {
+  const createAReview = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
     try {
-      const res = await axios.get('/athena/tutors/viewAllTutors');
+      console.log('alice');
+      console.log('form data here ' + formData.rating);
+      const res = await axios.post(
+        '/athena/reviews/addReview',
+        formData,
+        config
+      );
       dispatch({
-        type: 'VIEW_ALL_TUTORS',
+        type: 'ADD_REVIEW',
         payload: res.data,
       });
-    } catch (err) {
-      dispatch({
-        type: 'FAIL',
-        payload: err.response.data.msg,
-      });
+    } catch (error) {
+      console.log(error);
     }
   };
+
+  //logged in tutor get his review
+  const getMyReview = async () => {
+    try {
+      let res = await axios.get('/athena/reviews/viewTutorsReview');
+      dispatch({
+        type: 'GET_MY_REVIEWS',
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //all users view a tutors review
+  const viewATutR = async (id) => {
+    try {
+      let res = await axios.get(`/athena/reviews/AllReviewsView/${id}`);
+      dispatch({
+        type: 'GET_A_TUTS_REVIEWS',
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const clearReview = () => {
+    dispatch({
+      type: 'CLEAR',
+    });
+  };
   return (
-    <TutorContext.Provider
+    <ReviewContext.Provider
       value={{
-        tutors: state.tutors,
-        ViewAllTutors,
+        reviews: state.reviews,
+        myReview: state.myReview,
+        aTutsReview: state.aTutsReview,
+        viewATutR,
+        createAReview,
+        getMyReview,
+        clearReview,
       }}
     >
       {props.children}
-    </TutorContext.Provider>
+    </ReviewContext.Provider>
   );
 };
 
-export default TutorState;
+export default ReviewState;

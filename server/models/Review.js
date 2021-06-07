@@ -8,7 +8,7 @@ const ReviewSchema = mongoose.Schema({
 
   rating: {
     type: String,
-    required: true,
+    // required: true,
   },
 
   body: {
@@ -16,8 +16,9 @@ const ReviewSchema = mongoose.Schema({
     required: true,
   },
   selectedTutor_id: {
-    type: String,
-    required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    default: null,
+    ref: 'USER',
   },
   date: {
     type: Date,

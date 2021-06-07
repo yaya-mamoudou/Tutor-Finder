@@ -23,6 +23,7 @@ route.get('/viewAllTutors', Auth, async (req, res) => {
 route.get('/view/profile/tutors/:id', Auth, async (req, res) => {
   try {
     let user = await Users.findById(req.params.id);
+
     res.json({ user });
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });

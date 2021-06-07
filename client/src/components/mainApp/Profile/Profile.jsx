@@ -223,11 +223,17 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../../../context/auth/AuthContext';
+import ReviewContext from '../../../context/reviews/ReviewContext';
+import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import './profile.css';
 
 function App() {
   const authContext = useContext(AuthContext);
+  const reviewContext = useContext(ReviewContext);
+  const [myRData, setMyRData] = useState();
+
+  const { getMyReview, myReview } = reviewContext;
   const {
     user,
     isAuthenticated,
@@ -243,7 +249,19 @@ function App() {
     loadUser();
   }, []);
 
-  // console.log('this is my data ' + user.username);
+  useEffect(() => {
+    getMyReview();
+  }, [myReview]);
+  useEffect(async () => {
+    try {
+      await setMyRData(myReview.ViewReview);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [myReview]);
+
+  // console.log('this is the data' + myRData);
+
   return (
     <div className="main-content ">
       <div className="header">
@@ -339,70 +357,28 @@ function App() {
           <div className="m-5 row row3 ">
             <h3>Reviews</h3>
             <div className="row">
-              <div class="review">
+              <div class="">
                 <div class="r">
                   <div>
                     <p></p>
                   </div>
-                  <div class="icons">
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                  </div>
                 </div>
                 <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    ipsum error, accusantium harum temporibus necessitatibus
-                    dicta dolores? Dolor ad ut ullam, quia, nihil quae labore
-                    libero, similique iusto rem nemo.
-                  </p>
+                  {typeof myRData === 'object' &&
+                    myRData.map((RData) => (
+                      <div className="bg-danger p-3 m-3">
+                        <h5>Review Message</h5>
+                        <h4> {RData.body} </h4>
+                        <h5 className="pt-3">Retings</h5>
+                        <h4> {RData.rating} </h4>
+                        <h5 className="pt-3">Sent by</h5>
+                        <h4> {RData.reviewers_id.username} </h4>
+                        <p className="text-light"> {format(RData.date)} </p>
+                      </div>
+                    ))}
                 </div>
               </div>
-              <div class="review">
-                <div class="r">
-                  <div>
-                    <p></p>
-                  </div>
-                  <div class="icons">
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    ipsum error, accusantium harum temporibus necessitatibus
-                    dicta dolores? Dolor ad ut ullam, quia, nihil quae labore
-                    libero, similique iusto rem nemo.
-                  </p>
-                </div>
-              </div>
+              ¨
             </div>
           </div>
         </div>

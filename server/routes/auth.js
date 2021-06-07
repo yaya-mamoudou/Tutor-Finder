@@ -92,6 +92,20 @@ route.get('/all/users', Auth, async (req, res) => {
     console.log(error.message);
   }
 });
+
+//Get all learners in the system : PRIVATE
+route.get('/all/learners', Auth, async (req, res) => {
+  try {
+    let getUser = await User.find({})
+      .where('status')
+      .equals('learner')
+      .select('-password');
+    res.status(200).json({ getUser });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+    console.log(error.message);
+  }
+});
 //update profile info:PRIVATE
 route.put('/update/:id', Auth, async (req, res) => {
   try {
