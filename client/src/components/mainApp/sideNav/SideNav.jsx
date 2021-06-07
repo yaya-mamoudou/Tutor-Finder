@@ -6,7 +6,6 @@ import AuthContext from '../../../context/auth/AuthContext';
 const menu = createRef();
 
 let activePath = window.location.pathname;
-console.log(activePath);
 const icons = [
   {
     icon: 'fas fa-home',
@@ -42,7 +41,6 @@ export default function SideNav() {
   const authContext = useContext(AuthContext);
   const { logout } = authContext;
   const _toggleMenu = () => {
-    console.log(menu.current);
     const reduced = menu.current.className.includes('reduced');
     if (reduced) {
       menu.current.className = menu.current.className.replace(

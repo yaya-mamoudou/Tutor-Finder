@@ -68,9 +68,9 @@
 .profile h3 {
   font-weight: bold !important;
 }
-.row {
+/* .row {
   background-color: #fff !important;
-}
+} */
 
 .row2 {
   /* height: 24vh !important;
@@ -196,19 +196,19 @@
   .profile small {
     font-size: 11px !important;
   }
-  .row {
+  /* .row {
     overflow: scroll !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 980px) {
   .main-content {
     display: inline !important;
   }
-  .row {
+  /* .row {
     width: 100vw !important;
     height: auto !important;
-  }
+  } */
   .row1 {
     margin-bottom: 0 !important;
     margin-left: 0 !important;
