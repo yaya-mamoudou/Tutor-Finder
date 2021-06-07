@@ -62,6 +62,7 @@
 //     setInfo({
 //       username: '',
 //       email: '',
+
 //       password: '',
 //       speciality: '',
 //       gender: '',
@@ -220,9 +221,9 @@
 
 // export default Profile;
 
-import React, { useContext, usetate } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../../../context/auth/AuthContext';
-
+import { Link } from 'react-router-dom';
 import './profile.css';
 
 function App() {
@@ -238,13 +239,32 @@ function App() {
     editProfile,
   } = authContext;
 
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   // console.log('this is my data ' + user.username);
   return (
     <div className="main-content ">
       <div className="header">
         <p>Profile</p>
         <div className="user-wrapper ">
+          <Link
+            onClick={() => {
+              store(user);
+            }}
+            to={{
+              pathname: '/edit/profile',
+              myData: {
+                data: user,
+              },
+            }}
+          >
+            <i class="fas fa-edit fa-2x"></i>
+          </Link>
+
           <a href="#" className="fa fa-wechat"></a>
+
           <img src="img/1.jpg" alt="" width="30px" height="30px" />
         </div>
       </div>
@@ -257,7 +277,7 @@ function App() {
                   <img src="img/1.jpg" alt="" width="90px" height="90px" />
                 </div>
                 <div className="">
-                  <h3>name {user && user.username} </h3>
+                  <h3> {user && user.username} </h3>
                   <small>
                     {user && user.status === 'tutor' ? user.speciality : null}
                   </small>
@@ -296,7 +316,8 @@ function App() {
               <span>Telephone: </span>677842536
             </p>
             <p>
-              <span>email: </span>account@gmail.com
+              <span>email: </span>
+              {user && user.email}
             </p>
             <p>
               <span>social Media links</span>
