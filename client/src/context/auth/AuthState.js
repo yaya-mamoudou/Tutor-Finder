@@ -15,6 +15,8 @@ const AuthState = (props) => {
     allTutor: null,
     tutData: null,
     ikeep: null,
+    participants: [],
+    storePDATA: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -173,7 +175,26 @@ const AuthState = (props) => {
       console.log(error);
     }
   };
-
+  const isAdd = async () => {
+    setAuthToken(localStorage.token);
+    try {
+      const res = await axios.get('athena/auth/all/users');
+      dispatch({
+        type: 'VIEW_ALL_PARTICIPANTS',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const storePaticipant = async (userID) => {
+    try {
+      dispatch({
+        type: 'STORE_PARTICIPANT',
+        payload: userID,
+      });
+    } catch (error) {}
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -186,6 +207,8 @@ const AuthState = (props) => {
         allTutor: state.allTutor,
         tutData: state.tutData,
         ikeep: state.ikeep,
+        participants: state.participants,
+        storePDATA: state.storePDATA,
         iStore,
         editProfile,
         register,
@@ -195,7 +218,9 @@ const AuthState = (props) => {
         logout,
         store,
         reset,
+        isAdd,
         viewTutProfiles,
+        storePaticipant,
       }}
     >
       {props.children}

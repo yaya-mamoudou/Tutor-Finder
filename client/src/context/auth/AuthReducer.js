@@ -77,5 +77,15 @@ export default (state, action) => {
         ...state,
         ikeep: action.payload,
       };
+    case 'VIEW_ALL_PARTICIPANTS':
+      return {
+        ...state,
+        participants: action.payload,
+      };
+    case 'STORE_PARTICIPANT':
+      return {
+        ...state,
+        storePDATA: [action.payload, ...state.storePDATA],
+      };
   }
 };

@@ -41,6 +41,7 @@ route.get('/viewTutorsReview', Auth, async (req, res) => {
   try {
     let ViewReview = await Review.find({})
       .populate('reviewers_id')
+      .sort({ Date: -1 })
       .where('selectedTutor_id')
       .equals(req.user.id);
     res.json({ ViewReview });
@@ -56,6 +57,7 @@ route.get('/AllReviewsView/:id', Auth, async (req, res) => {
     let ViewReview = await Review.find({})
       .populate('reviewers_id')
       .where('selectedTutor_id')
+      .sort({ Date: -1 })
       .equals(req.params.id);
     res.json({ ViewReview });
   } catch (err) {
