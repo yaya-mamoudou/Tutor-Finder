@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import ReviewContext from '../../../context/reviews/ReviewContext';
-import Review from '../reviews/Review';
-import { format } from 'timeago.js';
+import React, { useState, useEffect, useContext } from "react";
+import ReviewContext from "../../../context/reviews/ReviewContext";
+import Review from "../reviews/Review";
+import { format } from "timeago.js";
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
@@ -21,10 +21,10 @@ function AllReviews(props) {
       console.log(err);
     }
   }, [aTutsReview]);
-  console.log('this is the data right here ' + tutData);
+  console.log("this is the data right here " + tutData);
   return (
     <div className="">
-      {typeof tutData === 'object' &&
+      {typeof tutData === "object" &&
         tutData.map((tutDset) => (
           <div className="bg-info m-3 p-3">
             <p>Review Message</p>
