@@ -6,12 +6,13 @@ import AuthContext from '../../../context/auth/AuthContext';
 
 function Participant(props) {
   const authContext = useContext(AuthContext);
-  const { isAdd, participants } = authContext;
+  const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
   const [data, setData] = useState();
 
   useEffect(async () => {
     isAdd();
-  }, []);
+    myCreatedClass();
+  }, [allMyClasses]);
 
   useEffect(async () => {
     try {
