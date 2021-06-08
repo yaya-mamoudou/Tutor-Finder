@@ -108,6 +108,7 @@ route.get('/viewAllMyCreatedClasses', Auth, async (req, res) => {
     try {
       let classroom = await Classroom.find({})
         .where('tutor_id')
+        .populate('participants')
         .equals(req.user.id);
       res.json({ classroom });
     } catch (err) {
