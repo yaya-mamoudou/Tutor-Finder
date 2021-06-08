@@ -30,8 +30,20 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: true,
         token: null,
+        // user: null,
+        // error: action.payload,
+        // isAuthenticated: false,
+        // loading: true,
         user: null,
-        error: action.payload,
+        error: action.pay,
+        dataStore: null,
+        allTutor: null,
+        tutData: null,
+        ikeep: null,
+        participants: [],
+        storePDATA: [],
+        classroom: null,
+        allMyClasses: null,
       };
     case 'STORE_SUCCESS':
       return {
