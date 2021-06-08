@@ -17,6 +17,8 @@ const AuthState = (props) => {
     ikeep: null,
     participants: [],
     storePDATA: [],
+    classroom: null,
+    allMyClasses: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -195,6 +197,47 @@ const AuthState = (props) => {
       });
     } catch (error) {}
   };
+
+  const createClass = async (formData) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(
+        '/athena/tutors/createClass',
+        formData,
+        config
+      );
+      dispatch({
+        type: 'CREATE_CLASSROOM',
+        payload: res.data,
+      });
+    } catch (err) {}
+  };
+  // const myCreatedClass = async () => {
+  //   try {
+  //     const res = await axios.get('/tutors/viewAllMyCreatedClasses');
+  //     dispatch({
+  //       type: 'VIEW_MY_CREATED_CLASSES',
+  //       payload: res.data,
+  //     });
+  //   } catch (err) {}
+  // };
+  const myCreatedClass = async () => {
+    setAuthToken(localStorage.token);
+    try {
+      const res = await axios.get('/athena/tutors/viewAllMyCreatedClasses');
+      dispatch({
+        type: 'VIEW_MY_CREATED_CLASSES',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -209,6 +252,8 @@ const AuthState = (props) => {
         ikeep: state.ikeep,
         participants: state.participants,
         storePDATA: state.storePDATA,
+        classroom: state.classroom,
+        allMyClasses: state.allMyClasses,
         iStore,
         editProfile,
         register,
@@ -221,6 +266,8 @@ const AuthState = (props) => {
         isAdd,
         viewTutProfiles,
         storePaticipant,
+        createClass,
+        myCreatedClass,
       }}
     >
       {props.children}

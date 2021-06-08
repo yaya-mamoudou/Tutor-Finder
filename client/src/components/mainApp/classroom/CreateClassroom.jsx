@@ -13,19 +13,16 @@ function CreateClassroom(props) {
     participants,
     storePaticipant,
     storePDATA,
-    addToClass,
+    createClass,
   } = authContext;
 
   const [modalShow, setModalShow] = useState(false);
   const [classData, setclassData] = useState({
-    coursename: '',
-    coursecode: '',
-    // particip: [storePDATA],
+    className: '',
+    classCode: '',
   });
 
-  const { coursename, coursecode, particip } = classData;
-
-  // const [members, setmembers] = useState();
+  const { className, classCode, particip } = classData;
 
   const handleChange = (e) => {
     setclassData({ ...classData, [e.target.name]: e.target.value });
@@ -33,16 +30,12 @@ function CreateClassroom(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // addToClass({ coursename, coursecode, particip });
-    console.log(
-      'name :' + coursename,
-      'code :' + coursecode,
-      'members :' + storePDATA
-    );
+    let participants = storePDATA;
+    createClass({ className, classCode, participants });
 
     setclassData({
-      coursename: '',
-      coursecode: '',
+      className: '',
+      classCode: '',
     });
   };
 
@@ -69,8 +62,8 @@ function CreateClassroom(props) {
               <Form.Control
                 type="text"
                 placeholder="Enter Course Title"
-                name="coursename"
-                value={coursename}
+                name="className"
+                value={className}
                 onChange={(e) => handleChange(e)}
               />
               <Form.Text className="text-muted">
@@ -83,8 +76,8 @@ function CreateClassroom(props) {
               <Form.Control
                 type="text"
                 placeholder="Enter Course Code"
-                name="coursecode"
-                value={coursecode}
+                name="classCode"
+                value={classCode}
                 onChange={(e) => handleChange(e)}
               />
             </Form.Group>

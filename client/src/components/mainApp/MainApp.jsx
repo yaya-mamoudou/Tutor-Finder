@@ -15,7 +15,7 @@ const Navbar = () => {
     <div className="main">
       <SideNav />
 
-      <div className="body">
+      <div className="mybody">
         <Switch>
           <PrivateRoute path="/home" exact component={Home} />
           <PrivateRoute exact path="/chat" component={Chat} />

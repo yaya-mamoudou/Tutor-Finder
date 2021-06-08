@@ -30,8 +30,20 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: true,
         token: null,
+        // user: null,
+        // error: action.payload,
+        // isAuthenticated: false,
+        // loading: true,
         user: null,
-        error: action.payload,
+        error: action.pay,
+        dataStore: null,
+        allTutor: null,
+        tutData: null,
+        ikeep: null,
+        participants: [],
+        storePDATA: [],
+        classroom: null,
+        allMyClasses: null,
       };
     case 'STORE_SUCCESS':
       return {
@@ -86,6 +98,16 @@ export default (state, action) => {
       return {
         ...state,
         storePDATA: [action.payload, ...state.storePDATA],
+      };
+    case 'CREATE_CLASSROOM':
+      return {
+        ...state,
+        classroom: action.payload,
+      };
+    case 'VIEW_MY_CREATED_CLASSES':
+      return {
+        ...state,
+        allMyClasses: action.payload,
       };
   }
 };

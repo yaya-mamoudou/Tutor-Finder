@@ -20,12 +20,14 @@ const ViewAllTutorProfilePage = (props) => {
     viewTutProfiles,
     tutData,
     iStore,
+    myCreatedClass,
   } = authContext;
 
   useEffect(async () => {
     loadUser();
     ViewAllTutors();
     clearReview();
+    myCreatedClass();
   }, []);
 
   useEffect(async () => {
