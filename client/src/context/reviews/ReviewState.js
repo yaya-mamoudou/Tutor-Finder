@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import ReviewReducer from './ReviewReducer';
 import ReviewContext from './ReviewContext';
 import axios from 'axios';
+import setAuthToken from '../../header/globalHeader';
 
 const ReviewState = (props) => {
   const initialState = {
@@ -50,6 +51,8 @@ const ReviewState = (props) => {
 
   //all users view a tutors review
   const viewATutR = async (id) => {
+    setAuthToken(localStorage.token);
+
     try {
       let res = await axios.get(`/athena/reviews/AllReviewsView/${id}`);
       dispatch({

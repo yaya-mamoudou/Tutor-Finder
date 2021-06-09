@@ -3,25 +3,21 @@ import AuthContext from '../../context/auth/AuthContext';
 import './tutProfile.css';
 import CreateReview from './reviews/Review';
 import AllReviews from './ViewAllReviews/AllReviews';
+import { useLocation } from 'react-router';
+
 function App(props) {
   const authContext = useContext(AuthContext);
-  const { ikeep, iStore } = authContext;
-  // const [userD, setUserD] = useState();
-  // //  const [userDa, setUserDa] = useState();
 
-  // // const call = async () => {
-  // //   try {
-  // //   } catch (error) {
-  // //     console.log(error);
-  // //   }
-  // // };
+  const { ikeep, iStore, tutData } = authContext;
 
-  // // useEffect(async () => {
-  // //   await call();
-  // //   await setUserD(userD);
-  // // }, []);
-
-  let userD = props.location.myData.aTutData;
+  const username = localStorage.getItem('username');
+  const bio = localStorage.getItem('bio');
+  const status = localStorage.getItem('status');
+  const email = localStorage.getItem('email');
+  const gender = localStorage.getItem('gender');
+  const speciality = localStorage.getItem('speciality');
+  const location = localStorage.getItem('location');
+  const id = localStorage.getItem('id');
 
   return (
     <div className="main-content ">
@@ -41,13 +37,13 @@ function App(props) {
                   <img src="img/1.jpg" alt="" width="90px" height="90px" />
                 </div>
                 <div className="">
-                  <h3> {userD.username} </h3>
-                  <small>{userD.speciality}</small>
+                  <h3> {username} </h3>
+                  <small>{speciality}</small>
                 </div>
               </div>
               <div className=" location">
                 <h5>Location</h5>
-                <h4>{userD.location}</h4>
+                <h4>{location}</h4>
                 <p className="rat">Ratings</p>
                 <p>
                   <span className="ratings">4.5</span>
@@ -69,7 +65,7 @@ function App(props) {
                 </p>
                 <br />
                 <h5>About Me</h5>
-                <p>{userD.bio}</p>
+                <p>{bio}</p>
               </div>
             </div>
           </div>
@@ -79,22 +75,22 @@ function App(props) {
             </p>
             <p>
               <span>email: </span>
-              {userD.email}
+              {email}
             </p>
             <p>
               <span>social Media links</span>
             </p>
-            <a href="#" className="fa fa-facebook"></a>
-            <a href="#" className="fa fa-twitter"></a>
+            <a href="#" className="fab fa-facebook fa-2x"></a>
+            <a href="#" className="fab fa-twitter fa-2x"></a>
           </div>
         </div>
 
         <div className="col-md-6">
-          <CreateReview tut_id={userD._id} />
+          <CreateReview tut_id={id} />
 
           <div className="m-5 row row3 ">
             <h3>Reviews</h3>
-            <AllReviews tut_id={userD._id} />
+            <AllReviews tut_id={id} />
           </div>
         </div>
       </div>

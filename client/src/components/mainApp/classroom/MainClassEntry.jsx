@@ -83,7 +83,10 @@ function MainClassEntry() {
             centered
           >
             <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
+              <Modal.Title
+                id="contained-modal-title-vcenter"
+                className="p-5 m-5"
+              >
                 All Participants
               </Modal.Title>
             </Modal.Header>

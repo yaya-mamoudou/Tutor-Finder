@@ -38,6 +38,16 @@ const ViewAllTutorProfilePage = (props) => {
     }
   }, [allTutor]);
 
+  const clickHandle = (tut) => {
+    localStorage.setItem('id', tut._id);
+    localStorage.setItem('username', tut.username);
+    localStorage.setItem('bio', tut.bio);
+    localStorage.setItem('status', tut.status);
+    localStorage.setItem('email', tut.email);
+    localStorage.setItem('gender', tut.gender);
+    localStorage.setItem('speciality', tut.speciality);
+    localStorage.setItem('location', tut.location);
+  };
   return (
     <div>
       <h2 className="display-3">All Tutors</h2>
@@ -50,12 +60,9 @@ const ViewAllTutorProfilePage = (props) => {
               <h5 className="text-white">{tut.gender}</h5>
               <h5 className="text-white">{tut.speciality}</h5>
               <Link
-                // onClick={() => iStore(tut)}
+                onClick={() => clickHandle(tut)}
                 to={{
                   pathname: '/tut/profile',
-                  myData: {
-                    aTutData: tut,
-                  },
                 }}
               >
                 <button className="btn btn-primary p-3  m-4">
