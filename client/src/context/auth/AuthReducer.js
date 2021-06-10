@@ -77,11 +77,12 @@ export default (state, action) => {
         isAuthenticated: true,
       };
     case 'VIEW_A_TUTOR':
+      console.log(action.payload);
       return {
         ...state,
         ...action.payload,
-        loading: false,
         tutData: action.payload,
+        loading: false,
         isAuthenticated: true,
       };
     case 'I_STORE':

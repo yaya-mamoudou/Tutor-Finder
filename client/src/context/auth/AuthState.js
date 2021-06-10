@@ -150,12 +150,12 @@ const AuthState = (props) => {
   //view a tutors profile
   const viewTutProfiles = async (tut) => {
     try {
-      // const res = await axios.get(`view/profile/tutors/${tut._id}`);
+      const res = await axios.get(`/athena/tutors/view/profile/tutors/${tut}`);
       dispatch({
         type: 'VIEW_A_TUTOR',
-        payload: tut,
+        payload: res.data,
       });
-      // console.log('tutor data :' + tut);
+      // console.log('tutor data :' + res.data);
 
       loadUser();
     } catch (err) {

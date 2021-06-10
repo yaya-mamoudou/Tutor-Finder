@@ -21,12 +21,11 @@ function AllReviews(props) {
       console.log(err);
     }
   }, [aTutsReview]);
-  console.log("this is the data right here " + tutData);
   return (
     <div className="">
       {typeof tutData === "object" &&
         tutData.map((tutDset) => (
-          <div className="bg-info m-3 p-3">
+          <div className="bg-info m-3 p-3 ">
             <p>Review Message</p>
             <p>{tutDset.body}</p>
             <p>Rating </p>

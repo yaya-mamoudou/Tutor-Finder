@@ -68,7 +68,7 @@ route.post('/createClass', Auth, async (req, res) => {
     }
   } else {
     res.status(404).json({ msg: 'Only tutors can create classrooms' });
-    console.log(err.message);
+    // console.log(err.message);
   }
 });
 
@@ -92,7 +92,7 @@ route.put('/EditClassInfo/:id', Auth, async (req, res) => {
       res.json({ updateClassInfo });
     } else {
       res.status(404).json({ msg: 'Only tutors can create classrooms' });
-      console.log(err.message);
+      // console.log(err.message);
     }
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });
@@ -117,7 +117,7 @@ route.get('/viewAllMyCreatedClasses', Auth, async (req, res) => {
     }
   } else {
     res.status(404).json({ msg: 'Only tutors can create classrooms' });
-    console.log(err.message);
+    // console.log(err.message);
   }
 });
 
@@ -144,7 +144,7 @@ route.put('/AddToClass/:id', Auth, async (req, res) => {
     }
   } else {
     res.status(404).json({ msg: 'Only tutors can create classrooms' });
-    console.log(err.message);
+    // console.log(err.message);
   }
 });
 
