@@ -110,5 +110,15 @@ export default (state, action) => {
         ...state,
         allMyClasses: action.payload,
       };
+    case 'GET_CONVERSATION':
+      return {
+        ...state,
+        conversation: action.payload,
+      };
+    case 'GET_MESSAGE':
+      return {
+        ...state,
+        myMsg: action.payload,
+      };
   }
 };

@@ -19,6 +19,8 @@ const AuthState = (props) => {
     storePDATA: [],
     classroom: null,
     allMyClasses: null,
+    conversation: [],
+    myMsg: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -216,15 +218,7 @@ const AuthState = (props) => {
       });
     } catch (err) {}
   };
-  // const myCreatedClass = async () => {
-  //   try {
-  //     const res = await axios.get('/tutors/viewAllMyCreatedClasses');
-  //     dispatch({
-  //       type: 'VIEW_MY_CREATED_CLASSES',
-  //       payload: res.data,
-  //     });
-  //   } catch (err) {}
-  // };
+
   const myCreatedClass = async () => {
     setAuthToken(localStorage.token);
     try {
@@ -238,6 +232,22 @@ const AuthState = (props) => {
     }
   };
 
+  const getConversation = async (userID) => {
+    try {
+      const res = await axios.get(`/athena/conversation/${userID}`);
+      dispatch({ type: 'GET_CONVERSATION', payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getMsg = async (convID) => {
+    try {
+      const res = await axios.get(`/athena/message/${convID}`);
+      dispatch({ type: 'GET_MESSAGE', payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -254,6 +264,9 @@ const AuthState = (props) => {
         storePDATA: state.storePDATA,
         classroom: state.classroom,
         allMyClasses: state.allMyClasses,
+        conversation: state.conversation,
+        myMsg: state.myMsg,
+        getMsg,
         iStore,
         editProfile,
         register,
@@ -268,6 +281,7 @@ const AuthState = (props) => {
         storePaticipant,
         createClass,
         myCreatedClass,
+        getConversation,
       }}
     >
       {props.children}

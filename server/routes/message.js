@@ -6,7 +6,7 @@ const Message = require('../models/Message');
 
 //new message
 route.post(
-  '/:conversationId',
+  '/',
   [Auth, [check('text', 'Please enter A message').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
