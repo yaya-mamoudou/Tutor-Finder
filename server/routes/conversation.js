@@ -19,11 +19,11 @@ route.post('/', Auth, async (req, res) => {
 });
 
 //get conversation of a user
-route.get('/:convID', Auth, async (req, res) => {
+route.get('/:userID', Auth, async (req, res) => {
   try {
     let conv = await Conversation.find({
-      members: { $in: ['convID'] },
-    });
+      members: { $in: [req.params.userID] },
+    }).populate('members');
     res.status(200).json({ conv });
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });
