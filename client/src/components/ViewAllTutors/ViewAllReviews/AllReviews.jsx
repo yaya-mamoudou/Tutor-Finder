@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import ReviewContext from "../../../context/reviews/ReviewContext";
 import Review from "../reviews/Review";
 import { format } from "timeago.js";
+import DisplayRatings from "./DisplayRatings";
+
+import reviewerPic from "../../assets/img/1.jpg";
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
@@ -21,17 +24,28 @@ function AllReviews(props) {
       console.log(err);
     }
   }, [aTutsReview]);
+
   return (
     <div className="">
       {typeof tutData === "object" &&
         tutData.map((tutDset) => (
-          <div className="bg-info m-3 p-3 ">
-            <p>Review Message</p>
-            <p>{tutDset.body}</p>
-            <p>Rating </p>
-            <p>{tutDset.rating}</p>
-            <p>Reviewer</p>
-            <p>{tutDset.reviewers_id.username}</p>
+          <div className=" mb-4 p-4 d-flex ">
+            <img
+              src={reviewerPic}
+              width="40"
+              height="40"
+              className="rounded-circle mt-1"
+              alt=""
+            />
+            <div className="p-3 reviewTextBox w-100 ml-2">
+              <p className="font-weight-bold d-flex">
+                {tutDset.reviewers_id.username}
+
+                <DisplayRatings rating={tutDset.rating} />
+              </p>
+              <p>{tutDset.body}</p>
+            </div>
+
             <p className="text-light"> {format(tutDset.date)} </p>
           </div>
         ))}
