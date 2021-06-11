@@ -4,7 +4,7 @@ export default function Box2() {
   const email = localStorage.getItem("email");
 
   return (
-    <div className="bg-white mt-3 rounded p-4" style={{ minHeight: "30vh" }}>
+    <div className="bg-white mt-3 rounded p-4" style={{ height: "35%" }}>
       <div>
         <div className="mb-3">
           <p className="text-secondary ">Telephone:</p>

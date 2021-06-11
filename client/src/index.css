@@ -6,4 +6,21 @@
 
 body {
   overflow-x: hidden;
+  /* font-size: 1.7rem !important; */
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(158, 193, 197);
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(131, 131, 131);
+  border-radius: 20px;
+  /* border: 3px solid orange; */
 }

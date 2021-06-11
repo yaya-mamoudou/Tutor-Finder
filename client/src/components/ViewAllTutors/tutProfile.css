@@ -21,8 +21,24 @@
 .reviewBtn {
   outline: none !important;
   border: none !important;
+  align-self: flex-start;
 }
 
 .reviewTextBox {
   border: solid 2px #eee;
 }
+
+/* .reviewArea::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 20px;
+}
+
+.reviewArea::-webkit-scrollbar-track {
+  background: rgb(158, 193, 197);
+  border-radius: 20px;
+}
+
+.reviewArea::-webkit-scrollbar-thumb {
+  background-color: rgb(131, 131, 131);
+  border-radius: 20px;
+} */

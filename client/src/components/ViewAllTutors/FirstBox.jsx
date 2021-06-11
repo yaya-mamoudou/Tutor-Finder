@@ -9,7 +9,7 @@ export default function FirstBox() {
   const status = localStorage.getItem("status");
 
   return (
-    <div className="bg-white rounded p-4" style={{ minHeight: "50vh" }}>
+    <div className="bg-white rounded p-4" style={{ height: "65%" }}>
       <div className=" d-flex">
         <div
           style={{ width: 55, height: 55 }}
