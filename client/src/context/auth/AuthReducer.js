@@ -24,16 +24,15 @@ export default (state, action) => {
     case 'FAIL':
     case 'LOGOUT':
       localStorage.removeItem('token');
+      localStorage.removeItem('conv_id');
 
       return {
         ...state,
         isAuthenticated: false,
         loading: true,
         token: null,
-        // user: null,
-        // error: action.payload,
-        // isAuthenticated: false,
-        // loading: true,
+        conversation: [],
+        myMsg: [],
         user: null,
         error: action.pay,
         dataStore: null,
@@ -44,6 +43,9 @@ export default (state, action) => {
         storePDATA: [],
         classroom: null,
         allMyClasses: null,
+        myMsg: [],
+        anewMsg: [],
+        conversation: [],
       };
     case 'STORE_SUCCESS':
       return {
@@ -119,6 +121,11 @@ export default (state, action) => {
       return {
         ...state,
         myMsg: action.payload,
+      };
+    case 'CREATE_MESSAGE':
+      return {
+        ...state,
+        anewMsg: action.payload,
       };
   }
 };

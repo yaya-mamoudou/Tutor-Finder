@@ -9,6 +9,8 @@ const AuthState = (props) => {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
+    myMsg: [],
+    anewMsg: [],
     user: null,
     error: null,
     dataStore: null,
@@ -20,7 +22,6 @@ const AuthState = (props) => {
     classroom: null,
     allMyClasses: null,
     conversation: [],
-    myMsg: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -248,6 +249,24 @@ const AuthState = (props) => {
       console.log(err);
     }
   };
+
+  const createMessage = async (formData) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post('/athena/message', formData, config);
+      dispatch({
+        type: 'CREATE_MESSAGE',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -266,6 +285,7 @@ const AuthState = (props) => {
         allMyClasses: state.allMyClasses,
         conversation: state.conversation,
         myMsg: state.myMsg,
+        anewMsg: state.anewMsg,
         getMsg,
         iStore,
         editProfile,
@@ -282,6 +302,7 @@ const AuthState = (props) => {
         createClass,
         myCreatedClass,
         getConversation,
+        createMessage,
       }}
     >
       {props.children}

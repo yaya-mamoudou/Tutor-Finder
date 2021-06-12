@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
-import "./register.css";
-import AuthContext from "../../context/auth/AuthContext";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from 'react';
+import './register.css';
+import AuthContext from '../../context/auth/AuthContext';
+import { Link } from 'react-router-dom';
 
 function Registerlogin(props) {
   const authContext = useContext(AuthContext);
@@ -9,21 +9,21 @@ function Registerlogin(props) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/mainapp");
+      props.history.push('/mainapp');
     }
   }, [isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    password2: "",
-    speciality: "",
-    gender: "",
-    bio: "",
-    status: "learner",
-    location: "",
-    tel: "",
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+    speciality: '',
+    gender: '',
+    bio: '',
+    status: 'learner',
+    location: '',
+    tel: '',
   });
 
   const {
