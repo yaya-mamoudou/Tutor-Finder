@@ -27,10 +27,6 @@
 .reviewTextBox {
   border: solid 2px #eee;
 }
-.bioTextArea {
-  height: 50%;
-  overflow: auto;
-}
 
 .bg_learner {
   /* background-color: teal; */

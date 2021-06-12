@@ -5,26 +5,34 @@ import AllReviews from "../../ViewAllTutors/ViewAllReviews/AllReviews";
 import FirstBox from "../../ViewAllTutors/FirstBox";
 import Box2 from "../../ViewAllTutors/Box2";
 import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
+import EditProfile from "../../EditProfile/EditProfile";
 
 console.log(window.screen.height);
+
 function App(props) {
   const authContext = useContext(AuthContext);
+  const { ikeep, iStore, tutData, user, loadUser } = authContext;
+
   const [userData, setuserData] = useState();
   const [toggle, settoggle] = useState(0);
-  const { ikeep, iStore, tutData, user, loadUser } = authContext;
   const [headerHight, setheaderHight] = useState(10);
+
+  const [modalState, setmodalState] = useState("none");
+
+  const handleModal = () => {
+    if (modalState === "none") {
+      setmodalState("flex");
+    } else {
+      setmodalState("none");
+    }
+  };
 
   useEffect(() => {
     loadUser();
   }, []);
 
-  useEffect(() => {
-    console.log(headerHight + " i got it");
-  }, [headerHight]);
-
   const setref = async (height) => {
     setheaderHight(parseInt(height));
-    // console.log(height);
   };
   useEffect(async () => {
     await setuserData(user);
@@ -32,7 +40,6 @@ function App(props) {
 
   useEffect(async () => {
     if (userData) {
-      console.log(userData);
       settoggle(1);
     }
   }, [userData]);
@@ -42,7 +49,17 @@ function App(props) {
         className=" pt-3 pl-4 pr-4 pb-4"
         style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
       >
-        <TutorProfileHeader setref={setref} status={userData.status} />
+        <EditProfile
+          user={user}
+          modalStatus={modalState}
+          handleModal={handleModal}
+        />
+
+        <TutorProfileHeader
+          handleModal={handleModal}
+          setref={setref}
+          status={userData.status}
+        />
 
         {userData.status === "tutor" ? (
           <div className="d-flex justify-content-between">

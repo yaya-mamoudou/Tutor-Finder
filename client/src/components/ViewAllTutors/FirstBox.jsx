@@ -44,7 +44,7 @@ export default function FirstBox({
           <p className="text-danger">{speciality}</p>
         </div>
       </div>
-      <div>
+      <div style={{ overflowY: "auto", maxHeight: "70%" }}>
         <p className="text-secondary mt-4">Location</p>
         <p className="text-danger">{location}</p>
         <div className="mt-3">
@@ -60,9 +60,6 @@ export default function FirstBox({
             </span>
           </p>
         </div>
-      </div>
-
-      <div className="mt-3 bioTextArea" style={{}}>
         <p className="text-secondary">About</p>
 
         <p className="p-2 pr-4" style={{ wordSpacing: 1.5, lineHeight: 1.6 }}>
