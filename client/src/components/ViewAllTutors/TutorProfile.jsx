@@ -1,18 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 import "./tutProfile.css";
-import CreateReview from "./reviews/Review";
 import AllReviews from "./ViewAllReviews/AllReviews";
-import { useLocation } from "react-router";
 import FirstBox from "./FirstBox";
 import Box2 from "./Box2";
 import TutorProfileHeader from "./TutorProfileHeader";
-import Review from "./reviews/Review";
 import LeaveReview from "./LeaveReview";
 
 function App(props) {
   const authContext = useContext(AuthContext);
-
   const { ikeep, iStore, tutData } = authContext;
 
   const gender = localStorage.getItem("gender");
