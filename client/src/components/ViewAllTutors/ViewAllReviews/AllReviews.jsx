@@ -25,6 +25,7 @@ function AllReviews(props) {
   }, [aTutsReview]);
 
   return (
+<<<<<<< HEAD
     <div className="">
       {typeof tutData === 'object' &&
         tutData.map((tutDset) => (
@@ -53,10 +54,54 @@ function AllReviews(props) {
                   {format(tutDset.date)}
                 </span>
               </p>
+=======
+    <>
+      {typeof tutData === "object" &&
+        tutData.map((tutDset, index) => {
+          // if (index <= 2) {
+          return (
+            <div className="p-2 d-flex ">
+              <img
+                src={reviewerPic}
+                width="40"
+                height="40"
+                className="rounded-circle mt-1"
+                alt=""
+              />
+              <div className="p-3 reviewTextBox w-100 ml-2">
+                <p className=" d-flex">
+                  <span className="font-weight-bold">
+                    {tutDset.reviewers_id.username}
+                  </span>
+
+                  <DisplayRatings rating={tutDset.rating} />
+                </p>
+                <p className="d-flex">
+                  {tutDset.body}{" "}
+                  <span
+                    style={{ fontSize: 9 }}
+                    className="text-secondary ml-auto"
+                  >
+                    {format(tutDset.date)}
+                  </span>
+                </p>
+              </div>
+>>>>>>> 8b286a1509bcdf65eca615108109d44ba0427edb
             </div>
-          </div>
-        ))}
-    </div>
+          );
+          // } else if (index > 3) {
+          // } else {
+          // return (
+          //       <div className="d-flex p-4">
+          //         <a href="_blank" className="ml-auto">
+          //           see more
+          //         </a>
+          //       </div>
+          //     );
+          //   }
+          // })
+        })}
+    </>
   );
 }
 
