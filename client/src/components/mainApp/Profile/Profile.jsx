@@ -40,7 +40,7 @@ function App(props) {
     toggle === 1 && (
       <div
         className=" pt-3 pl-4 pr-4 pb-4"
-        style={{ backgroundColor: "#f2f2f2", height: "100vh" }}
+        style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
       >
         <TutorProfileHeader setref={setref} status={userData.status} />
 
