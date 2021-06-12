@@ -1,144 +1,117 @@
-import React, { useContext, useEffect, useState } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
+import React, { useContext, useEffect, useState } from "react";
+import AuthContext from "../../context/auth/AuthContext";
+import { Modal, Button } from "react-bootstrap";
+import editProfile from "./editProfile.css";
 
-function EditProfile(props) {
-  const authContext = useContext(AuthContext);
-  const {
-    user,
-    isAuthenticated,
-    loadUser,
-    logout,
-    store,
-    dataStore,
-    reset,
-    editProfile,
-  } = authContext;
+function EditProfile({ modalStatus, editInfo, handleModal, user }) {
+  const [editedData, seteditedData] = useState(undefined);
+  const [toggle, settoggle] = useState();
 
-  const [info, setInfo] = useState({
-    username: '',
-    email: '',
-    password: '',
-    speciality: '',
-    gender: '',
-    bio: '',
-    location: '',
-    tel: '',
-    status: 'learner',
-  });
-  const [toggle, setToggle] = useState(0);
-  const {
-    username,
-    email,
-    password,
-    speciality,
-    gender,
-    bio,
-    status,
-    location,
-    tel,
-  } = info;
-  const onChange = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
+  useEffect(async () => {
+    if (typeof user === "object") {
+      await seteditedData(user);
+    } else {
+    }
+  }, [user]);
 
-  const [toBeEdited, setToBeEdited] = useState();
-  let userD;
-  //   useEffect(async () => {
-  //     loadUser();
-  //   }, []);
-  //   useEffect(async () => {
-  //     loadUser();
-  //     store(user);
-  //     {
-  //       dataStore && setInfo(dataStore);
-  //     }
-  //   }, [user]);
+  useEffect(async () => {
+    if (typeof user === "object") {
+      await settoggle(1);
+    } else {
+    }
+  }, [editedData]);
 
-  const editMyProfile = () => {
-    console.log('hey');
+  const handleChange = (e, field) => {
+    let temp = { ...editedData };
+    temp[field] = e.target.value;
+    seteditedData(temp);
   };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log(editedData);
+  };
+
   return (
-    <div>
-      <form>
-        <div>
-          <h5>My Status</h5>
-          <input
-            id="status"
-            type="text"
-            name="status"
-            value={(user && user.status) || (user && user.user.status)}
-            className="mb-3"
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Name</label>
-          <br />
-          <input
-            id="name"
-            type="text"
-            name="username"
-            value={username}
-            onChange={onChange}
-            className="mb-3"
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email Address</label>
-          <br />
+    toggle === 1 && (
+      <div className="mymodal" style={{ display: `${modalStatus}` }}>
+        <div className="modalCard">
+          <div className="modalHeader d-flex">
+            Modify profile info
+            <div
+              onClick={() => handleModal()}
+              className="bg-dark px-3 ml-auto "
+            >
+              <i class="fas fa-times text-white align-self-center"></i>
+            </div>
+          </div>
+          <form onSubmit={(e) => submitForm(e)} className=" p-5">
+            <div className="inputItem p-2 mt-3">
+              <span>Name:</span>{" "}
+              <input
+                onChange={(e) => handleChange(e, "username")}
+                value={editedData.username}
+                className="p-2"
+                name="name"
+                type="text"
+                placeholder="name"
+              />
+            </div>
+            <div className="inputItem p-2 mt-3">
+              <span>Email:</span>{" "}
+              <input
+                onChange={(e) => handleChange(e, "email")}
+                value={editedData.email}
+                className="p-2"
+                name="email"
+                type="text"
+                placeholder="email"
+              />
+            </div>
+            <div className="inputItem p-2 mt-3">
+              <span>Location:</span>{" "}
+              <input
+                onChange={(e) => handleChange(e, "location")}
+                value={editedData.location}
+                className="p-2"
+                name="location"
+                type="text"
+                placeholder="location"
+              />
+            </div>
+            <div className="inputItem p-2 mt-3">
+              <span>phone:</span>{" "}
+              <input
+                onChange={(e) => handleChange(e, "tel")}
+                value={editedData.tel}
+                className="p-2"
+                name="telephone"
+                type="number"
+                placeholder="phone"
+              />
+            </div>
+            <div className="inputItem p-2 mt-3 d-flex ">
+              <span className="align-self-center">Bio:</span>{" "}
+              <textarea
+                onChange={(e) => handleChange(e, "bio")}
+                value={editedData.bio}
+                className="p-2"
+                name="bio"
+                type="number"
+                placeholder="bio"
+              />
+            </div>
 
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            className="mb-3"
-          />
+            <button
+              type="submit"
+              className="save_btn btn-warning btn mt-3 align-self-end btn-xl p-3"
+            >
+              Save
+            </button>
+          </form>
         </div>
-        {user && user.status === 'tutor' ? user.speciality : null}
-
-        <div>
-          <h5>gender</h5>
-          <input
-            id="status"
-            type="text"
-            name="status"
-            value={gender}
-            className="mb-3"
-          />
-        </div>
-        <textarea
-          id="bio"
-          type="text"
-          name="bio"
-          value={bio}
-          onChange={onChange}
-          className="mb-3"
-        />
-        {toggle ? (
-          <button className="btn btn-primary p-3" onClick={editMyProfile}>
-            save Changes
-          </button>
-        ) : null}
-        {toggle ? (
-          <button
-            className="btn btn-primary p-3 m-3"
-            onClick={() => {
-              reset();
-              setInfo({
-                username: '',
-                email: '',
-                password: '',
-                speciality: '',
-                gender: '',
-                bio: '',
-                status: 'learner',
-              });
-            }}
-          >
-            Clear
-          </button>
-        ) : null}
-      </form>
-    </div>
+      </div>
+    )
   );
 }
 
