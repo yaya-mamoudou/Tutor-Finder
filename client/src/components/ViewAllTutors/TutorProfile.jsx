@@ -17,6 +17,12 @@ function App(props) {
 
   const gender = localStorage.getItem("gender");
   const id = localStorage.getItem("id");
+  const email = localStorage.getItem("email");
+  const tel = localStorage.getItem("tel");
+  const username = localStorage.getItem("username");
+  const speciality = localStorage.getItem("speciality");
+  const bio = localStorage.getItem("bio");
+  const location = localStorage.getItem("location");
 
   return (
     <div
@@ -27,8 +33,13 @@ function App(props) {
 
       <div className="d-flex justify-content-between">
         <div className="" style={{ width: "29%", height: "85vh" }}>
-          <FirstBox />
-          <Box2 />
+          <FirstBox
+            username={username}
+            speciality={speciality}
+            bio={bio}
+            location={location}
+          />
+          <Box2 email={email} tel={tel} />
         </div>
 
         <div className="" style={{ width: "70%", height: "83vh" }}>

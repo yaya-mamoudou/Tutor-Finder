@@ -27,7 +27,17 @@
 .reviewTextBox {
   border: solid 2px #eee;
 }
+.bioTextArea {
+  height: 50%;
+  overflow: auto;
+}
 
+.bg_learner {
+  /* background-color: teal; */
+  background-image: url("https://i.pinimg.com/originals/cb/ae/6e/cbae6e352011f9b74581bf878deb981f.jpg");
+  background-size: cover;
+  /* height: 100%; */
+}
 /* .reviewArea::-webkit-scrollbar {
   width: 4px;
   border-radius: 20px;

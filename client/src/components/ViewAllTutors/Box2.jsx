@@ -1,17 +1,23 @@
 import React from "react";
 
-export default function Box2() {
-  const email = localStorage.getItem("email");
+export default function Box2({ email, status, tel }) {
+  // const email = localStorage.getItem("email");
 
   return (
-    <div className="bg-white mt-3 rounded p-4" style={{ height: "35%" }}>
+    <div
+      className={`bg-white mt-3 ${
+        status === "learner" ? "p-5" : "p-4"
+      } rounded `}
+      style={{ height: "35%" }}
+    >
       <div>
         <div className="mb-3">
           <p className="text-secondary ">Telephone:</p>
+          <p className="text-danger">{tel}</p>
         </div>
         <div className="mb-3">
           <p className="text-secondary">Email:</p>
-          <p>{email}</p>
+          <p className="text-danger">{email}</p>
         </div>
         <div>
           <p className="text-secondary mb-2 font-weight-bold">

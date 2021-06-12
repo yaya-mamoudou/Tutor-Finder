@@ -53,6 +53,7 @@ function Registerlogin(props) {
       bio,
       status,
       location,
+      tel,
     });
   };
   return (
