@@ -8,7 +8,7 @@ export default function Box2({ email, status, tel }) {
       className={`bg-white mt-3 ${
         status === "learner" ? "p-5" : "p-4"
       } rounded `}
-      style={{ height: "35%" }}
+      style={{ minHeight: "35%" }}
     >
       <div>
         <div className="mb-3">
