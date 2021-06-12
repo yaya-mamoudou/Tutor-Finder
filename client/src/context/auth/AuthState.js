@@ -22,6 +22,7 @@ const AuthState = (props) => {
     classroom: null,
     allMyClasses: null,
     conversation: [],
+    addConversation: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -267,6 +268,23 @@ const AuthState = (props) => {
     }
   };
 
+  const createConversation = async (formData) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post('/athena/conversation', formData, config);
+      dispatch({
+        type: 'CREATE_CONVERSATION',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -286,6 +304,8 @@ const AuthState = (props) => {
         conversation: state.conversation,
         myMsg: state.myMsg,
         anewMsg: state.anewMsg,
+        addConversation: state.addConversation,
+        createConversation,
         getMsg,
         iStore,
         editProfile,

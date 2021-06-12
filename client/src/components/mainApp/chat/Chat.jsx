@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import Conversation from './Conversation';
 // import Message from './Message';
 import AuthContext from '../../../context/auth/AuthContext';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import { format } from 'timeago.js';
 import yaya1 from '../../assets/yaya1.jpg';
 import './Message.css';
+import { io } from 'socket.io-client';
 
 export default function Chat() {
   const authContext = useContext(AuthContext);
@@ -23,13 +24,43 @@ export default function Chat() {
   const [currentChat, setCurrentChat] = useState();
   const [addedMsg, setAddedMsg] = useState();
   const [conversationId, setconversationId] = useState('');
-
+  const socket = useRef();
   const [tryIt, setTryIt] = useState();
+  const [arrivalMessage, setArrivalMessage] = useState(null);
 
   const [newMsg, setNewMsg] = useState({
     text: '',
   });
   const { text } = newMsg;
+  //starts here
+  useEffect(() => {
+    socket.current = io('ws://localhost:8900');
+    socket.current.on('getMessage', (data) => {
+      setArrivalMessage({
+        // sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setTryIt((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setTryIt((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit('addUser', user && user._id);
+    socket.current.on('getUsers', (users) => {});
+  }, [user]);
+  //ends
 
   // initial
   useEffect(async () => {
@@ -39,11 +70,12 @@ export default function Chat() {
   const onChange = (e) =>
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
-  const clicked = async (id) => {
-    localStorage.setItem('conv_id', id);
-    setconversationId(id);
-    setCurrentChat(id);
+  const clicked = async (conv) => {
+    localStorage.setItem('conv_id', conv._id);
+    setconversationId(conv._id);
+    setCurrentChat(conv);
   };
+
   useEffect(async () => {
     let anID = await localStorage.getItem('conv_id');
     getMsg(anID);
@@ -65,13 +97,22 @@ export default function Chat() {
     setMyConv(conversation.conv);
   }, [conversation.conv]);
 
-  // console.log(tryIt);
-
   const onSubmit = async (e) => {
     e.preventDefault();
     createMessage({ text, conversationId });
     setNewMsg({
       text: '',
+    });
+
+    const receiverId = currentChat.members.find(
+      (member) => member !== user._id
+    );
+
+    console.log(receiverId);
+    socket.current.emit('sendMessage', {
+      // senderId: user && user._id,
+      receiverId,
+      text,
     });
   };
 
@@ -82,7 +123,7 @@ export default function Chat() {
           {typeof myConv === 'object' &&
             myConv.map((conv) => (
               <div
-                onClick={() => clicked(conv._id)}
+                onClick={() => clicked(conv)}
                 style={{
                   cursor: 'pointer',
                 }}
