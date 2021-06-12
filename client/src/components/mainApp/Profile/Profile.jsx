@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState, createRef } from "react";
-import AuthContext from "../../../context/auth/AuthContext";
-import "../../ViewAllTutors/tutProfile.css";
-import AllReviews from "../../ViewAllTutors/ViewAllReviews/AllReviews";
-import FirstBox from "../../ViewAllTutors/FirstBox";
-import Box2 from "../../ViewAllTutors/Box2";
-import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
-import EditProfile from "../../EditProfile/EditProfile";
+import React, { useContext, useEffect, useState, createRef } from 'react';
+import AuthContext from '../../../context/auth/AuthContext';
+import '../../ViewAllTutors/tutProfile.css';
+import AllReviews from '../../ViewAllTutors/ViewAllReviews/AllReviews';
+import FirstBox from '../../ViewAllTutors/FirstBox';
+import Box2 from '../../ViewAllTutors/Box2';
+import TutorProfileHeader from '../../ViewAllTutors/TutorProfileHeader';
+import EditProfile from '../../EditProfile/EditProfile';
 
 console.log(window.screen.height);
 
@@ -17,13 +17,13 @@ function App(props) {
   const [toggle, settoggle] = useState(0);
   const [headerHight, setheaderHight] = useState(10);
 
-  const [modalState, setmodalState] = useState("none");
+  const [modalState, setmodalState] = useState('none');
 
   const handleModal = () => {
-    if (modalState === "none") {
-      setmodalState("flex");
+    if (modalState === 'none') {
+      setmodalState('flex');
     } else {
-      setmodalState("none");
+      setmodalState('none');
     }
   };
 
@@ -47,7 +47,7 @@ function App(props) {
     toggle === 1 && (
       <div
         className=" pt-3 pl-4 pr-4 pb-4"
-        style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
+        style={{ backgroundColor: '#f2f2f2', minHeight: '100vh' }}
       >
         <EditProfile
           user={user}
@@ -61,9 +61,9 @@ function App(props) {
           status={userData.status}
         />
 
-        {userData.status === "tutor" ? (
+        {userData.status === 'tutor' ? (
           <div className="d-flex justify-content-between">
-            <div className="" style={{ width: "29%", height: "85vh" }}>
+            <div className="" style={{ width: '29%', height: '85vh' }}>
               <FirstBox
                 username={userData.username}
                 speciality={userData.speciality}
@@ -73,12 +73,12 @@ function App(props) {
               <Box2 email={userData.email} />
             </div>
 
-            <div className="" style={{ width: "70%", height: "83vh" }}>
-              <div style={{ height: "80%" }} className="bg-white  rounded p-4">
+            <div className="" style={{ width: '70%', height: '83vh' }}>
+              <div style={{ height: '80%' }} className="bg-white  rounded p-4">
                 <p className="h3 text-warning mb-4">Reviews</p>
                 <div
                   className="reviewArea"
-                  style={{ height: "90%", overflowY: "auto" }}
+                  style={{ height: '90%', overflowY: 'auto' }}
                 >
                   <AllReviews tut_id={userData.id} />
                 </div>
@@ -92,12 +92,12 @@ function App(props) {
               minHeight: `${window.innerHeight - 100}px`,
             }}
             className={`d-flex p-4 justify-content-center ${
-              userData.status === "learner" && "bg_learner"
+              userData.status === 'learner' && 'bg_learner'
             }`}
           >
             <div
               className="align-self-center "
-              style={{ width: "40%", minHeight: "90%" }}
+              style={{ width: '40%', minHeight: '90%' }}
             >
               <FirstBox
                 status={userData.status}

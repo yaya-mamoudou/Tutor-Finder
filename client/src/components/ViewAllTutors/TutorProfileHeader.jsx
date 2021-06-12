@@ -3,15 +3,9 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import AuthState from '../../context/auth/AuthContext';
 
-<<<<<<< HEAD
-export default function TutorProfileHeader({ status }) {
+export default function TutorProfileHeader({ status, handleModal }) {
   const authContext = useContext(AuthContext);
   const { createConversation, loadUser, user } = authContext;
-=======
-// console.log(Object.is(activePath, "/tut/profile"));
-export default function TutorProfileHeader({ status, handleModal }) {
-  const [statusUser, setstatusUser] = useState("");
->>>>>>> b3aad5058b71258c0ade603c6876332560b1b898
 
   const [statusUser, setstatusUser] = useState('');
   useEffect(async () => {

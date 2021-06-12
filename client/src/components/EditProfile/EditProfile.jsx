@@ -1,21 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/auth/AuthContext";
-import { Modal, Button } from "react-bootstrap";
-import editProfile from "./editProfile.css";
+import React, { useContext, useEffect, useState } from 'react';
+import AuthContext from '../../context/auth/AuthContext';
+import { Modal, Button } from 'react-bootstrap';
+import './editProfile.css';
 
 function EditProfile({ modalStatus, editInfo, handleModal, user }) {
+  const authContext = useContext(AuthContext);
+  const { editProfile } = authContext;
   const [editedData, seteditedData] = useState(undefined);
   const [toggle, settoggle] = useState();
 
   useEffect(async () => {
-    if (typeof user === "object") {
+    if (typeof user === 'object') {
       await seteditedData(user);
     } else {
     }
   }, [user]);
 
   useEffect(async () => {
-    if (typeof user === "object") {
+    if (typeof user === 'object') {
       await settoggle(1);
     } else {
     }
@@ -28,8 +30,8 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   };
 
   const submitForm = (e) => {
-    e.preventDefault();
-    console.log(editedData);
+    // e.preventDefault();
+    editProfile(editedData);
   };
 
   return (
@@ -47,9 +49,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
           </div>
           <form onSubmit={(e) => submitForm(e)} className=" p-5">
             <div className="inputItem p-2 mt-3">
-              <span>Name:</span>{" "}
+              <span>Name:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "username")}
+                onChange={(e) => handleChange(e, 'username')}
                 value={editedData.username}
                 className="p-2"
                 name="name"
@@ -58,9 +60,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>Email:</span>{" "}
+              <span>Email:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "email")}
+                onChange={(e) => handleChange(e, 'email')}
                 value={editedData.email}
                 className="p-2"
                 name="email"
@@ -69,9 +71,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>Location:</span>{" "}
+              <span>Location:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "location")}
+                onChange={(e) => handleChange(e, 'location')}
                 value={editedData.location}
                 className="p-2"
                 name="location"
@@ -80,9 +82,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>phone:</span>{" "}
+              <span>phone:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "tel")}
+                onChange={(e) => handleChange(e, 'tel')}
                 value={editedData.tel}
                 className="p-2"
                 name="telephone"
@@ -91,9 +93,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3 d-flex ">
-              <span className="align-self-center">Bio:</span>{" "}
+              <span className="align-self-center">Bio:</span>{' '}
               <textarea
-                onChange={(e) => handleChange(e, "bio")}
+                onChange={(e) => handleChange(e, 'bio')}
                 value={editedData.bio}
                 className="p-2"
                 name="bio"
