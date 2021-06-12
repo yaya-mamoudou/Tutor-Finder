@@ -1,0 +1,215 @@
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>Chat</title>
+    <!-- Path to Framework7 iOS CSS theme styles-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.5/css/framework7.material.min.css">
+    <!-- Path to Framework7 iOS related color styles -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.5/css/framework7.material.colors.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="chat.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Path to your custom app icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="left-part col-md-4">
+        <div class="head-box">
+            <div class="head">
+                <div class="icon-back">
+                    <a href="#">
+                        <i class="material-icons color-black">arrow_back</i>
+                    </a>
+                </div>
+                <h3>Chat</h3>
+            </div>
+        </div>
+        <div class="person">
+            <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+            <div class="name">
+                <h3>Njume Yannick</h3>
+            </div>
+        </div>
+        <div class="sch">
+            <input type="search" name="" id="" placeholder="Search...">
+            <i class="search material-icons color-black">search</i>
+        </div>
+        <div class="main-list">
+            <div class="chat link">
+                <div class="me">
+                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+                    <div>
+                        <p class="title">Fodjo Frank</p>
+                        <p class="ts">09:45</p>
+                    </div>
+                </div>
+                <div class="preview">
+                    <p class="bdg">10</p>
+                    <p>Yoo.. boy, hafa? Where is my money?</p>
+                </div>
+            </div>
+            <div class="chat link">
+                <div class="me">
+                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+                    <div>
+                        <p class="title">Fodjo Frank</p>
+                        <p class="ts">09:45</p>
+                    </div>
+                </div>
+                <div class="preview">
+                    <p class="bdg">10</p>
+                    <p>Yoo.. boy, hafa? Where is my money?</p>
+                </div>
+            </div>
+            <div class="chat link">
+                <div class="me">
+                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+                    <div>
+                        <p class="title">Fodjo Frank</p>
+                        <p class="ts">09:45</p>
+                    </div>
+                </div>
+                <div class="preview">
+                    <p class="bdg">10</p>
+                    <p>Yoo.. boy, hafa? Where is my money?</p>
+                </div>
+            </div>
+            <div class="chat link">
+                <div class="me">
+                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+                    <div>
+                        <p class="title">Fodjo Frank</p>
+                        <p class="ts">09:45</p>
+                    </div>
+                </div>
+                <div class="preview">
+                    <p class="bdg">10</p>
+                    <p>Yoo.. boy, hafa? Where is my money?</p>
+                </div>
+            </div>
+            <div class="chat link">
+                <div class="me">
+                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico">
+                    <div>
+                        <p class="title">Fodjo Frank</p>
+                        <p class="ts">09:45</p>
+                    </div>
+                </div>
+                <div class="preview">
+                    <p class="bdg">10</p>
+                    <p>Yoo.. boy, hafa? Where is my money?</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Views -->
+    <div class="views col-md-8">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-fixed ">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+                    <!-- Top Navbar-->
+                    <div class="navbar">
+                        <div class="navbar-inner">
+
+                            <div class="left sliding">
+                                <div class="item-media" style="margin-left:10px; margin-top:10px">
+                                    <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                                        width="44">
+                                </div>
+                                <div class="item-inner" style="margin-left:10px">
+                                    <div class="item-title-row">
+                                        <div class="item-title" style="font-size:18px; line-height:23px">Njume Yannick
+                                        </div>
+                                    </div>
+                                    <div class="item-subtitle" style="font-size:14px; line-height:15px">Online</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="right">
+                                <!-- Right link contains only icon - additional "icon-only" class
+                        Additional "open-panel" class tells app to open panel when we click on this link-->
+                                <a href="#" class="link icon-only"><i class="material-icons">more_vert</i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- messagebar -->
+                    <div class="toolbar messagebar">
+                        <div class="toolbar-inner">
+                            <textarea placeholder="Type a message..."></textarea><a href="#" class="link"><i
+                                    class="material-icons color-blue">send</i></a>
+                        </div>
+                    </div>
+
+                    <div class="page-content messages-content">
+
+                        <div class="messages">
+                            <div class="messages-date">Sunday, Feb 9 <span>12:58</span></div>
+                            <div class="message message-sent">
+                                <div class="message-text">Hello</div>
+                            </div>
+                            <div class="message message-sent">
+                                <div class="message-text">How are you?</div>
+                            </div>
+                            <div class="message message-received">
+                                <div class="message-name">Kate</div>
+                                <div class="message-text">I am fine, thanks</div>
+                                <div style="background-image:url(http://lorempixel.com/output/people-q-c-100-100-9.jpg)"
+                                    class="message-avatar"></div>
+                            </div>
+                            <div class="messages-date">Sunday, Feb 3 <span>11:58</span></div>
+                            <div class="message message-sent">
+                                <div class="message-text">Nice photo?</div>
+                            </div>
+                            <div class="message message-sent message-pic">
+                                <div class="message-text"><img src="http://lorempixel.com/300/300/"></div>
+                                <div class="message-label">Delivered</div>
+                            </div>
+                            <div class="message message-received">
+                                <div class="message-name">Kate</div>
+                                <div class="message-text">Wow, awesome!</div>
+                                <div style="background-image:url(http://lorempixel.com/output/people-q-c-100-100-9.jpg)"
+                                    class="message-avatar"></div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.5/js/framework7.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.5/js/framework7.js"></script>
+    <!-- Path to your app js-->
+    <!-- <script type="text/javascript" src="chat.js"></script> -->
+</body>
+
+</html>
