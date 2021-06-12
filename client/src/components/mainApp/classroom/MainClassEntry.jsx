@@ -2,10 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 // import Card from './Card/Card';
 import AuthContext from '../../../context/auth/AuthContext';
 import ClassUser from './ClassUser';
-
-import { Button, Modal } from 'react-bootstrap';
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button} from 'react-bootstrap';
 import CreateClassroom from './CreateClassroom';
-import ClassParticipant from './ClassParticipant';
+// import ClassParticipant from './ClassParticipant';
 import { Link } from 'react-router-dom';
 function MainClassEntry() {
   const authContext = useContext(AuthContext);
@@ -35,16 +36,6 @@ function MainClassEntry() {
       console.log(error);
     }
   };
-  // console.log(store);
-
-  // if (allMyClasses.classroom !== null && allMyClasses.classroom.length === 0) {
-  //   return (
-  //     <div>
-  //       <h1>No classroom created yet</h1>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
       <Button variant="danger p-3" onClick={() => setModalShow(true)}>
@@ -53,7 +44,7 @@ function MainClassEntry() {
 
       <CreateClassroom show={modalShow} onHide={() => setModalShow(false)} />
       <div>
-        {typeof myClasses === 'object' &&
+        {/* {typeof myClasses === 'object' &&
           myClasses.map((data) => (
             <div className="bg-secondary p-5 m-3 ">
               <h5 className="ml-5">Course Name</h5>
@@ -65,15 +56,11 @@ function MainClassEntry() {
               <Button variant="danger p-3" onClick={() => myfunc(data)}>
                 view Paticipants
               </Button>
-              {/* <ClassParticipant
-                show={modalShow1}
-                onHide={() => setModalShow1(false)}
-              /> */}
               <div show={modalShow1} onHide={() => setModalShow1(false)}></div>
             </div>
-          ))}
+          ))} */}
         <div>
-          <Modal
+          {/* <Modal
             // {...props}
             show={modalShow1}
             onHide={() => setModalShow1(false)}
@@ -100,7 +87,7 @@ function MainClassEntry() {
                 Save
               </Button>
             </Modal.Footer>
-          </Modal>
+          </Modal> */}
         </div>
       </div>
     </div>
