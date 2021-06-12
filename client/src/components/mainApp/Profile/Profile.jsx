@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState, createRef } from "react";
 import AuthContext from "../../../context/auth/AuthContext";
 import "../../ViewAllTutors/tutProfile.css";
-import CreateReview from "../../ViewAllTutors/reviews/Review";
 import AllReviews from "../../ViewAllTutors/ViewAllReviews/AllReviews";
-import { useLocation } from "react-router";
 import FirstBox from "../../ViewAllTutors/FirstBox";
 import Box2 from "../../ViewAllTutors/Box2";
 import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
-// import Review from "./reviews/Review";
 
 console.log(window.screen.height);
 function App(props) {
@@ -15,9 +12,7 @@ function App(props) {
   const [userData, setuserData] = useState();
   const [toggle, settoggle] = useState(0);
   const { ikeep, iStore, tutData, user, loadUser } = authContext;
-  const [headerHight, setheaderHight] = useState(0);
-
-  // console.log(document.getElementById("bg_learner").offsetHeight);
+  const [headerHight, setheaderHight] = useState(10);
 
   useEffect(() => {
     loadUser();
@@ -28,7 +23,7 @@ function App(props) {
   }, [headerHight]);
 
   const setref = async (height) => {
-    setheaderHight(height);
+    setheaderHight(parseInt(height));
     // console.log(height);
   };
   useEffect(async () => {
@@ -76,14 +71,16 @@ function App(props) {
         ) : (
           <div
             id="bg_learner"
-            style={{ height: `${window.innerHeight - headerHight}px` }}
-            className={`d-flex justify-content-center ${
+            style={{
+              minHeight: `${window.innerHeight - 100}px`,
+            }}
+            className={`d-flex p-4 justify-content-center ${
               userData.status === "learner" && "bg_learner"
             }`}
           >
             <div
-              className="align-self-center"
-              style={{ width: "30%", height: "100%" }}
+              className="align-self-center "
+              style={{ width: "40%", minHeight: "90%" }}
             >
               <FirstBox
                 status={userData.status}
