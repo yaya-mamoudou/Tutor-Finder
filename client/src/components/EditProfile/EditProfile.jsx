@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 import { Modal, Button } from "react-bootstrap";
-import "./editProfile.css";
-=======
-import React, { useContext, useEffect, useState } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
-import { Modal, Button } from 'react-bootstrap';
-import editProfile from './editProfile.css';
->>>>>>> 9a65a9246b7d1ac23e8a64b2e1df5639deaf00c9
+import editProfile from "./editProfile.css";
 
 function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   const authContext = useContext(AuthContext);
@@ -16,7 +9,7 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
 
   const [editedData, seteditedData] = useState(undefined);
   const [toggle, settoggle] = useState();
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState("");
   // const [fileName, setFileName] = useState('choose file');
   // const [uploadFile, setUploadedFile] = useState({});
 
