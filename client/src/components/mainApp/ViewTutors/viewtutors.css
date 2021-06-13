@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.alltutors{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+justify-content: space-around;
+}
