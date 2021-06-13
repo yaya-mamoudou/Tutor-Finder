@@ -68,6 +68,7 @@ function App(props) {
                 username={userData.username}
                 speciality={userData.speciality}
                 bio={userData.bio}
+                profilePic={userData.profilePic}
                 location={userData.location}
               />
               <Box2 email={userData.email} />

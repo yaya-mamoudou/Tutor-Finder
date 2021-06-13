@@ -200,6 +200,7 @@ function Registerlogin(props) {
             className="mb-3"
           />
         </div>
+
         <input type="submit" value="Register" />
       </form>
       <h2>
