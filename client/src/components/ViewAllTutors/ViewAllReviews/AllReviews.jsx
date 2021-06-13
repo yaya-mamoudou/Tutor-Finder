@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import ReviewContext from '../../../context/reviews/ReviewContext';
-import Review from '../reviews/Review';
-import { format } from 'timeago.js';
-import DisplayRatings from './DisplayRatings';
-import reviewerPic from '../../assets/img/1.jpg';
+import React, { useState, useEffect, useContext } from "react";
+import ReviewContext from "../../../context/reviews/ReviewContext";
+import Review from "../reviews/Review";
+import { format } from "timeago.js";
+import DisplayRatings from "./DisplayRatings";
+import reviewerPic from "../../assets/img/1.jpg";
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
@@ -26,7 +26,7 @@ function AllReviews(props) {
 
   return (
     <>
-      {typeof tutData === 'object' &&
+      {typeof tutData === "object" &&
         tutData.map((tutDset, index) => {
           // if (index <= 2) {
           return (
@@ -47,7 +47,7 @@ function AllReviews(props) {
                   <DisplayRatings rating={tutDset.rating} />
                 </p>
                 <p className="d-flex">
-                  {tutDset.body}{' '}
+                  {tutDset.body}{" "}
                   <span
                     style={{ fontSize: 9 }}
                     className="text-secondary ml-auto"
