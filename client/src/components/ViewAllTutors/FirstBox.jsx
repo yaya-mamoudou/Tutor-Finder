@@ -1,5 +1,7 @@
-import React from 'react';
-// import profilePic from '../assets/img/1.jpg';
+import React, { useEffect, useState, useContext } from 'react';
+import ReviewContext from '../../context/reviews/ReviewContext';
+
+const PF = 'http://localhost:5000/images/';
 
 export default function FirstBox({
   username,
@@ -9,6 +11,30 @@ export default function FirstBox({
   profilePic,
   status,
 }) {
+  useEffect(() => {
+    console.log(profilePic);
+  }, [profilePic]);
+
+  let pp = localStorage.getItem('profilePic');
+
+  const reviewContext = useContext(ReviewContext);
+
+  const {
+    aTutsReview,
+    viewATutR,
+    reviews,
+    myReview,
+    getMyReview,
+  } = reviewContext;
+  const [tutData, setTutData] = useState();
+
+  const [pathname, setpathName] = useState();
+
+  useEffect(() => {
+    getMyReview();
+    setpathName(window.location.pathname);
+  }, []);
+
   return (
     <div
       className={`bg-white rounded ${status === 'learner' ? 'p-5' : 'p-4'} `}
@@ -30,13 +56,35 @@ export default function FirstBox({
             status === 'learner' && 'mb-4'
           } rounded-circle justify-content-center align-items-center`}
         >
-          <img
-            src={profilePic}
-            width={status === 'learner' ? '75' : '50'}
-            height={status === 'learner' ? '75' : '50'}
-            className={`rounded-circle`}
-            alt=""
-          />
+          {pathname === '/profile' ? (
+            <img
+              src={
+                profilePic === ''
+                  ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                  : PF + profilePic
+              }
+              width={status === 'learner' ? '75' : '50'}
+              height={status === 'learner' ? '75' : '50'}
+              className={`rounded-circle`}
+              alt=""
+            />
+          ) : (
+            pathname === '/tut/profile' && (
+              <img
+                src={
+                  profilePic === ''
+                    ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                    : pp === ''
+                    ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                    : PF + pp
+                }
+                width={status === 'learner' ? '75' : '50'}
+                height={status === 'learner' ? '75' : '50'}
+                className={`rounded-circle`}
+                alt=""
+              />
+            )
+          )}
         </div>
         <div className="ml-3">
           <p className={`${status === 'learner' && 'font-weight-bold fs-3'}`}>

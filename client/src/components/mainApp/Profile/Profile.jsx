@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState, createRef } from "react";
-import AuthContext from "../../../context/auth/AuthContext";
-import "../../ViewAllTutors/tutProfile.css";
-import AllReviews from "../../ViewAllTutors/ViewAllReviews/AllReviews";
-import FirstBox from "../../ViewAllTutors/FirstBox";
-import Box2 from "../../ViewAllTutors/Box2";
-import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
-import EditProfile from "../../EditProfile/EditProfile";
+import React, { useContext, useEffect, useState, createRef } from 'react';
+import AuthContext from '../../../context/auth/AuthContext';
+import '../../ViewAllTutors/tutProfile.css';
+import AllReviews from '../../ViewAllTutors/ViewAllReviews/AllReviews';
+import FirstBox from '../../ViewAllTutors/FirstBox';
+import Box2 from '../../ViewAllTutors/Box2';
+import TutorProfileHeader from '../../ViewAllTutors/TutorProfileHeader';
+import EditProfile from '../../EditProfile/EditProfile';
+const PF = 'http://localhost:5000/images/';
 
 console.log(window.screen.height);
 
@@ -40,9 +41,12 @@ function App(props) {
 
   useEffect(async () => {
     if (userData) {
+      console.log(userData);
+
       settoggle(1);
     }
   }, [userData]);
+
   return (
     toggle === 1 && (
       <div
@@ -71,7 +75,12 @@ function App(props) {
                 profilePic={userData.profilePic}
                 location={userData.location}
               />
+<<<<<<< HEAD
               <Box2 email={userData.email} tel={userData.tel} />
+=======
+
+              <Box2 email={userData.email} />
+>>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
             </div>
 
             <div className="" style={{ width: "70%", height: "83vh" }}>
@@ -81,7 +90,7 @@ function App(props) {
                   className="reviewArea"
                   style={{ height: "90%", overflowY: "auto" }}
                 >
-                  <AllReviews tut_id={userData.id} />
+                  {/* <AllReviews tut_id={userData.id} /> */}
                 </div>
               </div>
             </div>
@@ -105,6 +114,7 @@ function App(props) {
                 username={userData.username}
                 speciality={userData.speciality}
                 bio={userData.bio}
+                profilePic={userData.profilePic}
                 location={userData.location}
               />
               <Box2

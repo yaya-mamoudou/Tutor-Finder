@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from "react";
 import ReviewContext from "../../../context/reviews/ReviewContext";
 import Review from "../reviews/Review";
 import { format } from "timeago.js";
 import DisplayRatings from "./DisplayRatings";
 import reviewerPic from "../../assets/img/1.jpg";
+=======
+import React, { useState, useEffect, useContext } from 'react';
+import ReviewContext from '../../../context/reviews/ReviewContext';
+import Review from '../reviews/Review';
+import { format } from 'timeago.js';
+import DisplayRatings from './DisplayRatings';
+import reviewerPic from '../../assets/img/1.jpg';
+const PF = 'http://localhost:5000/images/';
+>>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
@@ -15,7 +25,7 @@ function AllReviews(props) {
     reviewContext;
   const [tutData, setTutData] = useState();
 
-  const [storeReview, setstoreReview] = useState();
+  const [storeReview, setstoreReview] = useState(undefined);
 
   useEffect(() => {
     getMyReview();
@@ -49,13 +59,17 @@ function AllReviews(props) {
 
   return (
     <>
-      {pathname === "/profile" && typeof storeReview === "object"
+      {pathname === '/profile' && typeof storeReview !== 'undefined'
         ? storeReview.map((tutDset, index) => {
-            // if (index <= 2) {
+            console.log(tutDset);
             return (
               <div className="p-2 d-flex ">
                 <img
-                  src={reviewerPic}
+                  src={
+                    tutDset.reviewers_id.profilePic === ''
+                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                      : PF + tutDset.reviewers_id.profilePic
+                  }
                   width="40"
                   height="40"
                   className="rounded-circle mt-1"
@@ -63,10 +77,6 @@ function AllReviews(props) {
                 />
                 <div className="p-3 reviewTextBox w-100 ml-2">
                   <p className=" d-flex">
-                    <span className="font-weight-bold">
-                      {tutDset.reviewers_id.username}
-                    </span>
-
                     <DisplayRatings rating={tutDset.rating} />
                   </p>
                   <p className="d-flex">
@@ -85,11 +95,14 @@ function AllReviews(props) {
         : pathname === "/tut/profile" &&
           typeof tutData === "object" &&
           tutData.map((tutDset, index) => {
-            // if (index <= 2) {
             return (
               <div className="p-2 d-flex ">
                 <img
-                  src={reviewerPic}
+                  src={
+                    tutDset.reviewers_id.profilePic === ''
+                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                      : PF + tutDset.reviewers_id.profilePic
+                  }
                   width="40"
                   height="40"
                   className="rounded-circle mt-1"
