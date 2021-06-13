@@ -127,5 +127,11 @@ export default (state, action) => {
         ...state,
         anewMsg: action.payload,
       };
+
+    case 'CREATE_CONVERSATION':
+      return {
+        ...state,
+        addConversation: action.payload,
+      };
   }
 };

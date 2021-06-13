@@ -4,7 +4,7 @@ import NavElements from "../nav/navElements/NavElements";
 
 export default function Nav() {
   return (
-    <div className="nav d-flex p-3 row ">
+    <div className="nav d-flex p-3 ">
       <Logo />
       <NavElements />
     </div>

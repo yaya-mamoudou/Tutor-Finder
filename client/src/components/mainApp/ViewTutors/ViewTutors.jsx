@@ -45,22 +45,6 @@ function ViewTutors(props) {
     localStorage.setItem('speciality', tut.speciality);
     localStorage.setItem('location', tut.location);
   };
- //   <div className="bg-dark w-25 m-3 ">
-    //     <h5 className="text-white">{tut.username}</h5>
-    //     <h5 className="text-white">{tut.email}</h5>
-    //     <h5 className="text-white">{tut.gender}</h5>
-    //     <h5 className="text-white">{tut.speciality}</h5>
-    //     <Link
-    //       onClick={() => clickHandle(tut)}
-    //       to={{
-    //         pathname: '/tut/profile',
-    //       }}
-    //     >
-    //       <button className="btn btn-primary p-3  m-4">
-    //         View Profile
-    //       </button>
-    //     </Link>
-    // </div>
     return (
         <div className='alltutors'>
              <div className="txt-alltutor">All Tutors</div>
