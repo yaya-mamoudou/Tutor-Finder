@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.case {
+  height: 500px;
+  width: 400px;
+  margin: 2em !important;
+  border: none;
+  box-shadow: 0px 3px 10px rgba(207, 207, 207, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+.avail {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em !important;
+}
+.able {
+  width: 100px;
+  height: 30px;
+  color: white;
+  border-radius: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(7, 226, 135);
+}
+.price {
+  width: 70px;
+  height: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.price h2 {
+  color: rgb(82, 81, 81);
+}
+.logo {
+  width: 100% !important;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.nom {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  font-family: "Poppins", sans-serif;
+  padding: 1rem !important;
+}
+.pro {
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: rgb(139, 137, 137);
+}
+.box {
+  width: 80%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 3em !important;
+  margin-bottom: 1em !important;
+  margin-bottom: 1em !important;
+  /* padding-right: 3em !important; */
+  padding-bottom: 0 !important;
+  /* justify-content: space-between; */
+}
+.props {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem !important;
+  border-radius: 40%;
+  margin: 1em !important;
+  border: 2px solid rgba(144, 144, 144, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+.props4 {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem !important;
+  border-radius: 40%;
+  background-color: rgb(51, 110, 187);
+  box-shadow: 2px solid rgb(106, 156, 221);
+  color: white;
+  margin: 1em !important;
+  margin-left: 0 !important;
+  border: 2px solid rgba(144, 144, 144, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+.props3 {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 23px;
+  padding: 1rem !important;
+  margin: 1em !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  border: 2px solid rgba(144, 144, 144, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bio {
+  width: 100%;
+  height: 100px;
+  padding: 1em !important;
+  padding-left: 2em !important;
+  text-align: center;
+  /* overflow-y: auto; */
+}
+.pro1 {
+  padding: 0 !important;
+  font-family: "Poppins", sans-serif;
+  color: rgb(139, 137, 137);
+  font-size: 1em;
+}
+footer {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.view-box {
+  height: 100%;
+  width: 40%;
+  color: rgb(105, 104, 104);
+  padding-top: 1em !important;
+  border-top: 2px solid rgba(144, 144, 144, 0.4);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+}
+.view-box button{
+  border: none;
+  background: none;
+  outline: none;
+}
+ .viewProfileBtn:hover{
+ color: rgb(30, 155, 228);
+}
+.txt-alltutor{
+  height: 5vh;
+  width: 100%;
+  padding-left: 2em !important;
+  padding-top: 0.6em !important;
+  font-size: 1.9em;
+}

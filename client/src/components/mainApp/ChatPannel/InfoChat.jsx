@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Chatlist from './Chatlist'
 import Searchbar from './Searchbar'
-import {ArrowLeftSquare, Search, ThreeDotsVertical , Paperclip, SymmetryHorizontal} from 'react-bootstrap-icons'
+import {Button} from 'react-bootstrap'
+import {ArrowLeftSquare} from 'react-bootstrap-icons'
+
 function InfoChat() {
+      // const myFunction=() =>{
+      //     var x = document.querySelector("myTopnav");
+      //     if (x.className === "topnav") {
+      //       x.className += " responsive";
+      //     } else {
+      //       x.className = "topnav";
+      //     }
+      //   } onClick={myFunction()}
+    
     return (
         <div className='infochat'>
                 <div className="info-header">
-                    <ArrowLeftSquare size={36} />
+                    <ArrowLeftSquare  className='arrow' size={36} />
+                  <div className="bar">
+                      <Button  variant='none' style={{width:'175px', height:'65px'}} ><i className='fas fa-bars'style={{width:'80px', height:'45px',marginLeft:'2em'}}></i></Button>
+                      </div>  
+                      <div className="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  {/* <a href="javascript:void(0);" className="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a> */}
+</div>
                     <h1>Chat</h1>
                 </div>
                 <div className='info-person'>

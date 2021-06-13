@@ -8,6 +8,7 @@ import Classroom from "./classroom/MainClassEntry";
 import Profile from "./Profile/Profile";
 import PrivateRoute from "../PrivateRouting/PrivateRoute";
 import TutorIndProfile from "../ViewAllTutors/TutorProfile";
+import ViewTutors from "./ViewTutors/ViewTutors";
 const Navbar = () => {
   return (
     <div className="main">
@@ -15,7 +16,7 @@ const Navbar = () => {
 
       <div className="mybody">
         <Switch>
-          <PrivateRoute path="/home" exact component={Home} />
+          <PrivateRoute path="/home" exact component={ViewTutors} />
           <PrivateRoute exact path="/chat" component={Chat} />
           <PrivateRoute exact path="/classroom" component={Classroom} />
           <PrivateRoute exact path="/profile" component={Profile} />
