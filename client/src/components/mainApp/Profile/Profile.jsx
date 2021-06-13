@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState, createRef } from 'react';
-import AuthContext from '../../../context/auth/AuthContext';
-import '../../ViewAllTutors/tutProfile.css';
-import AllReviews from '../../ViewAllTutors/ViewAllReviews/AllReviews';
-import FirstBox from '../../ViewAllTutors/FirstBox';
-import Box2 from '../../ViewAllTutors/Box2';
-import TutorProfileHeader from '../../ViewAllTutors/TutorProfileHeader';
-import EditProfile from '../../EditProfile/EditProfile';
-const PF = 'http://localhost:5000/images/';
+import React, { useContext, useEffect, useState, createRef } from "react";
+import AuthContext from "../../../context/auth/AuthContext";
+import "../../ViewAllTutors/tutProfile.css";
+import AllReviews from "../../ViewAllTutors/ViewAllReviews/AllReviews";
+import FirstBox from "../../ViewAllTutors/FirstBox";
+import Box2 from "../../ViewAllTutors/Box2";
+import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
+import EditProfile from "../../EditProfile/EditProfile";
+const PF = "http://localhost:5000/images/";
 
 console.log(window.screen.height);
 
@@ -75,12 +75,8 @@ function App(props) {
                 profilePic={userData.profilePic}
                 location={userData.location}
               />
-<<<<<<< HEAD
-              <Box2 email={userData.email} tel={userData.tel} />
-=======
 
               <Box2 email={userData.email} />
->>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
             </div>
 
             <div className="" style={{ width: "70%", height: "83vh" }}>

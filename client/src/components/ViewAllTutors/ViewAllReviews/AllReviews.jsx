@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from "react";
 import ReviewContext from "../../../context/reviews/ReviewContext";
 import Review from "../reviews/Review";
 import { format } from "timeago.js";
 import DisplayRatings from "./DisplayRatings";
 import reviewerPic from "../../assets/img/1.jpg";
-=======
-import React, { useState, useEffect, useContext } from 'react';
-import ReviewContext from '../../../context/reviews/ReviewContext';
-import Review from '../reviews/Review';
-import { format } from 'timeago.js';
-import DisplayRatings from './DisplayRatings';
-import reviewerPic from '../../assets/img/1.jpg';
-const PF = 'http://localhost:5000/images/';
->>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
+const PF = "http://localhost:5000/images/";
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
@@ -59,15 +50,15 @@ function AllReviews(props) {
 
   return (
     <>
-      {pathname === '/profile' && typeof storeReview !== 'undefined'
+      {pathname === "/profile" && typeof storeReview !== "undefined"
         ? storeReview.map((tutDset, index) => {
             console.log(tutDset);
             return (
               <div className="p-2 d-flex ">
                 <img
                   src={
-                    tutDset.reviewers_id.profilePic === ''
-                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                    tutDset.reviewers_id.profilePic === ""
+                      ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
                       : PF + tutDset.reviewers_id.profilePic
                   }
                   width="40"
@@ -99,8 +90,8 @@ function AllReviews(props) {
               <div className="p-2 d-flex ">
                 <img
                   src={
-                    tutDset.reviewers_id.profilePic === ''
-                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                    tutDset.reviewers_id.profilePic === ""
+                      ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
                       : PF + tutDset.reviewers_id.profilePic
                   }
                   width="40"

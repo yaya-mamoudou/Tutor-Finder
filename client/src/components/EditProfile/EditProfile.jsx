@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 import { Modal, Button } from "react-bootstrap";
 import editProfile from "./editProfile.css";
-=======
-import React, { useContext, useEffect, useState } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
-import { Modal, Button } from 'react-bootstrap';
-import editProfile from './editProfile.css';
-import axios from 'axios';
-const PF = 'http://localhost:5000/images/';
->>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
+import axios from "axios";
+const PF = "http://localhost:5000/images/";
 
 function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   const authContext = useContext(AuthContext);
@@ -18,13 +11,7 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
 
   const [editedData, seteditedData] = useState(undefined);
   const [toggle, settoggle] = useState();
-<<<<<<< HEAD
-  const [file, setFile] = useState("");
-  // const [fileName, setFileName] = useState('choose file');
-  // const [uploadFile, setUploadedFile] = useState({});
-=======
   const [file, setFile] = useState(null);
->>>>>>> 2be2138a283ed0d11e0b3ecca858eaa787f5565d
 
   useEffect(async () => {
     if (typeof user === "object") {
@@ -57,11 +44,11 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
     if (file) {
       const data = new FormData();
       const filename = Date.now() + file.name;
-      data.append('name', filename);
-      data.append('file', file);
+      data.append("name", filename);
+      data.append("file", file);
       editedData.profilePic = filename;
       try {
-        await axios.post('/athena/file/upload', data);
+        await axios.post("/athena/file/upload", data);
       } catch (err) {}
     }
     editProfile(editedData);
