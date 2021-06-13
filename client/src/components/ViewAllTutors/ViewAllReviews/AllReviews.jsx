@@ -11,13 +11,8 @@ function AllReviews(props) {
 
   let activePath;
 
-  const {
-    aTutsReview,
-    viewATutR,
-    reviews,
-    myReview,
-    getMyReview,
-  } = reviewContext;
+  const { aTutsReview, viewATutR, reviews, myReview, getMyReview } =
+    reviewContext;
   const [tutData, setTutData] = useState();
 
   const [storeReview, setstoreReview] = useState();
@@ -54,38 +49,7 @@ function AllReviews(props) {
 
   return (
     <>
-<<<<<<< HEAD
-      {typeof tutData === "object" &&
-        tutData.map((tutDset, index) => {
-          // if (index <= 2) {
-          return (
-            <div className="p-2 d-flex ">
-              <img
-                src={reviewerPic}
-                width="40"
-                height="40"
-                className="rounded-circle mt-1"
-                alt=""
-              />
-              <div className="p-3 reviewTextBox w-100 ml-2">
-                <p className=" d-flex">
-                  <span className="font-weight-bold">
-                    {tutDset.reviewers_id.username}
-                  </span>
-
-                  <DisplayRatings rating={tutDset.rating} />
-                </p>
-                <p className="d-flex">
-                  {tutDset.body}{" "}
-                  <span
-                    style={{ fontSize: 9 }}
-                    className="text-secondary ml-auto"
-                  >
-                    {format(tutDset.date)}
-                  </span>
-                </p>
-=======
-      {pathname === '/profile' && typeof storeReview === 'object'
+      {pathname === "/profile" && typeof storeReview === "object"
         ? storeReview.map((tutDset, index) => {
             // if (index <= 2) {
             return (
@@ -106,7 +70,7 @@ function AllReviews(props) {
                     <DisplayRatings rating={tutDset.rating} />
                   </p>
                   <p className="d-flex">
-                    {tutDset.body}{' '}
+                    {tutDset.body}{" "}
                     <span
                       style={{ fontSize: 9 }}
                       className="text-secondary ml-auto"
@@ -118,8 +82,8 @@ function AllReviews(props) {
               </div>
             );
           })
-        : pathname === '/tut/profile' &&
-          typeof tutData === 'object' &&
+        : pathname === "/tut/profile" &&
+          typeof tutData === "object" &&
           tutData.map((tutDset, index) => {
             // if (index <= 2) {
             return (
@@ -140,7 +104,7 @@ function AllReviews(props) {
                     <DisplayRatings rating={tutDset.rating} />
                   </p>
                   <p className="d-flex">
-                    {tutDset.body}{' '}
+                    {tutDset.body}{" "}
                     <span
                       style={{ fontSize: 9 }}
                       className="text-secondary ml-auto"
@@ -149,7 +113,6 @@ function AllReviews(props) {
                     </span>
                   </p>
                 </div>
->>>>>>> 9a65a9246b7d1ac23e8a64b2e1df5639deaf00c9
               </div>
             );
           })}
