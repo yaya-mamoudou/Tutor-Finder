@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
 :root {
   --primary-color: #17a2b8;
@@ -34,7 +34,6 @@ input {
 .alert {
   width: 80vw;
   height: 7vh;
-  /* margin: 1rem 0; */
   opacity: 0.9;
   background: var(--danger-color);
   color: #333;
@@ -170,9 +169,6 @@ form.sign-in-form {
   align-items: center;
   margin-bottom: 27px;
 }
-/* .content {
-  margin-bottom: 2rem 3rem;
-} */
 .x-large span {
   font-size: 2em;
   color: #e6071aa6;
@@ -332,8 +328,6 @@ form.sign-in-form {
   transform: translateX(800px);
 }
 
-/* ANIMATION */
-
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
@@ -407,8 +401,6 @@ form.sign-in-form {
     transform: translateY(-50%);
     top: -10%;
     right: 50%;
-    /* right: initial;
-    top: initial; */
     transition: 1.5s ease-in-out;
     border-radius: 50%;
   }
@@ -418,7 +410,6 @@ form.sign-in-form {
 }
 @media (max-width: 870px) {
   .container {
-    /* min-height: 800px; */
     height: 100vh;
     width: 100vw;
   }
@@ -536,7 +527,6 @@ form.sign-in-form {
   .container.sign-up-mode .signin-signup {
     height: 100%;
     top: -14%;
-    /* padding-bottom: 4em; */
     padding-top: 7em;
     overflow: auto;
     transform: translate(-50%, 0);
@@ -656,4 +646,4 @@ h1 span {
   color: #e6071aa6;
   text-shadow: 0px 3px 10px rgba(0, 0, 0, 1.7);
   font-family: "Cookie", cursive;
-}
+} */

@@ -10,7 +10,7 @@ import PrivateRoute from "../PrivateRouting/PrivateRoute";
 import TutorIndProfile from "../ViewAllTutors/TutorProfile";
 import ViewTutors from "./ViewTutors/ViewTutors";
 
-import Chat from './chat/Chat';
+import Chat from "./chat/Chat";
 const Navbar = () => {
   return (
     <div className="main">

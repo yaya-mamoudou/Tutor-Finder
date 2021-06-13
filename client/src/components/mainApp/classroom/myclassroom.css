@@ -1,0 +1,31 @@
+.classroom_search {
+  border-radius: 15px;
+  width: 30%;
+  align-self: center;
+  border: solid #ccc 2px;
+  background-color: rgb(241, 241, 241);
+}
+
+.classroom_search i:hover {
+  cursor: pointer;
+}
+
+.classroom_search:hover {
+  box-shadow: 2px 2px 12px rgb(224, 224, 224);
+}
+
+.classroom_search input:focus {
+  box-shadow: 2px 2px 12px rgb(224, 224, 224);
+}
+
+/* @media screen and (min-width: 480px) {
+  .classroomCard {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .classroomCard {
+    width: 40%;
+  }
+} */
