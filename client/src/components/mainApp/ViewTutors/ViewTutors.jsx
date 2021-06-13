@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useContext} from 'react'
 import Card from './Card/Card'
 import './viewtutors.css'
+import SearchTutor from './Card/SearchTutor'
 // import AuthContext from '../../context/auth/AuthContext';
 import AuthContext from '../../../context/auth/AuthContext'
 import ReviewContext from '../../../context/reviews/ReviewContext';
@@ -47,7 +48,12 @@ function ViewTutors(props) {
   };
     return (
         <div className='alltutors'>
-             <div className="txt-alltutor">All Tutors</div>
+            <div className="header-text">
+            <div className="txt-alltutor">All Tutors
+             </div>
+             <SearchTutor />
+              </div> 
+             
              {typeof data === 'object' &&
   data.map((tut) => (
     <Card className="d-flex  " key={tut.email} tut={tut} />

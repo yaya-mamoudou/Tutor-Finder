@@ -32,7 +32,7 @@ function Card({tut}) {
                 </div>
                 <div className="box">
                     
-                {tut.speciality.split(',' && 'and').map(e=><div className="props3">{e}</div>)}
+                {tut.speciality.split(',').map(e=><div className="props3">{e}</div>)}
                     
                     <div className="props4">+1</div>
                 </div>
