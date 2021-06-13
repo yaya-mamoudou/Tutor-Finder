@@ -46,6 +46,10 @@ const AthenaSchema = mongoose.Schema({
   tel: {
     type: String,
   },
+  profilePic: {
+    type: String,
+    default: '',
+  },
 });
 
 module.exports = mongoose.model('USER', AthenaSchema);
