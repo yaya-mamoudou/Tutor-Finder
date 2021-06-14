@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth/AuthContext";
-import { Modal, Button } from "react-bootstrap";
 import editProfile from "./editProfile.css";
 import axios from "axios";
 const PF = "http://localhost:5000/images/";

@@ -3,14 +3,17 @@ import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
 import AuthContext from "../../../context/auth/AuthContext";
 import "./myclassroom.css";
 
+import imgtry from "../../assets/img/1.jpg";
+
 import img1 from "../../assets/classImages/img1.png";
 import img2 from "../../assets/classImages/img2.png";
 import img3 from "../../assets/classImages/img3.png";
 import img4 from "../../assets/classImages/img4.png";
 import img5 from "../../assets/classImages/img5.png";
 import img6 from "../../assets/classImages/img6.png";
+import MyModal from "../../myModal/Modal";
+import ClassDetails from "./ClassDetails";
 
-console.log(img1);
 export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
 
@@ -18,38 +21,136 @@ export default function MainClassEntry() {
   const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
 
   const [myClasses, setMyClasses] = useState([]);
+  const [alreadySet, setalreadySet] = useState(0);
   const [store, setStore] = useState();
 
-  // useEffect(() => {
-  //   myCreatedClass();
-  // }, [allMyClasses]);
+  const [handleModal, sethandleModal] = useState("none");
+  const [modalData, setmodalData] = useState({});
 
   useEffect(() => {
-    console.log(myClasses);
+    if (myClasses.length > 0) {
+      // console.log(myClasses);
+      setalreadySet(1);
+    }
   }, [myClasses]);
 
   useEffect(async () => {
     try {
       await myCreatedClass();
 
-      await setMyClasses(allMyClasses.classroom);
+      if (alreadySet === 0) {
+        if (Object(allMyClasses).hasOwnProperty("classroom")) {
+          new Promise(async (resolve, reject) => {
+            await setalreadySet(1);
+
+            let temp = [...allMyClasses.classroom];
+            temp.map(
+              (singleClass) =>
+                (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
+            );
+            console.log(temp);
+            resolve(temp);
+          }).then(async (newClasses) => await setMyClasses(newClasses));
+          // console.log(allMyClasses);
+        } else {
+          console.log("no");
+        }
+      }
     } catch (err) {
       console.log(err);
     }
   }, [allMyClasses]);
 
+  const viewParticipants = () => {};
+  const toggleModal = (index = "null") => {
+    if (handleModal === "flex") {
+      sethandleModal("none");
+    } else {
+      if (index !== "null") {
+        new Promise((resolve, reject) => {
+          resolve(myClasses[index]);
+        })
+          .then(async (data) => await setmodalData(data))
+          .then(() => sethandleModal("flex"));
+      } else {
+        sethandleModal("flex");
+      }
+    }
+    console.log("clicked");
+  };
+
   return (
-    <div className="p-4 container">
-      <ClassroomHomeHeader />
-      <div className="d-flex">
-        {myClasses.map((e) => {
+    <div className="p-4">
+      <MyModal
+        component={<ClassDetails data={modalData} />}
+        modalStatus={handleModal}
+        modalHeader={"Class detail"}
+        toggleModal={toggleModal}
+      />
+      <ClassroomHomeHeader
+        viewParticipants={viewParticipants}
+        toggleModal={toggleModal}
+      />
+      <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
+        {myClasses.map((e, index) => {
           return (
             <div
-              style={{ flexWrap: "wrap" }}
-              className="bg-dark classroomCard rounded m-1"
-              style={{ width: "35vh", height: "35vh" }}
+              className="classroomCard text-white rounded m-3"
+              style={{
+                backgroundImage: `url("${e.bg}")`,
+                backgroundSize: "cover",
+              }}
             >
-              yaya
+              <div
+                className="rounded px-4 pt-4"
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.5)",
+                  width: "100%",
+                  height: "100%",
+                  position: "relative",
+                }}
+              >
+                <div className="w-100 d-flex position-relative">
+                  <div
+                    className="pr-2"
+                    style={{ width: "90%", textOverflow: "wrap" }}
+                  >
+                    <p className="h2 font-weight-bold">
+                      Course ID: {e.classCode}
+                    </p>
+                  </div>
+
+                  <div className="bg-dark" onClick={() => toggleModal(index)}>
+                    <i
+                      style={{ position: "absolute", right: 0, top: ".5rem" }}
+                      class="far fa-eye eyIcon"
+                    ></i>
+                  </div>
+                </div>
+
+                <p className="h4 mt-5 font-weight-bold">Title: {e.className}</p>
+
+                <div
+                  style={{ position: "absolute", bottom: "1rem" }}
+                  className="d-flex align-items-end"
+                >
+                  <div
+                    className="d-flex rounded-circle justify-content-center align-items-center bg-light"
+                    style={{ width: 53, height: 53 }}
+                  >
+                    <img
+                      className="rounded-circle"
+                      src={imgtry}
+                      width="50"
+                      height="50"
+                      alt=""
+                    />
+                  </div>
+                  <span className="h4 ml-3 font-weight-bold align-self-center">
+                    {e.tutorName}
+                  </span>
+                </div>
+              </div>
             </div>
           );
         })}
