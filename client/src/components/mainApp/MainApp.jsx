@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./mainApp.css";
 import SideNav from "./sideNav/SideNav";
 import Chat from "./ChatPannel/Chat";
@@ -9,7 +14,11 @@ import PrivateRoute from "../PrivateRouting/PrivateRoute";
 import TutorIndProfile from "../ViewAllTutors/TutorProfile";
 import ViewTutors from "./ViewTutors/ViewTutors";
 
+<<<<<<< HEAD
 // import Chat from './chat/Chat';
+=======
+import Chat from "./chat/Chat";
+>>>>>>> 8578b3f98007450b34246b1ea87f4f7d51336d65
 const Navbar = () => {
   return (
     <div className="main">
@@ -22,6 +31,7 @@ const Navbar = () => {
           <PrivateRoute exact path="/classroom" component={Classroom} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/tut/profile" component={TutorIndProfile} />
+          <Redirect from="/mainApp" to="home" />
         </Switch>
       </div>
     </div>

@@ -25,48 +25,17 @@
   color: rgb(233, 233, 233) !important;
 }
 
-.inputItem {
-  width: 100%;
-  background-color: rgb(236, 236, 236);
-  border-radius: 5px;
-  padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
-  display: flex;
-}
-
-.inputItem input:hover,
-.inputItem textarea:hover {
-  box-shadow: 1px 2px 8px rgb(150, 150, 150);
-}
-
-.inputItem input:focus,
-.inputItem textarea:hover {
-  box-shadow: 1px 2px 8px rgb(150, 150, 150);
-}
-
-.inputItem span {
-  min-width: 12%;
-}
-
-.inputItem input {
-  border: none;
-  background-color: white;
-}
-
-.inputItem textarea {
-  border: none;
-  background-color: white;
-  height: 50%;
-}
-
-.save_btn {
-  font-size: 1.5rem;
-  font-weight: 400px;
-}
-
 .closeModalIcon:hover {
   /* background-color: rgb(124, 124, 124) !important; */
   color: rgb(66, 66, 66) !important;
   background-color: rgb(177, 77, 63) !important;
 
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modalCard {
+    width: 80% !important;
+    /* background-size: "cover"; */
+  }
 }

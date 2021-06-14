@@ -1,20 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import LinesEllipsis from 'react-lines-ellipsis';
-import './card.css';
-const PF = 'http://localhost:5000/images/';
+import React from "react";
+import { Link } from "react-router-dom";
+import LinesEllipsis from "react-lines-ellipsis";
+import "./card.css";
+const PF = "http://localhost:5000/images/";
 
 function Card({ tut }) {
   const clickHandle = (tut) => {
-    localStorage.setItem('id', tut._id);
-    localStorage.setItem('username', tut.username);
-    localStorage.setItem('bio', tut.bio);
-    localStorage.setItem('status', tut.status);
-    localStorage.setItem('email', tut.email);
-    localStorage.setItem('gender', tut.gender);
-    localStorage.setItem('speciality', tut.speciality);
-    localStorage.setItem('location', tut.location);
-    localStorage.setItem('profilePic', tut.profilePic);
+    localStorage.setItem("id", tut._id);
+    localStorage.setItem("tel", tut.tel);
+    localStorage.setItem("username", tut.username);
+    localStorage.setItem("bio", tut.bio);
+    localStorage.setItem("status", tut.status);
+    localStorage.setItem("email", tut.email);
+    localStorage.setItem("gender", tut.gender);
+    localStorage.setItem("speciality", tut.speciality);
+    localStorage.setItem("location", tut.location);
+    localStorage.setItem("profilePic", tut.profilePic);
   };
   return (
     <div className="case">
@@ -27,8 +28,8 @@ function Card({ tut }) {
       <div className="logo">
         <img
           src={
-            tut.profilePic === ''
-              ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+            tut.profilePic === ""
+              ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
               : PF + tut.profilePic
           }
           className="pic"
@@ -40,7 +41,11 @@ function Card({ tut }) {
         <p className="pro">{tut.email}</p>
       </div>
       <div className="box">
+<<<<<<< HEAD
         {tut.speciality.split(',').map((e) => (
+=======
+        {tut.speciality.split(",").map((e) => (
+>>>>>>> 8578b3f98007450b34246b1ea87f4f7d51336d65
           <div className="props3">{e}</div>
         ))}
 
@@ -61,7 +66,7 @@ function Card({ tut }) {
           className="view-box"
           onClick={() => clickHandle(tut)}
           to={{
-            pathname: '/tut/profile',
+            pathname: "/tut/profile",
           }}
         >
           <button className="h3 viewProfileBtn">VIEW PROFILE</button>
