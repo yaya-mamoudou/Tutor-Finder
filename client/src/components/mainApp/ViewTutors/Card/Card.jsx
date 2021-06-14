@@ -41,11 +41,7 @@ function Card({ tut }) {
         <p className="pro">{tut.email}</p>
       </div>
       <div className="box">
-<<<<<<< HEAD
-        {tut.speciality.split(',').map((e) => (
-=======
         {tut.speciality.split(",").map((e) => (
->>>>>>> 8578b3f98007450b34246b1ea87f4f7d51336d65
           <div className="props3">{e}</div>
         ))}
 

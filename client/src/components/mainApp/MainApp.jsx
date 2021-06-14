@@ -14,11 +14,7 @@ import PrivateRoute from "../PrivateRouting/PrivateRoute";
 import TutorIndProfile from "../ViewAllTutors/TutorProfile";
 import ViewTutors from "./ViewTutors/ViewTutors";
 
-<<<<<<< HEAD
-// import Chat from './chat/Chat';
-=======
-import Chat from "./chat/Chat";
->>>>>>> 8578b3f98007450b34246b1ea87f4f7d51336d65
+// import Chat from "./chat/Chat";
 const Navbar = () => {
   return (
     <div className="main">
