@@ -5,7 +5,7 @@ import LandingPage from './components/landingPage/LandingPage';
 import AuthState from './context/auth/AuthState';
 import RegLog from './components/RegisLog/RegLog';
 import UserProfile from './components/mainApp/Profile/Profile';
-import Login from './components/login/Login';
+import Log from './components/RegisLog/Log';
 import PrivateRoute from './components/PrivateRouting/PrivateRoute';
 import TutorState from './context/tutors/TutorState';
 import TutorProfile from './components/mainApp/ViewTutors/ViewTutors';
@@ -22,9 +22,9 @@ function App() {
             <TutorState>
               <Switch>
                 <Route exact path="/" component={LandingPage} />
-                <Route exact path="/login" component={Login} />
-                <PrivateRoute exact path="/mainapp" component={MainApp} />
+                <Route exact path="/login" component={Log} />
                 <Route exact path="/register" component={RegLog} />
+                <PrivateRoute exact path="/mainapp" component={MainApp} />
                 <PrivateRoute
                   exact
                   path="/ViewTutorProfile"
