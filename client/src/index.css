@@ -8,7 +8,7 @@
 body {
   /* overflow-x: hidden; */
   height: fit-content !important;
-  font-size: 1.7rem !important;
+  font-size: 1.6rem !important;
 }
 
 *::-webkit-scrollbar {
@@ -23,4 +23,16 @@ body {
 *::-webkit-scrollbar-thumb {
   background-color: rgb(138, 154, 180);
   border-radius: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

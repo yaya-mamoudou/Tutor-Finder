@@ -1,18 +1,18 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const { check, validationResult } = require('express-validator');
-const User = require('../models/User');
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const { check, validationResult } = require("express-validator");
+const User = require("../models/User");
 const route = express.Router();
 
 //login:PUBLIC
 route.post(
-  '/',
+  "/",
   [
-    check('email', 'Please enter a valid email address').isEmail(),
+    check("email", "Please enter a valid email address").isEmail(),
     check(
-      'password',
-      'Your Password should be more than 7 characters'
+      "password",
+      "Your Password should be more than 7 characters"
     ).isLength({ min: 7 }),
   ],
   async (req, res) => {
@@ -24,11 +24,11 @@ route.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.status(400).json({ msg: "Invalid Credentials" });
       }
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.status(400).json({ msg: "Invalid Credentials" });
       }
       const payload = {
         user: {
@@ -38,7 +38,7 @@ route.post(
       };
       await jwt.sign(
         payload,
-        'athena',
+        "athena",
         {
           expiresIn: 36000,
         },
@@ -50,7 +50,7 @@ route.post(
         }
       );
     } catch (err) {
-      res.status(500).json({ msg: 'Server Error' });
+      res.status(500).json({ msg: "Server Error" });
       console.log(err.message);
     }
   }
