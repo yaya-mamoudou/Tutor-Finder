@@ -40,7 +40,7 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   };
 
   const submitForm = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (file) {
       const data = new FormData();
       const filename = Date.now() + file.name;
@@ -51,7 +51,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
         await axios.post("/athena/file/upload", data);
       } catch (err) {}
     }
-    editProfile(editedData);
+    new Promise((resolve, reject) => {
+      resolve(editProfile(editedData));
+    }).then((e) => window.location.reload());
   };
 
   return (

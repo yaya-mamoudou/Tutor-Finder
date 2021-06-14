@@ -18,14 +18,14 @@
   box-shadow: 2px 2px 12px rgb(224, 224, 224);
 }
 
-/* @media screen and (min-width: 480px) {
-  .classroomCard {
-    width: 100%;
-  }
+@media (min-width: 576px) {
 }
 
-@media screen and (min-width: 480px) {
-  .classroomCard {
-    width: 40%;
-  }
-} */
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

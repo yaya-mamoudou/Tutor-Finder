@@ -36,6 +36,9 @@ function App(props) {
     setheaderHight(parseInt(height));
   };
   useEffect(async () => {
+    // if ((first = 2)) {
+    //   // window.location.reload();
+    // }
     await setuserData(user);
   }, [user]);
 
@@ -76,7 +79,7 @@ function App(props) {
                 location={userData.location}
               />
 
-              <Box2 email={userData.email} />
+              <Box2 email={userData.email} tel={userData.tel} />
             </div>
 
             <div className="" style={{ width: "70%", height: "83vh" }}>

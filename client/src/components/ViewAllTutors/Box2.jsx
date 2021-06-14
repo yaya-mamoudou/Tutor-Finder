@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Box2({ email, status, tel }) {
+  console.log(tel);
   // const email = localStorage.getItem("email");
 
   return (
