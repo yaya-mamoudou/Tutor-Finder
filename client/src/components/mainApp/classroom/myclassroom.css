@@ -17,15 +17,80 @@
 .classroom_search input:focus {
   box-shadow: 2px 2px 12px rgb(224, 224, 224);
 }
+.classroomCard {
+  width: 43vh;
+  height: 37vh;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
+}
+.classroomCard:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  z-index: 1;
+  /* transition: all 1s ease; */
+}
+
+.createClass:hover {
+  cursor: pointer;
+  color: rgb(8, 89, 143) !important;
+}
+
+.eyIcon:hover {
+  color: rgb(93, 126, 126) !important;
+}
+
+@media (max-width: 576px) {
+  .classroomCard {
+    width: 100% !important;
+    align-self: center !important;
+    background-size: "cover" !important;
+  }
+  .classroom_search {
+    margin-top: 20px !important;
+    width: 80% !important;
+  }
+  .createclassIcon {
+    display: block;
+  }
+  .createclassText {
+    display: none;
+  }
+}
 
 @media (min-width: 576px) {
+  .classroomCard {
+    width: 45% !important;
+    background-size: "cover" !important;
+  }
+
+  .createclassIcon {
+    display: none;
+  }
+  .createclassText {
+    display: block;
+  }
 }
 
 @media (min-width: 768px) {
+  .classroomCard {
+    width: 30% !important;
+    background-size: "cover";
+  }
 }
 
 @media (min-width: 992px) {
 }
 
 @media (min-width: 1200px) {
+  .classroomCard {
+    width: 23% !important;
+    background-size: "cover";
+  }
+}
+
+@media (min-width: 1400px) {
+  .classroomCard {
+    width: 18.5% !important;
+    background-size: "cover";
+  }
 }

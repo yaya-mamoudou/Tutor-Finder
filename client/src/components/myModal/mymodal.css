@@ -1,0 +1,41 @@
+.mymodal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modalCard {
+  width: 50%;
+  min-height: 80vh;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.modalHeader {
+  padding: 1rem !important;
+  font-size: 22px;
+  background: rgb(54, 54, 54);
+  border-radius: 10px 10px 0 0;
+  color: rgb(233, 233, 233) !important;
+}
+
+.closeModalIcon:hover {
+  /* background-color: rgb(124, 124, 124) !important; */
+  color: rgb(66, 66, 66) !important;
+  background-color: rgb(177, 77, 63) !important;
+
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modalCard {
+    width: 80% !important;
+    /* background-size: "cover"; */
+  }
+}

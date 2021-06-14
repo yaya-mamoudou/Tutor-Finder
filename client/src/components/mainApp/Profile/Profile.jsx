@@ -8,8 +8,6 @@ import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
 import EditProfile from "../../EditProfile/EditProfile";
 const PF = "http://localhost:5000/images/";
 
-console.log(window.screen.height);
-
 function App(props) {
   const authContext = useContext(AuthContext);
   const { ikeep, iStore, tutData, user, loadUser } = authContext;
@@ -36,16 +34,11 @@ function App(props) {
     setheaderHight(parseInt(height));
   };
   useEffect(async () => {
-    // if ((first = 2)) {
-    //   // window.location.reload();
-    // }
     await setuserData(user);
   }, [user]);
 
   useEffect(async () => {
     if (userData) {
-      console.log(userData);
-
       settoggle(1);
     }
   }, [userData]);
