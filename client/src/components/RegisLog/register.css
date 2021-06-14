@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
 :root {
   --primary-color: #17a2b8;
@@ -17,7 +17,7 @@ p {
 }
 body,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .main-container {
   display: flex;
@@ -109,7 +109,7 @@ form.sign-in-form {
   max-width: 380px;
   width: 100%;
   background-color: transparent;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   margin: 10px 0;
   height: 55px;
   border: none;
@@ -137,7 +137,7 @@ form.sign-in-form {
   margin: 0px 25px;
   width: 50%;
   background-color: transparent;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 .gender select {
   height: 30%;
@@ -159,7 +159,7 @@ form.sign-in-form {
 .input-field input::placeholder {
   color: #000;
   font-weight: 500;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 .x-large {
   width: 120%;
@@ -176,7 +176,7 @@ form.sign-in-form {
 .x-large span {
   font-size: 2em;
   color: #e6071aa6;
-  font-family: "Cookie", cursive;
+  font-family: 'Cookie', cursive;
 }
 .social-text {
   padding: 0.7rem 0;
@@ -213,7 +213,7 @@ form.sign-in-form {
   background-color: #cc0874;
   border: none;
   outline: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   height: 49px;
   border-radius: 49px;
   color: #fff;
@@ -238,7 +238,7 @@ form.sign-in-form {
 }
 
 .container:before {
-  content: "";
+  content: '';
   position: absolute;
   height: 2000px;
   width: 2000px;
@@ -400,7 +400,7 @@ form.sign-in-form {
     padding-top: 1em;
   }
   .container:before {
-    content: "";
+    content: '';
     position: absolute;
     width: 1900px;
     height: 3500px;
@@ -643,7 +643,7 @@ h1 {
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.712);
   text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -655,5 +655,5 @@ h1 span {
   font-size: 4em;
   color: #e6071aa6;
   text-shadow: 0px 3px 10px rgba(0, 0, 0, 1.7);
-  font-family: "Cookie", cursive;
+  font-family: 'Cookie', cursive;
 }

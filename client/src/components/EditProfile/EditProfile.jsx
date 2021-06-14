@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/auth/AuthContext';
 import { Modal, Button } from 'react-bootstrap';
 import editProfile from './editProfile.css';
+import axios from 'axios';
+const PF = 'http://localhost:5000/images/';
 
 function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   const authContext = useContext(AuthContext);
-  const { editProfile } = authContext;
+  const { editProfile, PIC, myPPIC } = authContext;
 
   const [editedData, seteditedData] = useState(undefined);
   const [toggle, settoggle] = useState();
-  const [file, setFile] = useState('');
-  // const [fileName, setFileName] = useState('choose file');
-  // const [uploadFile, setUploadedFile] = useState({});
+  const [file, setFile] = useState(null);
 
   useEffect(async () => {
     if (typeof user === 'object') {
@@ -34,7 +34,23 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
     seteditedData(temp);
   };
 
-  const submitForm = (e) => {
+  const changed = async (e) => {
+    setFile(e.target.files[0]);
+    // await myPPIC(file);
+  };
+
+  const submitForm = async (e) => {
+    // e.preventDefault();
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append('name', filename);
+      data.append('file', file);
+      editedData.profilePic = filename;
+      try {
+        await axios.post('/athena/file/upload', data);
+      } catch (err) {}
+    }
     editProfile(editedData);
   };
 
@@ -53,13 +69,19 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
           </div>
           <form onSubmit={(e) => submitForm(e)} className=" p-5">
             <div class="form-group">
-              <label htmlFor="Profille Picture"> </label>
+              <label htmlFor="Profille Picture">choose file </label>
 
+              <img
+                src={file ? URL.createObjectURL(file) : PF + user.profilePic}
+                alt=""
+                height="100px"
+                width="100px"
+              />
               <input
                 type="file"
                 class="form-control-file"
-                id="exampleFormControlFile1"
-                // onChange={onChange}
+                id="fileInput"
+                onChange={changed}
               />
             </div>
 

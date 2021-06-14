@@ -47,6 +47,7 @@ const ViewAllTutorProfilePage = (props) => {
     localStorage.setItem('gender', tut.gender);
     localStorage.setItem('speciality', tut.speciality);
     localStorage.setItem('location', tut.location);
+    localStorage.setItem('profilePic', tut.profilePic);
   };
   return (
     <div>

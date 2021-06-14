@@ -133,5 +133,9 @@ export default (state, action) => {
         ...state,
         addConversation: action.payload,
       };
+    // case 'SET_PP':
+    //   return {
+    //     PIC: action.payload,
+    //   };
   }
 };

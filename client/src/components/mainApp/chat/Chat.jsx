@@ -9,6 +9,8 @@ import './Message.css';
 import { io } from 'socket.io-client';
 
 export default function Chat() {
+  const PF = 'http://localhost:5000/images/';
+
   const authContext = useContext(AuthContext);
   const {
     user,
@@ -141,8 +143,6 @@ export default function Chat() {
             <div>
               {typeof tryIt === 'object' &&
                 tryIt.map((m) => (
-                  // <Message message={m} mine={m.sender === user._id} />
-                  // // <div>{m.text}</div>
                   <div>
                     <div
                       className={
@@ -151,7 +151,13 @@ export default function Chat() {
                     >
                       <div className=" m-5 ">
                         <img
-                          src={yaya1}
+                          src={
+                            m.sender === user._id
+                              ? user.profilePic === ''
+                                ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                                : PF + user.profilePic
+                              : 'message'
+                          }
                           width="60px"
                           height="60px"
                           alt=""

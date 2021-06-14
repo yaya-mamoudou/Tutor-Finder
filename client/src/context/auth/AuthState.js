@@ -23,6 +23,7 @@ const AuthState = (props) => {
     allMyClasses: null,
     conversation: [],
     addConversation: null,
+    PIC: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -285,6 +286,12 @@ const AuthState = (props) => {
     }
   };
 
+  // const myPPIC = (somedata) => {
+  //   dispatch({
+  //     type: 'SET_PP',
+  //     payload: somedata,
+  //   });
+  // };
   return (
     <AuthContext.Provider
       value={{
@@ -305,10 +312,12 @@ const AuthState = (props) => {
         myMsg: state.myMsg,
         anewMsg: state.anewMsg,
         addConversation: state.addConversation,
+        PIC: state.PIC,
         createConversation,
         getMsg,
         iStore,
         editProfile,
+        // myPPIC,
         register,
         loadUser,
         ViewAllTutors,
