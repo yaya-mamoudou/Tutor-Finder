@@ -43,7 +43,6 @@ function Registerlogin(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // store(user);
     register({
       username,
       email,
