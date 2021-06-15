@@ -1,30 +1,48 @@
-import React, { useContext, useState, useEffect } from "react";
-import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
-import AuthContext from "../../../context/auth/AuthContext";
-import "./myclassroom.css";
+import React, { useContext, useState, useEffect } from 'react';
+import ClassroomHomeHeader from './classroomComponent/ClassroomHomeHeader';
+import AuthContext from '../../../context/auth/AuthContext';
+import './myclassroom.css';
 
-import imgtry from "../../assets/img/1.jpg";
-import img1 from "../../assets/classImages/img1.png";
-import img2 from "../../assets/classImages/img2.png";
-import img3 from "../../assets/classImages/img3.png";
-import img4 from "../../assets/classImages/img4.png";
-import img5 from "../../assets/classImages/img5.png";
-import img6 from "../../assets/classImages/img6.png";
-import MyModal from "../../myModal/Modal";
-import ClassDetails from "./ClassDetails";
+import imgtry from '../../assets/img/1.jpg';
+import img1 from '../../assets/classImages/img1.png';
+import img2 from '../../assets/classImages/img2.png';
+import img3 from '../../assets/classImages/img3.png';
+import img4 from '../../assets/classImages/img4.png';
+import img5 from '../../assets/classImages/img5.png';
+import img6 from '../../assets/classImages/img6.png';
+import MyModal from '../../myModal/Modal';
+import ClassDetails from './ClassDetails';
 
 export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
 
   const authContext = useContext(AuthContext);
-  const { isAdd, participants, myCreatedClass, allMyClasses, user, loadUser } =
-    authContext;
+  const {
+    isAdd,
+    participants,
+    myCreatedClass,
+    allMyClasses,
+    clearFilter,
+    user,
+    filtered,
+    loadUser,
+    getLearnersClassroom,
+    learnerClass,
+  } = authContext;
 
   const [myClasses, setMyClasses] = useState([]);
+  const [aLearnersClass, setALearnersClass] = useState([]);
+
   const [alreadySet, setalreadySet] = useState(0);
   const [loggedUser, setloggedUser] = useState(undefined);
-  const [handleModal, sethandleModal] = useState("none");
+  const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
+
+  useEffect(async () => {
+    loadUser();
+  }, []);
+
+  let theID = user && user._id;
 
   useEffect(() => {
     loadUser();
@@ -42,10 +60,22 @@ export default function MainClassEntry() {
 
   useEffect(async () => {
     try {
+      user && getLearnersClassroom(user._id);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [theID]);
+
+  useEffect(async () => {
+    await setALearnersClass(learnerClass);
+  }, [learnerClass]);
+
+  useEffect(async () => {
+    try {
       await myCreatedClass();
 
       if (alreadySet === 0) {
-        if (Object(allMyClasses).hasOwnProperty("classroom")) {
+        if (Object(allMyClasses).hasOwnProperty('classroom')) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
 
@@ -57,7 +87,7 @@ export default function MainClassEntry() {
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
         } else {
-          console.log("no");
+          console.log('no');
         }
       }
     } catch (err) {
@@ -66,64 +96,78 @@ export default function MainClassEntry() {
   }, [allMyClasses]);
 
   const viewParticipants = () => {};
-  const toggleModal = (index = "null") => {
-    if (handleModal === "flex") {
-      sethandleModal("none");
+  const toggleModal = (index = 'null') => {
+    if (handleModal === 'flex') {
+      sethandleModal('none');
     } else {
-      if (index !== "null") {
+      if (index !== 'null') {
         new Promise((resolve, reject) => {
           resolve(myClasses[index]);
         })
           .then(async (data) => await setmodalData(data))
-          .then(() => sethandleModal("flex"));
+          .then(() => sethandleModal('flex'));
       } else {
-        sethandleModal("flex");
+        sethandleModal('flex');
       }
     }
-    console.log("clicked");
+    console.log('clicked');
   };
 
   return (
     <div className="p-4">
+      {/* {user && user.status === 'learner' ? (
+        <div>
+          {typeof aLearnersClass === 'object' &&
+            aLearnersClass.map((learnerClass) => (
+              <div>
+                <h2>{learnerClass.classCode}</h2>
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div>
+          <h3>alice</h3>
+        </div>
+      )} */}
       <MyModal
         component={<ClassDetails data={modalData} />}
         modalStatus={handleModal}
-        modalHeader={"Class detail"}
+        modalHeader={'Class detail'}
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
         showCreateClassroom={
-          Object(loggedUser).hasOwnProperty("status") &&
-          loggedUser.status === "tutor"
+          Object(loggedUser).hasOwnProperty('status') &&
+          loggedUser.status === 'tutor'
             ? true
             : false
         }
         viewParticipants={viewParticipants}
         toggleModal={toggleModal}
       />
-      <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
+      <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
         {myClasses.map((e, index) => {
           return (
             <div
               className="classroomCard text-white rounded m-3"
               style={{
                 backgroundImage: `url("${e.bg}")`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div
                 className="rounded px-4 pt-4"
                 style={{
-                  backgroundColor: "rgba(0,0,0,0.5)",
-                  width: "100%",
-                  height: "100%",
-                  position: "relative",
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                  width: '100%',
+                  height: '100%',
+                  position: 'relative',
                 }}
               >
                 <div className="w-100 d-flex position-relative">
                   <div
                     className="pr-2"
-                    style={{ width: "90%", textOverflow: "wrap" }}
+                    style={{ width: '90%', textOverflow: 'wrap' }}
                   >
                     <p className="h2 font-weight-bold">
                       Course ID: {e.classCode}
@@ -132,7 +176,7 @@ export default function MainClassEntry() {
 
                   <div className="bg-dark" onClick={() => toggleModal(index)}>
                     <i
-                      style={{ position: "absolute", right: 0, top: ".5rem" }}
+                      style={{ position: 'absolute', right: 0, top: '.5rem' }}
                       class="far fa-eye eyIcon"
                     ></i>
                   </div>
@@ -141,7 +185,7 @@ export default function MainClassEntry() {
                 <p className="h4 mt-5 font-weight-bold">Title: {e.className}</p>
 
                 <div
-                  style={{ position: "absolute", bottom: "1rem" }}
+                  style={{ position: 'absolute', bottom: '1rem' }}
                   className="d-flex align-items-end"
                 >
                   <div

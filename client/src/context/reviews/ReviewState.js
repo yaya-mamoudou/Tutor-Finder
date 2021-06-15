@@ -7,8 +7,8 @@ import setAuthToken from "../../header/globalHeader";
 const ReviewState = (props) => {
   const initialState = {
     reviews: null,
-    myReview: null,
-    aTutsReview: null,
+    myReview: [],
+    aTutsReview: [],
   };
   const [state, dispatch] = useReducer(ReviewReducer, initialState);
 

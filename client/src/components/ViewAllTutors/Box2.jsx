@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Box2({ email, status, tel }) {
   // const email = localStorage.getItem("email");
@@ -6,9 +6,9 @@ export default function Box2({ email, status, tel }) {
   return (
     <div
       className={`bg-white mt-3 ${
-        status === "learner" ? "p-5" : "p-4"
+        status === 'learner' ? 'p-5' : 'p-4'
       } rounded `}
-      style={{ minHeight: "35%" }}
+      style={{ minHeight: '35%' }}
     >
       <div>
         <div className="mb-3">
@@ -25,11 +25,11 @@ export default function Box2({ email, status, tel }) {
           </p>
           <div className="d-flex">
             <i
-              style={{ color: "green" }}
+              style={{ color: 'green' }}
               className="fab fa-whatsapp mr-2 fa-2x"
             ></i>
             <i
-              style={{ color: "green" }}
+              style={{ color: 'green' }}
               class="fab fa-facebook fa-2x mr-2 rounded-circle"
             ></i>
             <i class="fab fa-twitter fa-2x mr-2  rounded-circle"></i>
