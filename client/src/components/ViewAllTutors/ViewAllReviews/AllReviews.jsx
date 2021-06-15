@@ -9,6 +9,7 @@ const PF = 'http://localhost:5000/images/';
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
+<<<<<<< HEAD
   const authContext = useContext(AuthContext);
 
   const [pathname, setpathName] = useState();
@@ -30,6 +31,17 @@ function AllReviews(props) {
     setpathName(window.location.pathname);
   }, [reviewContext]);
   console.log(myReview);
+=======
+
+  const { aTutsReview, viewATutR, reviews, myReview, getMyReview } =
+    reviewContext;
+  const [tutData, setTutData] = useState();
+
+  useEffect(() => {
+    getMyReview();
+  }, []);
+
+>>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
   useEffect(async () => {
     try {
       let anID = await props.tut_id;
@@ -47,6 +59,7 @@ function AllReviews(props) {
     }
   }, [aTutsReview]);
 
+<<<<<<< HEAD
   useEffect(async () => {
     try {
       await setstoreReview(myReview);
@@ -123,9 +136,46 @@ function AllReviews(props) {
                     </span>
                   </p>
                 </div>
+=======
+  return (
+    <>
+      {typeof tutData === "object" &&
+        tutData.map((tutDset, index) => {
+          return (
+            <div className="reviewBox p-2 d-flex ">
+              <img
+                src={
+                  tutDset.reviewers_id.profilePic === ""
+                    ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    : PF + tutDset.reviewers_id.profilePic
+                }
+                width="40"
+                height="40"
+                className="rounded-circle mt-1"
+                alt=""
+              />
+              <div className="p-3 reviewTextBox w-100 ml-2">
+                <p className=" d-flex">
+                  <span className="font-weight-bold">
+                    {tutDset.reviewers_id.username}
+                  </span>
+
+                  <DisplayRatings rating={tutDset.rating} />
+                </p>
+                <p className="d-flex">
+                  {tutDset.body}{" "}
+                  <span
+                    style={{ fontSize: 9 }}
+                    className="text-secondary ml-auto"
+                  >
+                    {format(tutDset.date)}
+                  </span>
+                </p>
+>>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
     </>
   );
 }

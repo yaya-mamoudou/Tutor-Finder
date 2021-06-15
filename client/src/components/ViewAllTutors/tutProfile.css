@@ -42,17 +42,74 @@
   background-size: cover;
   /* height: 100%; */
 }
-/* .reviewArea::-webkit-scrollbar {
-  width: 4px;
-  border-radius: 20px;
+
+@media (max-width: 576px) {
+  .tutProfileCol1 {
+    width: 100% !important;
+  }
+  .profileContainer {
+    height: fit-content;
+  }
+  .tutProfileCol2 {
+    width: 100% !important;
+    /* display: none; */
+    margin-top: 3rem !important;
+  }
+  .tutprofile {
+    height: fit-content !important;
+  }
+  .reviewBox {
+    height: fit-content;
+  }
 }
 
-.reviewArea::-webkit-scrollbar-track {
-  background: rgb(158, 193, 197);
-  border-radius: 20px;
+@media (min-width: 576px) {
+  .tutProfileCol1 {
+    width: 100% !important;
+  }
+  .profileContainer {
+    height: fit-content;
+  }
+  .tutProfileCol2 {
+    width: 100% !important;
+    /* display: none; */
+    margin-top: 3rem !important;
+  }
+  .tutprofile {
+    height: fit-content !important;
+  }
 }
 
-.reviewArea::-webkit-scrollbar-thumb {
-  background-color: rgb(131, 131, 131);
-  border-radius: 20px;
-} */
+@media (min-width: 768px) {
+  .tutProfileCol1 {
+    width: 53% !important;
+  }
+  .tutProfileCol2 {
+    width: 46% !important;
+    margin-top: 0 !important;
+  }
+  .tutprofile {
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .tutProfileCol1 {
+    width: 49% !important;
+  }
+  .tutProfileCol2 {
+    width: 50% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tutProfileCol1 {
+    width: 40% !important;
+  }
+  .tutProfileCol2 {
+    width: 59% !important;
+  }
+}
+
+@media (min-width: 1400px) {
+}
