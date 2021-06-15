@@ -1,42 +1,33 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ReviewContext from "../../../context/reviews/ReviewContext";
-import Review from "../reviews/Review";
+import Review from "../../ViewAllTutors/reviews/Review";
+
 import { format } from "timeago.js";
-import DisplayRatings from "./DisplayRatings";
+import DisplayRatings from "../../ViewAllTutors/ViewAllReviews/DisplayRatings";
 import reviewerPic from "../../assets/img/1.jpg";
 const PF = "http://localhost:5000/images/";
 
-function AllReviews(props) {
+export default function ProfileReview(props) {
   const reviewContext = useContext(ReviewContext);
+  const { myReview, getMyReview } = reviewContext;
 
-  const { aTutsReview, viewATutR, reviews, myReview, getMyReview } =
-    reviewContext;
-  const [tutData, setTutData] = useState();
+  const [tutData, setTutData] = useState([]);
 
   useEffect(() => {
     getMyReview();
   }, []);
 
-  useEffect(async () => {
-    try {
-      let anID = await props.tut_id;
-      await viewATutR(anID);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (Object(myReview).hasOwnProperty("ViewReview")) {
+      let temp = myReview.ViewReview;
+      let temp2 = [...temp];
+      setTutData(temp2);
     }
-  }, [aTutsReview]);
-
-  useEffect(async () => {
-    try {
-      await setTutData(aTutsReview.ViewReview);
-    } catch (err) {
-      console.log(err);
-    }
-  }, [aTutsReview]);
+  }, [myReview]);
 
   return (
     <>
-      {typeof tutData === "object" &&
+      {tutData &&
         tutData.map((tutDset, index) => {
           return (
             <div className="reviewBox p-2 d-flex ">
@@ -75,5 +66,3 @@ function AllReviews(props) {
     </>
   );
 }
-
-export default AllReviews;
