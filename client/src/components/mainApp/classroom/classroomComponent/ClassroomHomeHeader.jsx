@@ -5,6 +5,8 @@ export default function ClassroomHomeHeader({
   toggleModal,
   showCreateClassroom,
 }) {
+  const authContext = useContext(AuthContext);
+  const { clearFilter, user, filtered, filterClasses } = authContext;
   const text = useRef('');
   useEffect(() => {
     if (filtered === null) {

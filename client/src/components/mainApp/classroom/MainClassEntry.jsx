@@ -22,8 +22,12 @@ export default function MainClassEntry() {
     participants,
     myCreatedClass,
     allMyClasses,
+    clearFilter,
     user,
+    filtered,
     loadUser,
+    getLearnersClassroom,
+    learnerClass,
   } = authContext;
 
   const [myClasses, setMyClasses] = useState([]);
