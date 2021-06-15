@@ -1,11 +1,10 @@
 import React, { useRef, useContext, useEffect } from 'react';
 import AuthContext from '../../../../context/auth/AuthContext';
 
-<<<<<<< HEAD
-export default function ClassroomHomeHeader({ toggleModal }) {
-  const authContext = useContext(AuthContext);
-  const { filterClasses, clearFilter, filtered, allMyClasses } = authContext;
-
+export default function ClassroomHomeHeader({
+  toggleModal,
+  showCreateClassroom,
+}) {
   const text = useRef('');
   useEffect(() => {
     if (filtered === null) {
@@ -20,19 +19,12 @@ export default function ClassroomHomeHeader({ toggleModal }) {
       clearFilter();
     }
   };
-
-=======
-export default function ClassroomHomeHeader({
-  toggleModal,
-  showCreateClassroom,
-}) {
->>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
         <span className="h1">Classroom</span>
         <span
-          style={{ display: !showCreateClassroom && "none" }}
+          style={{ display: !showCreateClassroom && 'none' }}
           className="createClass text-danger text-decoration-underline"
         >
           <span onClick={() => toggleModal()} className="createclassText">

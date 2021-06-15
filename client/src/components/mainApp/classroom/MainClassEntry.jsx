@@ -3,9 +3,7 @@ import ClassroomHomeHeader from './classroomComponent/ClassroomHomeHeader';
 import AuthContext from '../../../context/auth/AuthContext';
 import './myclassroom.css';
 
-<<<<<<< HEAD
 import imgtry from '../../assets/img/1.jpg';
-
 import img1 from '../../assets/classImages/img1.png';
 import img2 from '../../assets/classImages/img2.png';
 import img3 from '../../assets/classImages/img3.png';
@@ -14,50 +12,26 @@ import img5 from '../../assets/classImages/img5.png';
 import img6 from '../../assets/classImages/img6.png';
 import MyModal from '../../myModal/Modal';
 import ClassDetails from './ClassDetails';
-=======
-import imgtry from "../../assets/img/1.jpg";
-import img1 from "../../assets/classImages/img1.png";
-import img2 from "../../assets/classImages/img2.png";
-import img3 from "../../assets/classImages/img3.png";
-import img4 from "../../assets/classImages/img4.png";
-import img5 from "../../assets/classImages/img5.png";
-import img6 from "../../assets/classImages/img6.png";
-import MyModal from "../../myModal/Modal";
-import ClassDetails from "./ClassDetails";
->>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
 
 export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
 
   const authContext = useContext(AuthContext);
-<<<<<<< HEAD
   const {
     isAdd,
     participants,
     myCreatedClass,
     allMyClasses,
-    getLearnersClassroom,
-    learnerClass,
     user,
     loadUser,
   } = authContext;
-=======
-  const { isAdd, participants, myCreatedClass, allMyClasses, user, loadUser } =
-    authContext;
->>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
 
   const [myClasses, setMyClasses] = useState([]);
   const [aLearnersClass, setALearnersClass] = useState([]);
 
   const [alreadySet, setalreadySet] = useState(0);
-<<<<<<< HEAD
-  const [store, setStore] = useState();
-
-  const [handleModal, sethandleModal] = useState('none');
-=======
   const [loggedUser, setloggedUser] = useState(undefined);
-  const [handleModal, sethandleModal] = useState("none");
->>>>>>> 7023285e429e57df7b260a8a44e8d3f85f38d909
+  const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
 
   useEffect(async () => {
@@ -159,8 +133,8 @@ export default function MainClassEntry() {
       />
       <ClassroomHomeHeader
         showCreateClassroom={
-          Object(loggedUser).hasOwnProperty("status") &&
-          loggedUser.status === "tutor"
+          Object(loggedUser).hasOwnProperty('status') &&
+          loggedUser.status === 'tutor'
             ? true
             : false
         }
