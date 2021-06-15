@@ -5,9 +5,17 @@ const Conversation = require('../models/Conversation');
 const { check, validationResult } = require('express-validator');
 
 //new conversation
-route.post('/', Auth, async (req, res) => {
+route.post('/:id', Auth, async (req, res) => {
   try {
-    let conversation = new Conversation({
+    let conversation = await Conversation.find({
+      members: { $all: [req.params.id] },
+      if(conversation) {
+        return res
+          .status(400)
+          .json({ msg: 'this conversation already exists' });
+      },
+    });
+    conversation = new Conversation({
       members: [req.body.senderID, req.body.receiverID],
     });
     await conversation.save();

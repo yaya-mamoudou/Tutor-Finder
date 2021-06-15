@@ -24,9 +24,10 @@ const AuthState = (props) => {
     conversation: [],
     addConversation: null,
     PIC: null,
+    learnerClass: [],
+    filtered: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
-
   //load user
   const loadUser = async () => {
     setAuthToken(localStorage.token);
@@ -37,10 +38,7 @@ const AuthState = (props) => {
         payload: res.data,
       });
     } catch (err) {
-      dispatch({
-        type: 'FAIL',
-        payload: err.response.data.msg,
-      });
+      console.log(err);
     }
   };
 
@@ -286,12 +284,30 @@ const AuthState = (props) => {
     }
   };
 
-  // const myPPIC = (somedata) => {
-  //   dispatch({
-  //     type: 'SET_PP',
-  //     payload: somedata,
-  //   });
-  // };
+  const getLearnersClassroom = async (learnerID) => {
+    try {
+      const res = await axios.get(
+        `/athena/tutors/learners/classes/${learnerID}`
+      );
+      dispatch({
+        type: 'GET_LEARNERS_CLASSROOM',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Filter classes
+  const filterClasses = (text) => {
+    dispatch({ type: 'FILTER_CLASSES', payload: text });
+  };
+
+  // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: 'CLEAR_FILTER' });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -313,10 +329,15 @@ const AuthState = (props) => {
         anewMsg: state.anewMsg,
         addConversation: state.addConversation,
         PIC: state.PIC,
+        learnerClass: state.learnerClass,
+        filtered: state.filtered,
+        getLearnersClassroom,
         createConversation,
         getMsg,
         iStore,
         editProfile,
+        filterClasses,
+        clearFilter,
         // myPPIC,
         register,
         loadUser,

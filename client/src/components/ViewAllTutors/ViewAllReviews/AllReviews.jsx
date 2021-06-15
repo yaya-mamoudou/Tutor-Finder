@@ -1,28 +1,35 @@
-import React, { useState, useEffect, useContext } from "react";
-import ReviewContext from "../../../context/reviews/ReviewContext";
-import Review from "../reviews/Review";
-import { format } from "timeago.js";
-import DisplayRatings from "./DisplayRatings";
-import reviewerPic from "../../assets/img/1.jpg";
-const PF = "http://localhost:5000/images/";
+import React, { useState, useEffect, useContext } from 'react';
+import ReviewContext from '../../../context/reviews/ReviewContext';
+import Review from '../reviews/Review';
+import { format } from 'timeago.js';
+import DisplayRatings from './DisplayRatings';
+import reviewerPic from '../../assets/img/1.jpg';
+import AuthContext from '../../../context/auth/AuthContext';
+const PF = 'http://localhost:5000/images/';
 
 function AllReviews(props) {
   const reviewContext = useContext(ReviewContext);
+  const authContext = useContext(AuthContext);
+
   const [pathname, setpathName] = useState();
 
   let activePath;
-
-  const { aTutsReview, viewATutR, reviews, myReview, getMyReview } =
-    reviewContext;
+  const {
+    aTutsReview,
+    viewATutR,
+    reviews,
+    myReview,
+    getMyReview,
+  } = reviewContext;
   const [tutData, setTutData] = useState();
 
-  const [storeReview, setstoreReview] = useState(undefined);
+  const [storeReview, setstoreReview] = useState();
 
   useEffect(() => {
     getMyReview();
     setpathName(window.location.pathname);
-  }, []);
-
+  }, [reviewContext]);
+  console.log(myReview);
   useEffect(async () => {
     try {
       let anID = await props.tut_id;
@@ -42,23 +49,22 @@ function AllReviews(props) {
 
   useEffect(async () => {
     try {
-      await setstoreReview(myReview.ViewReview);
-    } catch (error) {
-      console.log(error);
-    }
+      await setstoreReview(myReview);
+    } catch (error) {}
   }, [myReview]);
 
+  console.log(storeReview);
   return (
     <>
-      {pathname === "/profile" && typeof storeReview !== "undefined"
+      {pathname === '/profile' && typeof storeReview !== 'undefined'
         ? storeReview.map((tutDset, index) => {
             console.log(tutDset);
             return (
               <div className="p-2 d-flex ">
                 <img
                   src={
-                    tutDset.reviewers_id.profilePic === ""
-                      ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    tutDset.reviewers_id.profilePic === ''
+                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
                       : PF + tutDset.reviewers_id.profilePic
                   }
                   width="40"
@@ -71,7 +77,7 @@ function AllReviews(props) {
                     <DisplayRatings rating={tutDset.rating} />
                   </p>
                   <p className="d-flex">
-                    {tutDset.body}{" "}
+                    {tutDset.body}{' '}
                     <span
                       style={{ fontSize: 9 }}
                       className="text-secondary ml-auto"
@@ -83,15 +89,15 @@ function AllReviews(props) {
               </div>
             );
           })
-        : pathname === "/tut/profile" &&
-          typeof tutData === "object" &&
+        : pathname === '/tut/profile' &&
+          typeof tutData === 'object' &&
           tutData.map((tutDset, index) => {
             return (
               <div className="p-2 d-flex ">
                 <img
                   src={
-                    tutDset.reviewers_id.profilePic === ""
-                      ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    tutDset.reviewers_id.profilePic === ''
+                      ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
                       : PF + tutDset.reviewers_id.profilePic
                   }
                   width="40"
@@ -108,7 +114,7 @@ function AllReviews(props) {
                     <DisplayRatings rating={tutDset.rating} />
                   </p>
                   <p className="d-flex">
-                    {tutDset.body}{" "}
+                    {tutDset.body}{' '}
                     <span
                       style={{ fontSize: 9 }}
                       className="text-secondary ml-auto"
