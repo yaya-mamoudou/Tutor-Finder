@@ -4,7 +4,6 @@ import AuthContext from "../../../context/auth/AuthContext";
 import "./myclassroom.css";
 
 import imgtry from "../../assets/img/1.jpg";
-
 import img1 from "../../assets/classImages/img1.png";
 import img2 from "../../assets/classImages/img2.png";
 import img3 from "../../assets/classImages/img3.png";
@@ -18,18 +17,25 @@ export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
 
   const authContext = useContext(AuthContext);
-  const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
+  const { isAdd, participants, myCreatedClass, allMyClasses, user, loadUser } =
+    authContext;
 
   const [myClasses, setMyClasses] = useState([]);
   const [alreadySet, setalreadySet] = useState(0);
-  const [store, setStore] = useState();
-
+  const [loggedUser, setloggedUser] = useState(undefined);
   const [handleModal, sethandleModal] = useState("none");
   const [modalData, setmodalData] = useState({});
 
   useEffect(() => {
+    loadUser();
+  }, []);
+
+  useEffect(() => {
+    setloggedUser(user);
+  }, [user]);
+
+  useEffect(() => {
     if (myClasses.length > 0) {
-      // console.log(myClasses);
       setalreadySet(1);
     }
   }, [myClasses]);
@@ -48,10 +54,8 @@ export default function MainClassEntry() {
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
-            console.log(temp);
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
-          // console.log(allMyClasses);
         } else {
           console.log("no");
         }
@@ -88,6 +92,12 @@ export default function MainClassEntry() {
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
+        showCreateClassroom={
+          Object(loggedUser).hasOwnProperty("status") &&
+          loggedUser.status === "tutor"
+            ? true
+            : false
+        }
         viewParticipants={viewParticipants}
         toggleModal={toggleModal}
       />

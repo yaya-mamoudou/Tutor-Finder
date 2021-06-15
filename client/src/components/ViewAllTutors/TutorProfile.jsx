@@ -24,12 +24,12 @@ function App(props) {
 
   return (
     <div
-      className=" pt-3 pl-4 pr-4 pb-4"
+      className=" pt-3 tutprofile pl-4 pr-4 pb-4"
       style={{ backgroundColor: "#f2f2f2", height: "100vh" }}
     >
       <TutorProfileHeader />
 
-      <div className="d-flex flex-wrap justify-content-between">
+      <div className="d-flex profileContainer flex-wrap justify-content-between">
         <div
           className="tutProfileCol1"
           style={{ width: "29%", height: "85vh" }}

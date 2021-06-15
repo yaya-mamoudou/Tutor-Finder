@@ -6,6 +6,7 @@ import FirstBox from "../../ViewAllTutors/FirstBox";
 import Box2 from "../../ViewAllTutors/Box2";
 import TutorProfileHeader from "../../ViewAllTutors/TutorProfileHeader";
 import EditProfile from "../../EditProfile/EditProfile";
+import ProfileReview from "./ProfileReview";
 const PF = "http://localhost:5000/images/";
 
 function App(props) {
@@ -46,7 +47,7 @@ function App(props) {
   return (
     toggle === 1 && (
       <div
-        className=" pt-3 pl-4 pr-4 pb-4"
+        className="pt-3 pl-4 pr-4 pb-4"
         style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
       >
         <EditProfile
@@ -82,7 +83,7 @@ function App(props) {
                   className="reviewArea"
                   style={{ height: "90%", overflowY: "auto" }}
                 >
-                  {/* <AllReviews tut_id={userData.id} /> */}
+                  <ProfileReview tut_id={userData.id} />
                 </div>
               </div>
             </div>
