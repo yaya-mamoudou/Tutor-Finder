@@ -9,7 +9,7 @@ function ClassChat() {
                         <div className="up">
                             <div className="person">
                                 <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"/>
-                                <div className="txt">
+                                <div className="txt-2">
                                     <p>Mr Donfack R</p>
                                     <p>Apr 30,2020</p>
                                 </div>
