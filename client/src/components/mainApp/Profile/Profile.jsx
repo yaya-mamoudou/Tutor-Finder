@@ -47,7 +47,7 @@ function App(props) {
   return (
     toggle === 1 && (
       <div
-        className="pt-3 pl-4 pr-4 pb-4"
+        className="pt-3 pl-4 pr-4 pb-4 w-100"
         style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
       >
         <EditProfile

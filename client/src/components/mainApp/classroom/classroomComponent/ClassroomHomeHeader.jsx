@@ -26,7 +26,15 @@ export default function ClassroomHomeHeader({
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
         <span className="h1">Classroom</span>
-        <span className="createClass text-danger text-decoration-underline">
+        <span
+          style={{
+            display:
+              showCreateClassroom === "learner"
+                ? "none"
+                : showCreateClassroom === "tutor" && "block",
+          }}
+          className="createClass text-danger text-decoration-underline"
+        >
           <span onClick={() => createClass()} className="createclassText">
             create new classroom
           </span>
