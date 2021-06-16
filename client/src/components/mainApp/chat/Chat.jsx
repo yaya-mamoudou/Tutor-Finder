@@ -129,7 +129,14 @@ export default function Chat() {
 
   return (
     <>
-      <div className="w-100">
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          overflowX: "hidden",
+          overflowY: "auto",
+        }}
+      >
         <div className=" ml-5  pl-5 w-25">
           {typeof myConv === "object" &&
             myConv.map((conv) => (

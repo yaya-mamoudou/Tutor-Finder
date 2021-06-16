@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./nav/Nav";
 import TrustAndExperience from "./TrustAndExperience";
 import Particles from "react-particles-js";
+import bottomPageSVG from "../../assets/landingPagePics/landingPageBottom.svg";
 export default function Hero() {
   return (
     <div className="hero">
@@ -34,6 +35,15 @@ export default function Hero() {
             },
           }}
         />
+        {/* <img
+          style={{
+            width: "100vw",
+            minHeight: "10%",
+            borderBottom: "solid 10px white",
+          }}
+          src={bottomPageSVG}
+          alt=""
+        /> */}
       </div>
     </div>
   );
