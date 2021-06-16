@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 //import {Plus } from 'react-bootstrap-icons';
 import { Button, Form } from 'react-bootstrap';
 import MyModal from '../../myModal/Modal';
 import Participant from './Participant';
 import ButtonAddPart from './ButtonAddPart';
-// import './class.css'
+import AuthContext from '../../../context/auth/AuthContext';
+
 function CreateClassroom() {
+  const authContext = useContext(AuthContext);
+  const { IcreateClass, storePDATA, finaList } = authContext;
   const [classData, setclassData] = useState({
-    coursename: '',
-    coursecode: '',
+    className: '',
+    classCode: '',
   });
   const [classModalstate, setclassModalstate] = useState('none');
   const classroomModaltoggle = () => {
@@ -22,18 +25,22 @@ function CreateClassroom() {
     console.log('class created');
     classroomModaltoggle();
   };
-  const { coursename, coursecode } = classData;
+  const { className, classCode } = classData;
   const handleChange = (e) => {
     setclassData({ ...classData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    IcreateClass({ className, classCode, finaList });
     setclassData({
-      coursename: '',
-      coursecode: '',
+      className: '',
+      classCode: '',
     });
   };
 
+  const createTheClass = () => {
+    // IcreateClass(className,classCode)
+  };
   return (
     <div className="body p-4">
       <MyModal
@@ -50,8 +57,8 @@ function CreateClassroom() {
             className="px-4"
             type="text"
             placeholder="Enter Course Title"
-            name="coursename"
-            value={coursename}
+            name="className"
+            value={className}
             onChange={(e) => handleChange(e)}
           />
           <Form.Text className="text-muted">
@@ -65,8 +72,8 @@ function CreateClassroom() {
             className="mb-4 px-4"
             type="text"
             placeholder="Enter Course Code"
-            name="coursecode"
-            value={coursecode}
+            name="classCode"
+            value={classCode}
             onChange={(e) => handleChange(e)}
           />
         </Form.Group>
@@ -77,6 +84,7 @@ function CreateClassroom() {
               className="btn btn-lg px-4  btn-danger"
               variant="danger"
               type="submit"
+              onClick={createTheClass}
             >
               Create Class
             </Button>

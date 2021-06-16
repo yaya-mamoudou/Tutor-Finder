@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
-import AuthContext from "../../../context/auth/AuthContext";
-import CreateClassroom from "./CreateClassroom";
-import "./myclassroom.css";
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import ClassroomHomeHeader from './classroomComponent/ClassroomHomeHeader';
+import AuthContext from '../../../context/auth/AuthContext';
+import CreateClassroom from './CreateClassroom';
+import './myclassroom.css';
 
-import imgtry from "../../assets/img/1.jpg";
-import img1 from "../../assets/classImages/img1.png";
-import img2 from "../../assets/classImages/img2.png";
-import img3 from "../../assets/classImages/img3.png";
-import img4 from "../../assets/classImages/img4.png";
-import img5 from "../../assets/classImages/img5.png";
-import img6 from "../../assets/classImages/img6.png";
-import MyModal from "../../myModal/Modal";
-import ClassDetails from "./ClassDetails";
+import imgtry from '../../assets/img/1.jpg';
+import img1 from '../../assets/classImages/img1.png';
+import img2 from '../../assets/classImages/img2.png';
+import img3 from '../../assets/classImages/img3.png';
+import img4 from '../../assets/classImages/img4.png';
+import img5 from '../../assets/classImages/img5.png';
+import img6 from '../../assets/classImages/img6.png';
+import MyModal from '../../myModal/Modal';
+import ClassDetails from './ClassDetails';
 
 export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
@@ -36,10 +36,10 @@ export default function MainClassEntry() {
 
   const [alreadySet, setalreadySet] = useState(0);
   const [loggedUser, setloggedUser] = useState(undefined);
-  const [handleModal, sethandleModal] = useState("none");
+  const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
 
-  const [classModalstate, setclassModalstate] = useState("none");
+  const [classModalstate, setclassModalstate] = useState('none');
 
   useEffect(async () => {
     loadUser();
@@ -78,7 +78,7 @@ export default function MainClassEntry() {
       await myCreatedClass();
 
       if (alreadySet === 0) {
-        if (Object(allMyClasses).hasOwnProperty("classroom")) {
+        if (Object(allMyClasses).hasOwnProperty('classroom')) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
 
@@ -90,7 +90,7 @@ export default function MainClassEntry() {
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
         } else {
-          console.log("no");
+          console.log('no');
         }
       }
     } catch (err) {
@@ -99,34 +99,34 @@ export default function MainClassEntry() {
   }, [allMyClasses]);
 
   const classroomModaltoggle = () => {
-    if (classModalstate === "flex") {
-      setclassModalstate("none");
+    if (classModalstate === 'flex') {
+      setclassModalstate('none');
     } else {
-      setclassModalstate("flex");
+      setclassModalstate('flex');
     }
   };
 
   const createClass = () => {
-    console.log("class created");
+    console.log('class created');
     classroomModaltoggle();
   };
 
   const viewParticipants = () => {};
-  const toggleModal = (index = "null") => {
-    if (handleModal === "flex") {
-      sethandleModal("none");
+  const toggleModal = (index = 'null') => {
+    if (handleModal === 'flex') {
+      sethandleModal('none');
     } else {
-      if (index !== "null") {
+      if (index !== 'null') {
         new Promise((resolve, reject) => {
           resolve(myClasses[index]);
         })
           .then(async (data) => await setmodalData(data))
-          .then(() => sethandleModal("flex"));
+          .then(() => sethandleModal('flex'));
       } else {
-        sethandleModal("flex");
+        sethandleModal('flex');
       }
     }
-    console.log("clicked");
+    console.log('clicked');
   };
   return (
     <div className="p-4">
@@ -154,34 +154,34 @@ export default function MainClassEntry() {
       )} */}
 
       <MyModal
-        modalHeader={"Create new class"}
+        modalHeader={'Create new class'}
         toggleModal={classroomModaltoggle}
         modalStatus={classModalstate}
         component={<CreateClassroom />}
-        header_bg={""}
+        header_bg={''}
       />
       <MyModal
         component={<ClassDetails data={modalData} />}
         modalStatus={handleModal}
-        modalHeader={"Class detail"}
+        modalHeader={'Class detail'}
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
         createClass={createClass}
         showCreateClassroom={
-          Object(loggedUser).hasOwnProperty("status") && loggedUser.status
+          Object(loggedUser).hasOwnProperty('status') && loggedUser.status
         }
         viewParticipants={viewParticipants}
         toggleModal={toggleModal}
       />
-      <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
+      <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
         {myClasses.map((e, index) => {
           return (
             <Link
               className="classroomCard text-white rounded m-3"
               style={{
                 backgroundImage: `url("${e.bg}")`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
               key={index}
               to="/Classchat"
@@ -190,16 +190,16 @@ export default function MainClassEntry() {
                 <div
                   className="rounded px-4 pt-4"
                   style={{
-                    backgroundColor: "rgba(0,0,0,0.5)",
-                    width: "100%",
-                    height: "100%",
-                    position: "relative",
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    width: '100%',
+                    height: '100%',
+                    position: 'relative',
                   }}
                 >
                   <div className="w-100 d-flex position-relative">
                     <div
                       className="pr-2"
-                      style={{ width: "90%", textOverflow: "wrap" }}
+                      style={{ width: '90%', textOverflow: 'wrap' }}
                     >
                       <p className="h2 font-weight-bold">
                         Course ID: {e.classCode}
@@ -208,7 +208,7 @@ export default function MainClassEntry() {
 
                     <div className="bg-dark" onClick={() => toggleModal(index)}>
                       <i
-                        style={{ position: "absolute", right: 0, top: ".5rem" }}
+                        style={{ position: 'absolute', right: 0, top: '.5rem' }}
                         class="far fa-eye eyIcon"
                       ></i>
                     </div>
@@ -219,7 +219,7 @@ export default function MainClassEntry() {
                   </p>
 
                   <div
-                    style={{ position: "absolute", bottom: "1rem" }}
+                    style={{ position: 'absolute', bottom: '1rem' }}
                     className="d-flex align-items-end"
                   >
                     <div

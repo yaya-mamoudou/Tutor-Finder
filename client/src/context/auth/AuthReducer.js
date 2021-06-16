@@ -157,5 +157,10 @@ export default (state, action) => {
         ...state,
         filtered: null,
       };
+    case 'FINAL_LIST':
+      return {
+        ...state,
+        finaList: action.payload,
+      };
   }
 };

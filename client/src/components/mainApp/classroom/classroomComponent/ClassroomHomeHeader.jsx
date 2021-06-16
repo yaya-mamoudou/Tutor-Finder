@@ -1,5 +1,5 @@
-import React, { useRef, useContext, useEffect } from "react";
-import AuthContext from "../../../../context/auth/AuthContext";
+import React, { useRef, useContext, useEffect } from 'react';
+import AuthContext from '../../../../context/auth/AuthContext';
 
 export default function ClassroomHomeHeader({
   toggleModal,
@@ -8,20 +8,21 @@ export default function ClassroomHomeHeader({
 }) {
   const authContext = useContext(AuthContext);
   const { clearFilter, user, filtered, filterClasses } = authContext;
-  const text = useRef("");
+  const text = useRef('');
   useEffect(() => {
     if (filtered === null) {
-      text.current.value = "";
+      text.current.value = '';
     }
   });
 
   const onChange = (e) => {
-    if (text.current.value !== "") {
+    if (text.current.value !== '') {
       filterClasses(e.target.value);
     } else {
       clearFilter();
     }
   };
+
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
@@ -29,9 +30,9 @@ export default function ClassroomHomeHeader({
         <span
           style={{
             display:
-              showCreateClassroom === "learner"
-                ? "none"
-                : showCreateClassroom === "tutor" && "block",
+              showCreateClassroom === 'learner'
+                ? 'none'
+                : showCreateClassroom === 'tutor' && 'block',
           }}
           className="createClass text-danger text-decoration-underline"
         >
@@ -49,7 +50,7 @@ export default function ClassroomHomeHeader({
             ref={text}
             type="text"
             placeholder="Search tutor/course"
-            style={{ backgroundColor: "transparent" }}
+            style={{ backgroundColor: 'transparent' }}
             className="w-100 border-0 pr-3"
             onChange={onChange}
           />

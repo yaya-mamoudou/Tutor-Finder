@@ -26,6 +26,7 @@ const AuthState = (props) => {
     PIC: null,
     learnerClass: [],
     filtered: null,
+    finaList: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   //load user
@@ -183,7 +184,7 @@ const AuthState = (props) => {
   const isAdd = async () => {
     setAuthToken(localStorage.token);
     try {
-      const res = await axios.get('athena/auth/all/users');
+      const res = await axios.get('/athena/auth/all/users');
       dispatch({
         type: 'VIEW_ALL_PARTICIPANTS',
         payload: res.data,
@@ -201,7 +202,7 @@ const AuthState = (props) => {
     } catch (error) {}
   };
 
-  const createClass = async (formData) => {
+  const IcreateClass = async (formData) => {
     try {
       const config = {
         headers: {
@@ -214,7 +215,7 @@ const AuthState = (props) => {
         config
       );
       dispatch({
-        type: 'CREATE_CLASSROOM',
+        type: 'VIEW_MY_CREATED_CLASSES',
         payload: res.data,
       });
     } catch (err) {}
@@ -308,6 +309,10 @@ const AuthState = (props) => {
     dispatch({ type: 'CLEAR_FILTER' });
   };
 
+  const theFinalList = (thatData) => {
+    dispatch({ type: 'FINAL_LIST', payload: thatData });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -331,8 +336,10 @@ const AuthState = (props) => {
         PIC: state.PIC,
         learnerClass: state.learnerClass,
         filtered: state.filtered,
+        finaList: state.finaList,
         getLearnersClassroom,
         createConversation,
+        theFinalList,
         getMsg,
         iStore,
         editProfile,
@@ -349,7 +356,7 @@ const AuthState = (props) => {
         isAdd,
         viewTutProfiles,
         storePaticipant,
-        createClass,
+        IcreateClass,
         myCreatedClass,
         getConversation,
         createMessage,
