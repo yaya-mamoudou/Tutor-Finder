@@ -65,9 +65,9 @@ function ClassRoom() {
              <div className="back">
                  <div className='classes'>
                     <div className='tutor'>
-                            <h4>tutoring/tutored</h4>
+                            <h4> <span className='tutorName' >tutoring</span>/tutored</h4>
                     </div>
-                    <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
+                    <div className="w-100 d-flex mt-3" style={{ flexWrap: "wrap" }}>
         {myClasses.map((e, index) =><Room e= {e} key={index} />
         )}
       </div>

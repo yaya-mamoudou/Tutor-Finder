@@ -172,7 +172,6 @@ export default function MainClassEntry() {
                 backgroundImage: `url("${e.bg}")`,
                 backgroundSize: 'cover',
               }}
-              onClick={ navigateTo }
             >
               <div
                 className="rounded px-4 pt-4"
@@ -201,9 +200,10 @@ export default function MainClassEntry() {
                   </div>
                 </div>
 
-                <p className="h4 mt-5 font-weight-bold">Title: {e.className}</p>
+                <p className="h3 mt-5 font-weight-bold font-size-15px">Title: {e.className}</p>
 
                 <div
+                 onClick={ navigateTo }
                   style={{ position: 'absolute', bottom: '1rem' }}
                   className="d-flex align-items-end"
                 >
