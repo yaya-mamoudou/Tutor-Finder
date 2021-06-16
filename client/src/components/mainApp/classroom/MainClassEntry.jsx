@@ -129,7 +129,30 @@ export default function MainClassEntry() {
     console.log("clicked");
   };
   return (
-    <div className="p-4 w-100">
+    <div className="p-4">
+      {/* <MyModal
+        modalHeader={'Create new class'}
+        toggleModal={classroomModaltoggle}
+        modalStatus={classModalstate}
+        component={<CreateClassroom />}
+        header_bg={''}
+      /> */}
+
+      {/* {user && user.status === 'learner' ? (
+        <div>
+          {typeof aLearnersClass === 'object' &&
+            aLearnersClass.map((learnerClass) => (
+              <div>
+                <h2>{learnerClass.classCode}</h2>
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div>
+          <h3>alice</h3>
+        </div>
+      )} */}
+
       <MyModal
         modalHeader={"Create new class"}
         toggleModal={classroomModaltoggle}

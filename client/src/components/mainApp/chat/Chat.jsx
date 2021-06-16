@@ -30,16 +30,24 @@ export default function Chat() {
   const [tryIt, setTryIt] = useState();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
+  const [newUser, setnewUser] = useState();
+
   const [newMsg, setNewMsg] = useState({
     text: "",
   });
+  if (Object(socket).hasOwnProperty("current")) {
+    // console.log(socket.current);
+    if (Object(socket.current).hasOwnProperty("id")) {
+      console.log(socket.current);
+    }
+  }
   const { text } = newMsg;
   //starts here
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
-        // sender: data.senderId,
+        sender: data.senderId,
         text: data.text,
         createdAt: Date.now(),
       });
@@ -52,16 +60,17 @@ export default function Chat() {
       setTryIt((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
-  useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) &&
-      setTryIt((prev) => [...prev, arrivalMessage]);
-  }, [arrivalMessage, currentChat]);
-
-  useEffect(() => {
-    socket.current.emit("addUser", user && user._id);
-    socket.current.on("getUsers", (users) => {});
+  useEffect(async () => {
+    if (Object(user).hasOwnProperty("_id")) {
+      setnewUser(user._id);
+      let userId = user._id;
+      socket.current.emit("addUser", userId);
+      socket.current.on("getUsers", (users) => {
+        console.log(users);
+      });
+    }
   }, [user]);
+
   //ends
 
   // initial
@@ -101,18 +110,18 @@ export default function Chat() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createMessage({ text, conversationId });
+    createMessage({ sender: user && user._id, text, conversationId });
     setNewMsg({
+      senderId: newUser,
       text: "",
     });
 
-    const receiverId = currentChat.members.find(
-      (member) => member !== user._id
-    );
-
+    const receiverId = currentChat.members.find((member) => member !== newUser);
     console.log(receiverId);
+
+    console.log(newUser + " from new User");
     socket.current.emit("sendMessage", {
-      // senderId: user && user._id,
+      senderId: newUser,
       receiverId,
       text,
     });
