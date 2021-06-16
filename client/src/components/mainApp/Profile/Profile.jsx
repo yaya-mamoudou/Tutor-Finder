@@ -46,10 +46,7 @@ function App(props) {
 
   return (
     toggle === 1 && (
-      <div
-        className="pt-3 pl-4 pr-4 pb-4 w-100"
-        style={{ backgroundColor: "#f2f2f2", minHeight: "100vh" }}
-      >
+      <div className="pt-3 tutprofile h-100vh pl-4 pr-4 pb-4 w-100">
         <EditProfile
           user={user}
           modalStatus={modalState}
@@ -63,8 +60,11 @@ function App(props) {
         />
 
         {userData.status === "tutor" ? (
-          <div className="d-flex justify-content-between">
-            <div className="" style={{ width: "29%", height: "85vh" }}>
+          <div className="d-flex profileContainer flex-wrap justify-content-between">
+            <div
+              className="tutProfileCol1"
+              style={{ width: "29%", height: "85vh" }}
+            >
               <FirstBox
                 username={userData.username}
                 speciality={userData.speciality}
@@ -76,7 +76,10 @@ function App(props) {
               <Box2 email={userData.email} tel={userData.tel} />
             </div>
 
-            <div className="" style={{ width: "70%", height: "83vh" }}>
+            <div
+              className="tutProfileCol2"
+              style={{ width: "70%", height: "83vh" }}
+            >
               <div style={{ height: "80%" }} className="bg-white  rounded p-4">
                 <p className="h3 text-warning mb-4">Reviews</p>
                 <div
