@@ -7,6 +7,7 @@ import ButtonAddPart from './ButtonAddPart';
 import AuthContext from '../../../context/auth/AuthContext';
 
 function CreateClassroom() {
+  const [validated, setValidated] = useState(false);
   const authContext = useContext(AuthContext);
   const { IcreateClass, storePDATA, finaList, allMyClasses } = authContext;
   const [classData, setclassData] = useState({
@@ -30,8 +31,14 @@ function CreateClassroom() {
     setclassData({ ...classData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     // e.preventDefault();
-
     let participants = finaList;
     IcreateClass({ className, classCode, participants });
     setclassData({
@@ -52,20 +59,23 @@ function CreateClassroom() {
         component={<Participant />}
         header_bg={''}
       />
-      <Form onSubmit={(e) => handleSubmit(e)}>
+      <Form noValidate  validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-4" controlId="formBasicEmail">
           <Form.Label className="mb-2">Course Name</Form.Label>
           <Form.Control
             className="px-4"
             type="text"
+            required
             placeholder="Enter Course Title"
             name="className"
             value={className}
             onChange={(e) => handleChange(e)}
           />
-          <Form.Text className="text-muted">
-            We'll share your course to anyone that needs it.
-          </Form.Text>
+           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+              Please Enter Course Name
+            </Form.Control.Feedback>
+         
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
@@ -73,11 +83,15 @@ function CreateClassroom() {
           <Form.Control
             className="mb-4 px-4"
             type="text"
+            required
             placeholder="Enter Course Code"
             name="classCode"
             value={classCode}
             onChange={(e) => handleChange(e)}
           />
+          <Form.Control.Feedback type="invalid">
+              Please Enter Course Code
+            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <div className="d-flex justify-content-between">
