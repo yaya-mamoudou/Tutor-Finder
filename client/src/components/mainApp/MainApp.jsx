@@ -27,6 +27,7 @@ const Navbar = () => {
           <PrivateRoute exact path="/classroom" component={Classroom} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/tut/profile" component={TutorIndProfile} />
+          <PrivateRoute exact path="/Classchat" component={ClassRoom} />
           <Redirect from="/mainApp" to="home" />
         </Switch>
       </div>

@@ -82,7 +82,7 @@ const toggleEnable = (x) => {
               <div className="hold">
               <div className="tablet-txt">
               <h1>Create an Account</h1>
-              <div className="txt">
+              <div className="txt-1">
               <p className=" text-muted mb-0 ">Sign up and discover great tutors and fascinating lessons!</p>
               </div>
               <div className="img-fluid">
