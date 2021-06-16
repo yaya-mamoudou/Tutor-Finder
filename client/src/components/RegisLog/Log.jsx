@@ -43,7 +43,7 @@ function Log(props) {
               <div className="hold">
               <div className="tablet-txt">
               <h1>Log In Account</h1>
-              <div className="txt">
+              <div className="txt-1">
               <p className=" text-muted mb-0 ">Sign in and discover great tutors and fascinating lessons!</p>
               </div>
               <div className="img-fluid">
