@@ -8,7 +8,7 @@ function MyModal({ modalStatus, component, toggleModal, modalHeader }) {
         <div className="modalHeader d-flex">
           {modalHeader}
           <div
-            onClick={() => toggleModal()}
+            onClick={(e) => toggleModal(e)}
             className="bg-dark closeModalIcon px-3 ml-auto "
           >
             <i class="fas fa-times text-white align-self-center"></i>

@@ -4,10 +4,11 @@
   box-sizing: border-box;
 }
 .alltutors {
+  min-height: 100vh !important;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
   justify-content: space-around;
 }
