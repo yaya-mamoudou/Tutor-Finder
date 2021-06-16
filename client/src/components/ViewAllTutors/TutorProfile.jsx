@@ -23,10 +23,7 @@ function App(props) {
   const profilePic = localStorage.getItem("profilePic");
 
   return (
-    <div
-      className=" pt-3 tutprofile pl-4 pr-4 pb-4"
-      style={{ backgroundColor: "#f2f2f2", height: "100vh" }}
-    >
+    <div className=" pt-3 tutprofile h-100vh pl-4 pr-4 pb-4">
       <TutorProfileHeader />
 
       <div className="d-flex profileContainer flex-wrap justify-content-between">

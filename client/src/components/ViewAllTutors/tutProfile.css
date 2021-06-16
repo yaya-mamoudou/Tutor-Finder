@@ -36,6 +36,13 @@
   color: #55798b;
 }
 
+.tutprofile {
+  height: 100vh !important;
+  background-color: #f2f2f2;
+  width: 100% !important;
+  overflow-y: auto;
+}
+
 .bg_learner {
   /* background-color: teal; */
   background-image: url("https://i.pinimg.com/originals/cb/ae/6e/cbae6e352011f9b74581bf878deb981f.jpg");
@@ -55,9 +62,9 @@
     /* display: none; */
     margin-top: 3rem !important;
   }
-  .tutprofile {
+  /* .tutprofile {
     height: fit-content !important;
-  }
+  } */
   .reviewBox {
     height: fit-content;
   }
@@ -75,9 +82,6 @@
     /* display: none; */
     margin-top: 3rem !important;
   }
-  .tutprofile {
-    height: fit-content !important;
-  }
 }
 
 @media (min-width: 768px) {
@@ -89,7 +93,7 @@
     margin-top: 0 !important;
   }
   .tutprofile {
-    height: 100% !important;
+    height: 100vh !important;
   }
 }
 

@@ -62,8 +62,9 @@
 .EnrolButton {
   align-self: center;
   border-radius: 0.6px !important;
-  padding: 0.7rem !important;
-  border-color: transparent;
+  font-size: 1.4rem;
+  /* padding: 0.7rem !important; */
+  /* border-color: transparent; */
   background-color: #ec5a65;
   color: white;
 }

@@ -23,12 +23,14 @@ function ViewTutors(props) {
     tutData,
     iStore,
     myCreatedClass,
+    IcreateClass,
   } = authContext;
   useEffect(async () => {
     loadUser();
     ViewAllTutors();
     clearReview();
     myCreatedClass();
+    IcreateClass();
   }, []);
   const text = useRef("");
   useEffect(() => {

@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 //import {Plus } from 'react-bootstrap-icons';
 import { Button, Form } from 'react-bootstrap';
 import MyModal from '../../myModal/Modal';
 import Participant from './Participant';
 import ButtonAddPart from './ButtonAddPart';
-// import './class.css'
+import AuthContext from '../../../context/auth/AuthContext';
+
 function CreateClassroom() {
   const [validated, setValidated] = useState(false);
+  const authContext = useContext(AuthContext);
+  const { IcreateClass, storePDATA, finaList, allMyClasses } = authContext;
   const [classData, setclassData] = useState({
-    coursename: '',
-    coursecode: '',
+    className: '',
+    classCode: '',
   });
   const [classModalstate, setclassModalstate] = useState('none');
   const classroomModaltoggle = () => {
@@ -23,7 +26,7 @@ function CreateClassroom() {
     console.log('class created');
     classroomModaltoggle();
   };
-  const { coursename, coursecode } = classData;
+  const { className, classCode } = classData;
   const handleChange = (e) => {
     setclassData({ ...classData, [e.target.name]: e.target.value });
   };
@@ -35,12 +38,18 @@ function CreateClassroom() {
       e.stopPropagation();
     }
     setValidated(true);
+    // e.preventDefault();
+    let participants = finaList;
+    IcreateClass({ className, classCode, participants });
     setclassData({
-      coursename: '',
-      coursecode: '',
+      className: '',
+      classCode: '',
     });
   };
 
+  const createTheClass = () => {
+    // IcreateClass(className,classCode)
+  };
   return (
     <div className="body p-4">
       <MyModal
@@ -58,8 +67,8 @@ function CreateClassroom() {
             type="text"
             required
             placeholder="Enter Course Title"
-            name="coursename"
-            value={coursename}
+            name="className"
+            value={className}
             onChange={(e) => handleChange(e)}
           />
            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -76,8 +85,8 @@ function CreateClassroom() {
             type="text"
             required
             placeholder="Enter Course Code"
-            name="coursecode"
-            value={coursecode}
+            name="classCode"
+            value={classCode}
             onChange={(e) => handleChange(e)}
           />
           <Form.Control.Feedback type="invalid">
@@ -91,6 +100,7 @@ function CreateClassroom() {
               className="btn btn-lg px-4  btn-danger"
               variant="danger"
               type="submit"
+              onClick={createTheClass}
             >
               Create Class
             </Button>
