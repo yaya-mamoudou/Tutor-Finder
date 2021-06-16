@@ -79,7 +79,7 @@ function ClassRoom() {
               </div>
               <div className="task">
                 <p className="thread">New Thread</p>
-                <BsListTask size={20} />
+                <BsListTask size={20} style={{cursor:'pointer'}}/>
               </div>
             </div>
             <div className="chats">

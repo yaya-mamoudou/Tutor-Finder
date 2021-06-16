@@ -14,7 +14,7 @@
 .rooms {
   width: 43vh;
   height: 37vh;
-  border: 1px solid #dedede;
+  border:none;
   margin-left: 1.3em !important;
   margin-bottom: 1em !important;
   margin-right: 1.3em !important;
@@ -22,6 +22,11 @@
   /* background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,.6)); */
   display: flex;
   flex-direction: column;
+}
+.rooms:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  z-index: 1;
 }
 .every{
   height: 40%;
@@ -58,10 +63,10 @@
   flex-direction: row;
 }
 .mignon{
-padding-top: 6.5em !important;
+padding-top: 6em !important;
 }
 .giveaway{
-  padding-top: 5.5em !important;
+  padding-top: 5em !important;
   padding-left: 1em !important;
 }
 .contener {
@@ -143,7 +148,7 @@ padding-top: 6.5em !important;
   height: 60%;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 1em !important;
+  /* padding-bottom: 1em !important; */
   /* padding: 2em !important; */
 }
 .person {
@@ -158,24 +163,24 @@ padding-top: 6.5em !important;
   justify-content: center;
   align-items: center;
 }
-.txt p {
+.txt-2 p {
   font-weight: bold;
   font-size: 10px;
   color: rgba(0, 0, 0, 0.479);
 }
-.txt p:first-child {
+.txt-2 p:first-child {
   font-weight: bold;
   font-size: 16px;
   color: black;
 }
 .person img {
-  height: 80px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   margin-right: 20px !important;
 }
 .middle {
-  height: 80px;
+  height: 40%;
   padding: 0 10px !important;
 }
 .middle p {

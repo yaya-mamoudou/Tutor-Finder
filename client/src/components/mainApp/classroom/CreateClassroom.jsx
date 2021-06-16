@@ -6,6 +6,7 @@ import Participant from './Participant';
 import ButtonAddPart from './ButtonAddPart';
 // import './class.css'
 function CreateClassroom() {
+  const [validated, setValidated] = useState(false);
   const [classData, setclassData] = useState({
     coursename: '',
     coursecode: '',
@@ -28,6 +29,12 @@ function CreateClassroom() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     setclassData({
       coursename: '',
       coursecode: '',
@@ -43,20 +50,23 @@ function CreateClassroom() {
         component={<Participant />}
         header_bg={''}
       />
-      <Form onSubmit={(e) => handleSubmit(e)}>
+      <Form noValidate  validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-4" controlId="formBasicEmail">
           <Form.Label className="mb-2">Course Name</Form.Label>
           <Form.Control
             className="px-4"
             type="text"
+            required
             placeholder="Enter Course Title"
             name="coursename"
             value={coursename}
             onChange={(e) => handleChange(e)}
           />
-          <Form.Text className="text-muted">
-            We'll share your course to anyone that needs it.
-          </Form.Text>
+           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+              Please Enter Course Name
+            </Form.Control.Feedback>
+         
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
@@ -64,11 +74,15 @@ function CreateClassroom() {
           <Form.Control
             className="mb-4 px-4"
             type="text"
+            required
             placeholder="Enter Course Code"
             name="coursecode"
             value={coursecode}
             onChange={(e) => handleChange(e)}
           />
+          <Form.Control.Feedback type="invalid">
+              Please Enter Course Code
+            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <div className="d-flex justify-content-between">

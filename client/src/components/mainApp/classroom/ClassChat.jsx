@@ -14,16 +14,14 @@ function ClassChat() {
                                     <p>Apr 30,2020</p>
                                 </div>
                             </div>
-                         <FiMoreVertical size={20} />
+                         <FiMoreVertical size={20} style={{cursor:'pointer'}} />
                         </div>
                         <div className="middle">
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam voluptate voluptatum
                                 voluptatibus voluptatem dignissimos blanditiis? Exercitationem, quo. Quaerat voluptatum,
                                 officia, harum voluptas adipisci, ipsum dolores aspernatur deleniti impedit est qui?
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis atque laudantium iste
-                                veniam deserunt, veritatis, repellat aliquid earum consectetur natus optio! Quidem
-                                explicabo, ullam culpa ratione accusamus itaque ea.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis atque laudantium iste.
                             </p>
                         </div>
                     </div>
