@@ -20,7 +20,7 @@ const AuthState = (props) => {
     participants: [],
     storePDATA: [],
     classroom: null,
-    allMyClasses: null,
+    allMyClasses: [],
     conversation: [],
     addConversation: null,
     PIC: null,
