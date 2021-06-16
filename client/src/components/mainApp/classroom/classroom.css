@@ -1,6 +1,6 @@
 .back {
   height: 100vh;
-  width: 100vw;
+  width: 100% !important;
   background-color: rgba(0, 0, 0, 0.055);
   display: flex;
   flex-direction: row;
@@ -151,7 +151,7 @@
   padding: 0 10px !important;
 }
 .middle p {
-  font-size: .7em;
+  font-size: 0.7em;
 }
 .end {
   display: flex;
@@ -197,6 +197,6 @@
   outline: none;
   border: none;
 }
-.typebar input ::placeholder{
+.typebar input ::placeholder {
   font-size: 20px;
 }

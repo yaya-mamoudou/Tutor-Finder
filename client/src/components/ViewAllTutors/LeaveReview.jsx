@@ -74,7 +74,7 @@ export default function LeaveReview(props) {
 
         <button
           type="submit"
-          className="btn btn-warning btn-lg p-1 text-white reviewBtn"
+          className="btn  btn-warning btn-lg py-2 px-3 text-white reviewBtn"
         >
           Send{" "}
           <span>
