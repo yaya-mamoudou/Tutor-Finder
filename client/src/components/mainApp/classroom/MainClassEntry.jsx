@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ClassroomHomeHeader from './classroomComponent/ClassroomHomeHeader';
 import AuthContext from '../../../context/auth/AuthContext';
 import CreateClassroom from './CreateClassroom';
 import './myclassroom.css';
+=======
+import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
+import AuthContext from "../../../context/auth/AuthContext";
+import CreateClassroom from "./CreateClassroom";
+import "./myclassroom.css";
+
+>>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
 
 import imgtry from '../../assets/img/1.jpg';
 import img1 from '../../assets/classImages/img1.png';
@@ -100,6 +110,25 @@ export default function MainClassEntry() {
     }
   }, [allMyClasses]);
 
+<<<<<<< HEAD
+=======
+  const classroomModaltoggle =()=>{
+    if(classModalstate === 'flex'){
+      setclassModalstate('none')
+    }
+    else{
+      setclassModalstate('flex')
+    }
+  }
+
+  const createClass = ()=>{
+    console.log('class created');
+    classroomModaltoggle();
+
+  }
+
+  
+>>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
   const viewParticipants = () => {};
   const toggleModal = (index = 'null') => {
     if (handleModal === 'flex') {
@@ -117,9 +146,9 @@ export default function MainClassEntry() {
     }
     console.log('clicked');
   };
-
   return (
     <div className="p-4">
+<<<<<<< HEAD
       {/* <MyModal
         modalHeader={'Create new class'}
         toggleModal={classroomModaltoggle}
@@ -142,6 +171,15 @@ export default function MainClassEntry() {
           <h3>alice</h3>
         </div>
       )} */}
+=======
+      <MyModal 
+      modalHeader={'Create new class'}
+      toggleModal={classroomModaltoggle}
+      modalStatus = {classModalstate}
+      component={<CreateClassroom/>}
+      header_bg = {''}
+      />
+>>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
       <MyModal
         component={<ClassDetails data={modalData} />}
         modalStatus={handleModal}
@@ -149,6 +187,11 @@ export default function MainClassEntry() {
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
+<<<<<<< HEAD
+=======
+
+        createClass={createClass}
+>>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
         showCreateClassroom={
           Object(loggedUser).hasOwnProperty('status') &&
           loggedUser.status === 'tutor'
@@ -157,6 +200,10 @@ export default function MainClassEntry() {
         }
         viewParticipants={viewParticipants}
         toggleModal={toggleModal}
+<<<<<<< HEAD
+=======
+
+>>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
       />
       <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
         {myClasses.map((e, index) => {
@@ -224,103 +271,6 @@ export default function MainClassEntry() {
         })}
       </div>
     </div>
-  );
+  )
+ 
 }
-
-// import React, { useContext, useState, useEffect } from "react";
-// // import Card from './Card/Card';
-// import AuthContext from "../../../context/auth/AuthContext";
-// import ClassUser from "./ClassUser";
-// import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { Button } from "react-bootstrap";
-// import CreateClassroom from "./CreateClassroom";
-// // import ClassParticipant from './ClassParticipant';
-// import { Link } from "react-router-dom";
-// function MainClassEntry() {
-//   const authContext = useContext(AuthContext);
-//   const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
-
-//   const [myClasses, setMyClasses] = useState();
-//   const [modalShow, setModalShow] = React.useState(false);
-//   const [modalShow1, setModalShow1] = React.useState(false);
-//   const [store, setStore] = useState();
-
-//   useEffect(() => {
-//     myCreatedClass();
-//   }, [allMyClasses]);
-//   useEffect(async () => {
-//     try {
-//       await setMyClasses(allMyClasses.classroom);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }, [allMyClasses]);
-
-//   const myfunc = async (thenewData) => {
-//     try {
-//       setModalShow1(true);
-//       await setStore(thenewData.participants);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-//   return (
-//     <div>
-//       <Button variant="danger p-3" onClick={() => setModalShow(true)}>
-//         Create A New Class
-//       </Button>
-
-//       <CreateClassroom show={modalShow} onHide={() => setModalShow(false)} />
-//       <div>
-//         {typeof myClasses === "object" &&
-//           myClasses.map((data) => (
-//             <div className="bg-secondary p-5 m-3 ">
-//               <h5 className="ml-5">Course Name</h5>
-//               <h5 className="text-info ml-5"> {data.className} </h5>
-//               <h5 className="ml-5">Course Code</h5>
-//               <h5 className="text-info ml-5 "> {data.classCode} </h5>
-//               <h5 className="ml-5">Tutors Name</h5>
-//               <h5 className="text-info ml-5 "> {data.tutorName} </h5>
-//               <Button variant="danger p-3" onClick={() => myfunc(data)}>
-//                 view Paticipants
-//               </Button>
-//               <div show={modalShow1} onHide={() => setModalShow1(false)}></div>
-//             </div>
-//           ))}
-//         <div>
-//           <Modal
-//             // {...props}
-//             show={modalShow1}
-//             onHide={() => setModalShow1(false)}
-//             modalShow
-//             size="md"
-//             aria-labelledby="contained-modal-title-vcenter"
-//             centered
-//           >
-//             <Modal.Header closeButton>
-//               <Modal.Title
-//                 id="contained-modal-title-vcenter"
-//                 className="p-5 m-5"
-//               >
-//                 All Participants
-//               </Modal.Title>
-//             </Modal.Header>
-//             <Modal.Body>
-//               <h4></h4>
-//               {typeof store === "object" &&
-//                 store.map((user) => <ClassUser user={user} />)}
-//             </Modal.Body>
-//             <Modal.Footer>
-//               <Button variant="danger" onClick={() => setModalShow1(false)}>
-//                 Save
-//               </Button>
-//             </Modal.Footer>
-//           </Modal>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default MainClassEntry;
