@@ -37,7 +37,7 @@
 .price h2 {
   color: rgb(82, 81, 81);
 }
-.logo {
+.cardpicContainer {
   width: 100% !important;
   height: 120px;
   border-radius: 50%;
@@ -62,12 +62,12 @@
   align-items: center;
 }
 h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 1rem !important;
 }
 .pro {
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: rgb(139, 137, 137);
 }
 .box {
@@ -92,7 +92,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
 .props4 {
@@ -109,7 +109,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
 .props3 {
@@ -118,7 +118,7 @@ h2 {
   border-radius: 23px;
   padding: 1rem !important;
   margin: 1em !important;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   border: 2px solid rgba(144, 144, 144, 0.4);
   display: flex;
@@ -135,7 +135,7 @@ h2 {
 }
 .pro1 {
   padding: 0 !important;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: rgb(139, 137, 137);
   font-size: 1em;
 }

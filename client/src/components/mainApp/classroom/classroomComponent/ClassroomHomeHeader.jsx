@@ -45,7 +45,7 @@ export default function ClassroomHomeHeader({
         </span>
       </div>
       <div className="classroom_search d-flex pl-4 pr-3 py-2">
-        <form>
+        <form className="search_tutor">
           <input
             ref={text}
             type="text"
