@@ -1,11 +1,10 @@
 import React, { useRef, useContext, useEffect } from 'react';
 import AuthContext from '../../../../context/auth/AuthContext';
 
-
 export default function ClassroomHomeHeader({
   toggleModal,
   showCreateClassroom,
-  createClass
+  createClass,
 }) {
   const authContext = useContext(AuthContext);
   const { clearFilter, user, filtered, filterClasses } = authContext;
@@ -27,27 +26,12 @@ export default function ClassroomHomeHeader({
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
         <span className="h1">Classroom</span>
-<<<<<<< HEAD
-        <span
-          style={{ display: !showCreateClassroom && 'none' }}
-          className="createClass text-danger text-decoration-underline"
-        >
-          <span onClick={() => toggleModal()} className="createclassText">
-            create new classroom
-          </span>
-          <span onClick={() => toggleModal()} className="createclassIcon">
-            <i class="fas fa-plus-circle fa-2x"></i>
-=======
         <span className="createClass text-danger text-decoration-underline">
           <span onClick={() => createClass()} className="createclassText">
             create new classroom
           </span>
           <span onClick={() => createClass()} className="createclassIcon">
-            <i
-              
-              class="fas fa-plus-circle fa-2x"
-            ></i>
->>>>>>> e0d6b206f87b8cda8eec31757e64d72e28f447e4
+            <i class="fas fa-plus-circle fa-2x"></i>
           </span>
         </span>
       </div>
