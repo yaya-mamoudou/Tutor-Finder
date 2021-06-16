@@ -30,6 +30,10 @@
   /* transition: all 1s ease; */
 }
 
+.search_tutor {
+  width: 100% !important;
+}
+
 .createClass:hover {
   cursor: pointer;
   color: rgb(8, 89, 143) !important;

@@ -112,7 +112,8 @@ export default function MainClassEntry() {
   };
 
   const viewParticipants = () => {};
-  const toggleModal = (index = "null") => {
+  const toggleModal = (e = "null", index = "null") => {
+    e.preventDefault();
     if (handleModal === "flex") {
       sethandleModal("none");
     } else {
@@ -129,7 +130,7 @@ export default function MainClassEntry() {
     console.log("clicked");
   };
   return (
-    <div className="p-4">
+    <div className="p-4" style={{ width: "100%" }}>
       {/* <MyModal
         modalHeader={'Create new class'}
         toggleModal={classroomModaltoggle}
@@ -206,7 +207,10 @@ export default function MainClassEntry() {
                       </p>
                     </div>
 
-                    <div className="bg-dark" onClick={() => toggleModal(index)}>
+                    <div
+                      className="bg-dark"
+                      onClick={(e) => toggleModal(e, index)}
+                    >
                       <i
                         style={{ position: "absolute", right: 0, top: ".5rem" }}
                         class="far fa-eye eyIcon"
