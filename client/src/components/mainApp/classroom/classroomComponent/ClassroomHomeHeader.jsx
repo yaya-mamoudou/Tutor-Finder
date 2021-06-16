@@ -1,23 +1,22 @@
-import React, { useRef, useContext, useEffect } from 'react';
-import AuthContext from '../../../../context/auth/AuthContext';
-
+import React, { useRef, useContext, useEffect } from "react";
+import AuthContext from "../../../../context/auth/AuthContext";
 
 export default function ClassroomHomeHeader({
   toggleModal,
   showCreateClassroom,
-  createClass
+  createClass,
 }) {
   const authContext = useContext(AuthContext);
   const { clearFilter, user, filtered, filterClasses } = authContext;
-  const text = useRef('');
+  const text = useRef("");
   useEffect(() => {
     if (filtered === null) {
-      text.current.value = '';
+      text.current.value = "";
     }
   });
 
   const onChange = (e) => {
-    if (text.current.value !== '') {
+    if (text.current.value !== "") {
       filterClasses(e.target.value);
     } else {
       clearFilter();
@@ -32,10 +31,7 @@ export default function ClassroomHomeHeader({
             create new classroom
           </span>
           <span onClick={() => createClass()} className="createclassIcon">
-            <i
-              
-              class="fas fa-plus-circle fa-2x"
-            ></i>
+            <i class="fas fa-plus-circle fa-2x"></i>
           </span>
         </span>
       </div>
@@ -45,7 +41,7 @@ export default function ClassroomHomeHeader({
             ref={text}
             type="text"
             placeholder="Search tutor/course"
-            style={{ backgroundColor: 'transparent' }}
+            style={{ backgroundColor: "transparent" }}
             className="w-100 border-0 pr-3"
             onChange={onChange}
           />
