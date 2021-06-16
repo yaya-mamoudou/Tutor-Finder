@@ -11,10 +11,6 @@ export default function FirstBox({
   profilePic,
   status,
 }) {
-  useEffect(() => {
-    console.log(profilePic);
-  }, [profilePic]);
-
   let pp = localStorage.getItem('profilePic');
 
   const reviewContext = useContext(ReviewContext);

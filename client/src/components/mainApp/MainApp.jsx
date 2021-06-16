@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
-import "./mainApp.css";
-import SideNav from "./sideNav/SideNav";
-import Chat from "./ChatPannel/Chat";
-import Classroom from "./classroom/MainClassEntry";
-import Profile from "./Profile/Profile";
-import PrivateRoute from "../PrivateRouting/PrivateRoute";
-import TutorIndProfile from "../ViewAllTutors/TutorProfile";
-import ViewTutors from "./ViewTutors/ViewTutors";
-import ClassRoom from "./classroom/ClassRoom";
+} from 'react-router-dom';
+import './mainApp.css';
+import SideNav from './sideNav/SideNav';
+import Chat from './chat/Chat';
+import Classroom from './classroom/MainClassEntry';
+import Profile from './Profile/Profile';
+import PrivateRoute from '../PrivateRouting/PrivateRoute';
+import TutorIndProfile from '../ViewAllTutors/TutorProfile';
+import ViewTutors from './ViewTutors/ViewTutors';
 
 // import Chat from "./chat/Chat";
 const Navbar = () => {

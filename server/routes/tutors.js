@@ -109,6 +109,7 @@ route.get('/viewAllMyCreatedClasses', Auth, async (req, res) => {
       let classroom = await Classroom.find({})
         .where('tutor_id')
         .populate('participants')
+
         .equals(req.user.id);
       res.json({ classroom });
     } catch (err) {
@@ -157,6 +158,7 @@ route.get('/find/members/:id', Auth, async (req, res) => {
       let getMembers = await Classroom.find({})
         .populate('participants')
         .where('_id')
+        .populate('tutor_id')
         .equals(req.params.id);
       res.status(200).json({ getMembers });
     } catch (err) {
@@ -165,6 +167,19 @@ route.get('/find/members/:id', Auth, async (req, res) => {
     }
   } else {
     res.status(404).json({ msg: 'Only tutors can edit any classroom info' });
+    console.log(err.message);
+  }
+});
+
+//learners view the classes they are in  : PRIVATE
+route.get('/learners/classes/:learnerID', Auth, async (req, res) => {
+  try {
+    const allLearnersClasses = await Classroom.find({
+      participants: { $in: [req.params.learnerID] },
+    });
+    res.json(allLearnersClasses);
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
     console.log(err.message);
   }
 });

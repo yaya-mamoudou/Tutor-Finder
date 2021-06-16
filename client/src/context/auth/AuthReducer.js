@@ -46,6 +46,7 @@ export default (state, action) => {
         myMsg: [],
         anewMsg: [],
         conversation: [],
+        learnerClass: [],
       };
     case 'STORE_SUCCESS':
       return {
@@ -133,9 +134,28 @@ export default (state, action) => {
         ...state,
         addConversation: action.payload,
       };
-    // case 'SET_PP':
-    //   return {
-    //     PIC: action.payload,
-    //   };
+    case 'GET_LEARNERS_CLASSROOM':
+      return {
+        ...state,
+        learnerClass: action.payload,
+      };
+    case 'GET_TUT_REVIEW':
+      return {
+        ...state,
+        new1: action.payload,
+      };
+    case 'FILTER_CLASSES':
+      return {
+        ...state,
+        filtered: state.allMyClasses.classroom.filter((class1) => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return class1.className.match(regex) || class1.tutorName.match(regex);
+        }),
+      };
+    case 'CLEAR_FILTER':
+      return {
+        ...state,
+        filtered: null,
+      };
   }
 };

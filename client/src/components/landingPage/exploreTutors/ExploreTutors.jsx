@@ -1,9 +1,8 @@
-import React from 'react';
-import CustomCard from './CustomCard';
-import Card1 from '../../assets/Cards/card.jpg';
-import Card2 from '../../assets/Cards/card1.jpg';
+import React from "react";
+import CustomCard from "./CustomCard";
+import Card1 from "../../assets/Cards/card.jpg";
+import Card2 from "../../assets/Cards/card1.jpg";
 
-console.log(Card1);
 export default function ExploreTutors() {
   return (
     <div className="container-fluid row d-flex flex-column p-3">
@@ -20,21 +19,21 @@ export default function ExploreTutors() {
           <CustomCard
             url={Card1}
             text={
-              'Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros'
+              "Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros"
             }
           />
           <CustomCard
             url={
-              'https://image.freepik.com/free-photo/front-view-woman-reading-something-her-students_23-2148633356.jpg'
+              "https://image.freepik.com/free-photo/front-view-woman-reading-something-her-students_23-2148633356.jpg"
             }
             text={
-              'Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros'
+              "Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros"
             }
           />
           <CustomCard
             url={Card2}
             text={
-              'Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros'
+              "Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros Nullam nunc magna viveranec  ipsum a, ultricies iaculis eros"
             }
           />
         </div>

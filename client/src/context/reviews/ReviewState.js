@@ -1,14 +1,14 @@
-import React, { useReducer } from 'react';
-import ReviewReducer from './ReviewReducer';
-import ReviewContext from './ReviewContext';
-import axios from 'axios';
-import setAuthToken from '../../header/globalHeader';
+import React, { useReducer } from "react";
+import ReviewReducer from "./ReviewReducer";
+import ReviewContext from "./ReviewContext";
+import axios from "axios";
+import setAuthToken from "../../header/globalHeader";
 
 const ReviewState = (props) => {
   const initialState = {
     reviews: null,
-    myReview: null,
-    aTutsReview: null,
+    myReview: [],
+    aTutsReview: [],
   };
   const [state, dispatch] = useReducer(ReviewReducer, initialState);
 
@@ -16,19 +16,18 @@ const ReviewState = (props) => {
   const createAReview = async (formData) => {
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     try {
-      console.log('alice');
-      console.log('form data here ' + formData.rating);
+      console.log("form data here " + formData.rating);
       const res = await axios.post(
-        '/athena/reviews/addReview',
+        "/athena/reviews/addReview",
         formData,
         config
       );
       dispatch({
-        type: 'ADD_REVIEW',
+        type: "ADD_REVIEW",
         payload: res.data,
       });
     } catch (error) {
@@ -39,9 +38,9 @@ const ReviewState = (props) => {
   //logged in tutor get his review
   const getMyReview = async () => {
     try {
-      let res = await axios.get('/athena/reviews/viewTutorsReview');
+      let res = await axios.get("/athena/reviews/viewTutorsReview");
       dispatch({
-        type: 'GET_MY_REVIEWS',
+        type: "GET_MY_REVIEWS",
         payload: res.data,
       });
     } catch (error) {
@@ -56,7 +55,7 @@ const ReviewState = (props) => {
     try {
       let res = await axios.get(`/athena/reviews/AllReviewsView/${id}`);
       dispatch({
-        type: 'GET_A_TUTS_REVIEWS',
+        type: "GET_A_TUTS_REVIEWS",
         payload: res.data,
       });
     } catch (error) {
@@ -65,7 +64,7 @@ const ReviewState = (props) => {
   };
   const clearReview = () => {
     dispatch({
-      type: 'CLEAR',
+      type: "CLEAR",
     });
   };
   return (
