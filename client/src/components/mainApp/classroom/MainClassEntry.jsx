@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
 import AuthContext from "../../../context/auth/AuthContext";
 import CreateClassroom from "./CreateClassroom";
 import "./myclassroom.css";
-=======
-import React, { useContext, useState, useEffect } from 'react';
-import ClassroomHomeHeader from './classroomComponent/ClassroomHomeHeader';
-import AuthContext from '../../../context/auth/AuthContext';
-import './myclassroom.css';
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
+
 
 import imgtry from '../../assets/img/1.jpg';
 import img1 from '../../assets/classImages/img1.png';
@@ -48,9 +42,8 @@ export default function MainClassEntry() {
   const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
 
-<<<<<<< HEAD
   const [classModalstate, setclassModalstate] = useState('none');
-=======
+
   useEffect(async () => {
     loadUser();
   }, []);
@@ -64,7 +57,6 @@ export default function MainClassEntry() {
   useEffect(() => {
     setloggedUser(user);
   }, [user]);
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
 
   useEffect(() => {
     if (myClasses.length > 0) {
@@ -109,7 +101,6 @@ export default function MainClassEntry() {
     }
   }, [allMyClasses]);
 
-<<<<<<< HEAD
   const classroomModaltoggle =()=>{
     if(classModalstate === 'flex'){
       setclassModalstate('none')
@@ -128,12 +119,11 @@ export default function MainClassEntry() {
   const toggleModal = (index = "null") => {
     if (handleModal === "flex") {
       sethandleModal("none");
-=======
+
   const viewParticipants = () => {};
   const toggleModal = (index = 'null') => {
     if (handleModal === 'flex') {
       sethandleModal('none');
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
     } else {
       if (index !== 'null') {
         new Promise((resolve, reject) => {
@@ -150,7 +140,6 @@ export default function MainClassEntry() {
 
   return (
     <div className="p-4">
-<<<<<<< HEAD
       <MyModal 
       modalHeader={'Create new class'}
       toggleModal={classroomModaltoggle}
@@ -159,7 +148,6 @@ export default function MainClassEntry() {
       header_bg = {''}
       />
    
-=======
       {/* {user && user.status === 'learner' ? (
         <div>
           {typeof aLearnersClass === 'object' &&
@@ -174,7 +162,6 @@ export default function MainClassEntry() {
           <h3>alice</h3>
         </div>
       )} */}
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
       <MyModal
         component={<ClassDetails data={modalData} />}
         modalStatus={handleModal}
@@ -182,9 +169,7 @@ export default function MainClassEntry() {
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
-<<<<<<< HEAD
         createClass={createClass}
-=======
         showCreateClassroom={
           Object(loggedUser).hasOwnProperty('status') &&
           loggedUser.status === 'tutor'
@@ -193,7 +178,6 @@ export default function MainClassEntry() {
         }
         viewParticipants={viewParticipants}
         toggleModal={toggleModal}
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
       />
       <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
         {myClasses.map((e, index) => {
