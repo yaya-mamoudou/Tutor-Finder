@@ -26,7 +26,7 @@ const AuthState = (props) => {
     PIC: null,
     learnerClass: [],
     filtered: null,
-    finaList: null,
+    finaList: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   //load user

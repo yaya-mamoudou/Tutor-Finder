@@ -8,7 +8,7 @@ import AuthContext from '../../../context/auth/AuthContext';
 
 function CreateClassroom() {
   const authContext = useContext(AuthContext);
-  const { IcreateClass, storePDATA, finaList } = authContext;
+  const { IcreateClass, storePDATA, finaList, allMyClasses } = authContext;
   const [classData, setclassData] = useState({
     className: '',
     classCode: '',
@@ -30,8 +30,10 @@ function CreateClassroom() {
     setclassData({ ...classData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    IcreateClass({ className, classCode, finaList });
+    // e.preventDefault();
+
+    let participants = finaList;
+    IcreateClass({ className, classCode, participants });
     setclassData({
       className: '',
       classCode: '',
