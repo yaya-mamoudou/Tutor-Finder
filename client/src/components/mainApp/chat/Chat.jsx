@@ -129,7 +129,7 @@ export default function Chat() {
 
   return (
     <>
-      <div className="d-flex w-100">
+      <div className="w-100">
         <div className=" ml-5  pl-5 w-25">
           {typeof myConv === "object" &&
             myConv.map((conv) => (

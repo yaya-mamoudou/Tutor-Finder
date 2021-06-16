@@ -130,7 +130,10 @@ export default function MainClassEntry() {
     console.log("clicked");
   };
   return (
-    <div className="p-4" style={{ width: "100%" }}>
+    <div
+      className="p-4"
+      style={{ width: "100%", height: "100vh", overflowY: "auto" }}
+    >
       {/* <MyModal
         modalHeader={'Create new class'}
         toggleModal={classroomModaltoggle}
