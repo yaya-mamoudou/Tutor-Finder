@@ -25,14 +25,12 @@ console.log(count)
 // console.log(count)
 //     }
     return (
-        <div className="pack">
-            <div className='informing'>
-            <div className='avatar'>
-                 <img src={images} className='pix' alt='' />
+        <div className="pack d-flex">
+            <div className='bg-danger' style={{width:50,height:50,display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <img src={images} width='48' height='48' alt="" />
             </div>
-            <div className='username'>Killer Deadpool</div>
-            </div>
-            <Button variant='outline-success' className='press' onClick={()=>setCount(1)}>{check}  <Plus  size={30} /></Button>
+            <button className='btn btn-warning' variant='outline-success'>Yaya</button>
+            {/* <Button variant='outline-success' conClick={()=>setCount(1)}>{check}  <Plus  size={30} /></Button> */}
         </div>
     )
 }

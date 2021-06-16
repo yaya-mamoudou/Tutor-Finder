@@ -1,4 +1,5 @@
 import React from 'react'
+import {FiMoreVertical} from 'react-icons/fi'
 import './classroom.css'
 function ClassChat() {
     return (
@@ -13,7 +14,7 @@ function ClassChat() {
                                     <p>Apr 30,2020</p>
                                 </div>
                             </div>
-                            <i className="material-icons w3-small add">more_vert</i>
+                         <FiMoreVertical size={20} />
                         </div>
                         <div className="middle">
                             <p>

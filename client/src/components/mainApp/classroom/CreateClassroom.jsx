@@ -1,14 +1,29 @@
 import React,{useState} from 'react'
-import { Modal, Button,Form} from 'react-bootstrap';
 import {Plus } from 'react-bootstrap-icons';
+import {Button,Form} from 'react-bootstrap'
+import MyModal from '../../myModal/Modal';
 import Participant from './Participant';
+import ButtonAddPart from './ButtonAddPart';
 // import './class.css'
-function CreateClassroom(props) {
-    const [modalShow, setModalShow] = useState(false);
+function CreateClassroom() {
     const [classData, setclassData] = useState({
         coursename:'',
         coursecode:''
     });
+    const [classModalstate, setclassModalstate] = useState('none');
+    const classroomModaltoggle =()=>{
+      if(classModalstate === 'flex'){
+        setclassModalstate('none')
+      }
+      else{
+        setclassModalstate('flex')
+      }
+    }
+    const createClass = ()=>{
+      console.log('class created');
+      classroomModaltoggle();
+  
+    }
     const {coursename , coursecode} = classData;
   const  handleChange=(e)=>{
     setclassData({...classData, [e.target.name] : e.target.value })
@@ -22,56 +37,38 @@ function CreateClassroom(props) {
     }
 
     return (
-      <div className='body'>
-        <Modal
-          {...props}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-             Create Classroom
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+      <div className='body p-4'>
+            <MyModal 
+      modalHeader={'Add Participants'}
+      toggleModal={classroomModaltoggle}
+      modalStatus = {classModalstate}
+      component={<Participant/>}
+      header_bg = {''}
+      />
           <Form onSubmit={(e)=>handleSubmit(e)}>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Course Name</Form.Label>
-    <Form.Control type="text" placeholder="Enter Course Title" name="coursename" value={coursename} onChange={(e)=>handleChange(e)} />
+  <Form.Group className='mb-4' controlId="formBasicEmail">
+    <Form.Label className='mb-2'>Course Name</Form.Label>
+    <Form.Control className='px-4'  type="text" placeholder="Enter Course Title" name="coursename" value={coursename} onChange={(e)=>handleChange(e)} />
     <Form.Text className="text-muted">
       We'll share your course to anyone that needs it.
     </Form.Text>
   </Form.Group>
 
   <Form.Group controlId="formBasicPassword">
-    <Form.Label>Course Code</Form.Label>
-    <Form.Control type="text" placeholder="Enter Course Code" name="coursecode" value={coursecode} onChange={(e)=>handleChange(e)} />
+    <Form.Label className='mb-2'>Course Code</Form.Label>
+    <Form.Control className='mb-4 px-4' type="text" placeholder="Enter Course Code" name="coursecode" value={coursecode} onChange={(e)=>handleChange(e)} />
   </Form.Group>
   <Form.Group controlId="formBasicCheckbox">
-  <Button variant="outline-success" onClick={() => setModalShow(true)}> Add Participants
-  <Plus  size={40} />
-  </Button>
-  <Participant 
-  show={modalShow}
-  onHide={() => setModalShow(false)}
-  />
-  </Form.Group>
-  
-  <Button style={{margin:'1em'}} variant="info" type="submit">
-    Edit
-  </Button>
-  <Button variant="danger" type="submit">
+  <div className='d-flex justify-content-between'>
+  <ButtonAddPart  createClass={createClass} />
+  <Button className='btn btn-lg px-4  btn-danger' variant="danger" type="submit" >
     Create Class
   </Button>
-  
-  
+  </div>
+
+  </Form.Group>
 </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={props.onHide}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+          
         </div>
     )
 }
