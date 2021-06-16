@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import ClassroomHomeHeader from "./classroomComponent/ClassroomHomeHeader";
 import AuthContext from "../../../context/auth/AuthContext";
+import CreateClassroom from "./CreateClassroom";
 import "./myclassroom.css";
 
 import imgtry from "../../assets/img/1.jpg";
@@ -16,7 +18,8 @@ import ClassDetails from "./ClassDetails";
 
 export default function MainClassEntry() {
   const classPics = [img1, img2, img3, img4, img5, img6];
-
+  const history = useHistory();
+  const navigateTo = () => history.push('/Classchat');
   const authContext = useContext(AuthContext);
   const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
 
@@ -26,6 +29,8 @@ export default function MainClassEntry() {
 
   const [handleModal, sethandleModal] = useState("none");
   const [modalData, setmodalData] = useState({});
+
+  const [classModalstate, setclassModalstate] = useState('none');
 
   useEffect(() => {
     if (myClasses.length > 0) {
@@ -61,7 +66,21 @@ export default function MainClassEntry() {
     }
   }, [allMyClasses]);
 
-  const viewParticipants = () => {};
+  const classroomModaltoggle =()=>{
+    if(classModalstate === 'flex'){
+      setclassModalstate('none')
+    }
+    else{
+      setclassModalstate('flex')
+    }
+  }
+
+  const createClass = ()=>{
+    console.log('class created');
+    classroomModaltoggle();
+
+  }
+
   const toggleModal = (index = "null") => {
     if (handleModal === "flex") {
       sethandleModal("none");
@@ -81,6 +100,14 @@ export default function MainClassEntry() {
 
   return (
     <div className="p-4">
+      <MyModal 
+      modalHeader={'Create new class'}
+      toggleModal={classroomModaltoggle}
+      modalStatus = {classModalstate}
+      component={<CreateClassroom/>}
+      header_bg = {''}
+      />
+   
       <MyModal
         component={<ClassDetails data={modalData} />}
         modalStatus={handleModal}
@@ -88,18 +115,19 @@ export default function MainClassEntry() {
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
-        viewParticipants={viewParticipants}
-        toggleModal={toggleModal}
+        createClass={createClass}
       />
       <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
         {myClasses.map((e, index) => {
           return (
+
             <div
               className="classroomCard text-white rounded m-3"
               style={{
                 backgroundImage: `url("${e.bg}")`,
                 backgroundSize: "cover",
               }}
+              onClick={ navigateTo }
             >
               <div
                 className="rounded px-4 pt-4"
@@ -152,6 +180,7 @@ export default function MainClassEntry() {
                 </div>
               </div>
             </div>
+         
           );
         })}
       </div>

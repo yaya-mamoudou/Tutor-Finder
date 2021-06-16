@@ -1,17 +1,17 @@
 import React from "react";
-
-export default function ClassroomHomeHeader({ toggleModal }) {
+import {Plus } from 'react-bootstrap-icons';
+export default function ClassroomHomeHeader({ createClass }) {
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
         <span className="h1">Classroom</span>
         <span className="createClass text-danger text-decoration-underline">
-          <span onClick={() => toggleModal()} className="createclassText">
+          <span onClick={() => createClass()} className="createclassText">
             create new classroom
           </span>
-          <span className="createclassIcon">
+          <span onClick={() => createClass()} className="createclassIcon">
             <i
-              onClick={() => toggleModal()}
+              
               class="fas fa-plus-circle fa-2x"
             ></i>
           </span>

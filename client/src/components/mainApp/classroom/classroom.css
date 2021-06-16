@@ -12,11 +12,12 @@
   background-color: #385f8c7a;
 }
 .rooms {
-  width: 90%;
-  height: 30%;
+  width: 43vh;
+  height: 37vh;
   border: 1px solid #dedede;
   margin-left: 1.3em !important;
   margin-bottom: 1em !important;
+  margin-right: 1.3em !important;
   border-radius: 12px;
   /* background-image: url("../img/im1.png"); */
   display: flex;
@@ -50,26 +51,33 @@
 .top {
   display: flex;
   justify-content: space-between;
-  padding: 20px 10px !important;
+  padding: 20px 1px !important;
+  padding-right: 25px !important;
 }
 .about {
   width: 50%;
   padding-left: 3em !important;
 }
 .task {
-  display: grid;
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 3em !important;
 }
 .subject {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   color: rgba(0, 0, 0, 0.877);
 }
 .teacher {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   color: palevioletred;
 }
 .thread {
+  width: 60%;
   border: 2px solid teal;
   color: teal;
   font-weight: bold;
@@ -89,8 +97,8 @@
   flex-direction: column;
 }
 .chat {
-  width: 100%;
-  height: 80%;
+  width: 95%;
+  height: auto;
   height: auto;
   border: 1px solid #dedede;
   border-radius: 10px;
@@ -104,9 +112,10 @@
 }
 .up {
   width: 100%;
-  height: 150px;
+  height: 60%;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1em !important;
   /* padding: 2em !important; */
 }
 .person {
@@ -114,22 +123,26 @@
   justify-content: space-between;
 }
 .txt {
-  display: block;
-  align-self: center;
+  width: 120px;
+  height: 80px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .txt p {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 10px;
   color: rgba(0, 0, 0, 0.479);
 }
 .txt p:first-child {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 16px;
   color: black;
 }
 .person img {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 90px;
   border-radius: 50%;
   margin-right: 20px !important;
 }
@@ -138,7 +151,7 @@
   padding: 0 10px !important;
 }
 .middle p {
-  font-size: 1.5em;
+  font-size: .7em;
 }
 .end {
   display: flex;
@@ -168,17 +181,22 @@
   align-items: center;
 }
 .typebar {
-  width: 90%;
-  height: 65px;
+  width: 100%;
+  height: 55px;
   background: #f8f8f8;
   border: 1px solid #c4c4c4;
   border-radius: 39px;
+  margin-left: 3em !important;
+  margin-right: 6em !important;
 }
 .typebar input {
-  width: 97%;
+  width: 90%;
   height: 100%;
   background: #f8f8f8;
   padding-left: 0.8rem !important;
   outline: none;
   border: none;
+}
+.typebar input ::placeholder{
+  font-size: 20px;
 }
