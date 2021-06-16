@@ -9,6 +9,8 @@ import './mainApp.css';
 import SideNav from './sideNav/SideNav';
 import Chat from './chat/Chat';
 import Classroom from './classroom/MainClassEntry';
+import ClassRoom from './classroom/ClassRoom';
+
 import Profile from './Profile/Profile';
 import PrivateRoute from '../PrivateRouting/PrivateRoute';
 import TutorIndProfile from '../ViewAllTutors/TutorProfile';
