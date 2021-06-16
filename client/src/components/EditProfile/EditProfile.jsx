@@ -68,7 +68,10 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               <i class="fas fa-times text-white align-self-center"></i>
             </div>
           </div>
-          <form onSubmit={(e) => submitForm(e)} className=" p-5">
+          <form
+            onSubmit={(e) => submitForm(e)}
+            className=" d-flex flex-column p-5"
+          >
             <div class="form-group">
               <label htmlFor="Profille Picture">choose file </label>
 
@@ -144,7 +147,7 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
 
             <button
               type="submit"
-              className="save_btn btn-warning btn mt-3 align-self-end btn-xl p-3"
+              className="save_btn btn-warning align-self-end btn mt-3 py-2 px-3"
             >
               Save
             </button>
