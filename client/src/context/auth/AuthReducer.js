@@ -42,11 +42,12 @@ export default (state, action) => {
         participants: [],
         storePDATA: [],
         classroom: null,
-        allMyClasses: null,
+        allMyClasses: [],
         myMsg: [],
         anewMsg: [],
         conversation: [],
         learnerClass: [],
+        finaList: [],
       };
     case 'STORE_SUCCESS':
       return {
@@ -156,6 +157,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null,
+      };
+    case 'FINAL_LIST':
+      return {
+        ...state,
+        finaList: action.payload,
       };
   }
 };
