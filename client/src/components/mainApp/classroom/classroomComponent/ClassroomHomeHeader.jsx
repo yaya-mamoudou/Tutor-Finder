@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import {Plus } from 'react-bootstrap-icons';
-export default function ClassroomHomeHeader({ createClass }) {
-=======
 import React, { useRef, useContext, useEffect } from 'react';
 import AuthContext from '../../../../context/auth/AuthContext';
 
@@ -26,22 +21,10 @@ export default function ClassroomHomeHeader({
       clearFilter();
     }
   };
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
         <span className="h1">Classroom</span>
-<<<<<<< HEAD
-        <span className="createClass text-danger text-decoration-underline">
-          <span onClick={() => createClass()} className="createclassText">
-            create new classroom
-          </span>
-          <span onClick={() => createClass()} className="createclassIcon">
-            <i
-              
-              class="fas fa-plus-circle fa-2x"
-            ></i>
-=======
         <span
           style={{ display: !showCreateClassroom && 'none' }}
           className="createClass text-danger text-decoration-underline"
@@ -51,7 +34,6 @@ export default function ClassroomHomeHeader({
           </span>
           <span onClick={() => toggleModal()} className="createclassIcon">
             <i class="fas fa-plus-circle fa-2x"></i>
->>>>>>> ca2313be82907e9cd3a4ceb2294e022b31bfeae9
           </span>
         </span>
       </div>
