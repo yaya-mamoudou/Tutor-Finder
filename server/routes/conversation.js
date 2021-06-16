@@ -31,4 +31,22 @@ route.get('/:userID', Auth, async (req, res) => {
   }
 });
 
+//create classroom conversation :PRIVATE
+
+// route.post('/athena/classroom/createConversation', Auth, async (req, res) => {
+//   try {
+//     let check = await Users.findById(req.user.id);
+//     if (check.status === 'tutor') {
+//       let classConversation = new Conversation({
+//         members: [req.body.senderID, req.body],
+//       });
+//       await conversation.save();
+//       res.status(200).json({ classConversation });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ msg: 'Server Error' });
+//     console.log(err.message);
+//   }
+// });
+
 module.exports = route;
