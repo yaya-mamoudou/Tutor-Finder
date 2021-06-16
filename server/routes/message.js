@@ -15,7 +15,7 @@ route.post(
     }
     try {
       let { conversationId, sender, text } = req.body;
-      let message = new Message({ conversationId, sender: req.user.id, text });
+      let message = new Message({ conversationId, text });
       await message.save();
       res.status(200).json({ message });
     } catch (err) {
