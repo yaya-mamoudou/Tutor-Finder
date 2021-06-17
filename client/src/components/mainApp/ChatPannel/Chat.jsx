@@ -92,14 +92,20 @@ function Chat() {
     await setTryIt(myMsg.message);
   }, [myMsg.message]);
 
+  let [isAkeeper, setisAkeeper] = useState();
   const onChange = (e) =>
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
   const clicked = async (conv) => {
-    localStorage.setItem('conv_id', conv._id);
-    setconversationId(conv._id);
-    setCurrentChat(conv);
-    console.log(currentChat);
+    try {
+      localStorage.setItem('conv_id', conv._id);
+      setconversationId(conv._id);
+      setCurrentChat(conv);
+      await setisAkeeper(conv.members);
+      console.log(isAkeeper);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(async () => {
@@ -232,7 +238,6 @@ function Chat() {
                           m.sender === user._id ? 'message mine' : 'message'
                         }
                       >
-                        <h2 onClick={() => testing(m)}>hi</h2>
                         <div className=" m-5 ">
                           <MsgRcd
                             //   className=" p-3 mt-4 txt text.white "
@@ -242,6 +247,7 @@ function Chat() {
                         </div>
                       </div>
                     ))}
+                  <div></div>
                 </div>
               )}
             </div>
