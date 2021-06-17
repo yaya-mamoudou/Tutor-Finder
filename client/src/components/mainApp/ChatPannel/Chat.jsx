@@ -97,15 +97,10 @@ function Chat() {
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
   const clicked = async (conv) => {
-    try {
-      localStorage.setItem('conv_id', conv._id);
-      setconversationId(conv._id);
-      setCurrentChat(conv);
-      await setisAkeeper(conv.members);
-      console.log(isAkeeper);
-    } catch (error) {
-      console.log(error);
-    }
+    localStorage.setItem('conv_id', conv._id);
+    setconversationId(conv._id);
+    setCurrentChat(conv);
+    console.log(currentChat);
   };
 
   useEffect(async () => {
@@ -150,17 +145,7 @@ function Chat() {
   return (
     <div className="globe-scope">
       <div className="infochat">
-        <div className="info-header">
-          <ArrowLeftSquare className="arrow" size={36} />
-          <div className="bar">
-            <Button variant="none" style={{ width: '175px', height: '65px' }}>
-              <i
-                className="fas fa-bars"
-                style={{ width: '80px', height: '45px', marginLeft: '2rem' }}
-              ></i>
-            </Button>
-          </div>
-          <div className="topnav" id="myTopnav"></div>
+        <div className="mt-5 info-header">
           <h1>Chat</h1>
         </div>
         <div className="info-person">
