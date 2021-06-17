@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import empty from '../../assets/classroom/empty.png';
+// import EditClass from '../../ViewAllTutors/EditClass';
 
 const PF = 'http://localhost:5000/images/';
 
