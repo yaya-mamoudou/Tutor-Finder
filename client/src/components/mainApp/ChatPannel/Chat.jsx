@@ -93,10 +93,14 @@ function Chat() {
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
   const clicked = async (conv) => {
-    localStorage.setItem('conv_id', conv._id);
-    setconversationId(conv._id);
-    setCurrentChat(conv);
-    console.log(currentChat);
+    try {
+      localStorage.setItem('conv_id', conv._id);
+      await setconversationId(conv._id);
+      await setCurrentChat(conv);
+      console.log(currentChat);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(async () => {
@@ -231,19 +235,6 @@ function Chat() {
                           }
                         >
                           <div className=" m-5 ">
-                            {/* <img
-                          src={
-                            m.sender === user._id
-                              ? user.profilePic === ""
-                                ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
-                                : PF + user.profilePic
-                              : "message"
-                          }
-                          width="60px"
-                          height="60px"
-                          alt=""
-                          className="rounded-circle"
-                        /> */}
                             <MsgRcd
                               //   className=" p-3 mt-4 txt text.white "
                               style={{
