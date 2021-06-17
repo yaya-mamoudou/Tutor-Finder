@@ -19,6 +19,8 @@ import ClassDetails from "./ClassDetails";
 const classPics = [img1, img2, img3, img4, img5, img6];
 let searchState;
 export default function MainClassEntry() {
+  const PF = "http://localhost:5000/images/";
+
   const authContext = useContext(AuthContext);
   const {
     isAdd,
@@ -67,7 +69,6 @@ export default function MainClassEntry() {
     if (myClasses.length > 0) {
       setalreadySet(1);
     }
-    console.log("I was changed");
   }, [myClasses]);
 
   useEffect(async () => {
@@ -119,12 +120,11 @@ export default function MainClassEntry() {
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
-
             resolve(temp);
           })
             .then(async (newClasses) => {
               await setMyClasses(newClasses);
-              return newClasses;
+              return await newClasses;
             })
             .then((e) => setmyClassesTemp(e));
         } else {
@@ -151,7 +151,7 @@ export default function MainClassEntry() {
 
   const toggleModal = (e = "null", index = "null", from = "null") => {
     e.preventDefault();
-
+    // console.log(e);
     if (handleModal === "flex") {
       sethandleModal("none");
     } else {
@@ -207,6 +207,10 @@ export default function MainClassEntry() {
   //     console.log(error);
   //   }
   // };
+
+  const alice = (data) => {
+    console.log(data);
+  };
 
   return (
     <div
@@ -279,7 +283,10 @@ export default function MainClassEntry() {
                           className="pr-2"
                           style={{ width: "90%", textOverflow: "wrap" }}
                         >
-                          <p className="h2 font-weight-bold">
+                          <p
+                            className="h2 font-weight-bold"
+                            onClick={() => alice(e)}
+                          >
                             Course ID: {e.classCode}
                           </p>
                         </div>
@@ -313,7 +320,11 @@ export default function MainClassEntry() {
                         >
                           <img
                             className="rounded-circle"
-                            src={imgtry}
+                            src={
+                              e.tutor_id.profilePic == ""
+                                ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                                : PF + e.tutor_id.profilePic
+                            }
                             width="50"
                             height="50"
                             alt=""

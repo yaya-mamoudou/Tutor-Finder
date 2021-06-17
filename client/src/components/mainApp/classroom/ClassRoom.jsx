@@ -108,12 +108,11 @@ function ClassRoom() {
         ) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
-            let temp = [...allMyClasses.classroom];
+            let temp = [...allMyClasses.classroom, ...learnerClass];
             temp.map(
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
-
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
         } else {
@@ -123,7 +122,7 @@ function ClassRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, [allMyClasses]);
+  }, [allMyClasses, learnerClass]);
   return (
     <div className="" style={{ width: "100%" }}>
       <div className="back">
@@ -147,8 +146,10 @@ function ClassRoom() {
           <div className="classcont">
             <div className="top">
               <div className="about">
-                <p className="subject">Basics of english language</p>
-                <p className="teacher">Tutor: Mr Colins More</p>
+                <p className="subject"> {localStorage.getItem('CLASSNAME')} </p>
+                <p className="teacher">
+                  Tutor: {localStorage.getItem('TUTORNAME')}
+                </p>
               </div>
               <div className="task">
                 <p className="thread">New Thread</p>
