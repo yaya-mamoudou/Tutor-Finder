@@ -17,13 +17,33 @@ import img5 from '../../assets/classImages/img5.png';
 import img6 from '../../assets/classImages/img6.png';
 
 function ClassRoom() {
+  const authContext = useContext(AuthContext);
+  const {
+    isAdd,
+    participants,
+    myCreatedClass,
+    allMyClasses,
+    clearFilter,
+    user,
+    filtered,
+    loadUser,
+    getLearnersClassroom,
+    classConversation,
+    createAClassConversation,
+    learnerClass,
+  } = authContext;
+
   const classPics = [img1, img2, img3, img4, img5];
   const history = useHistory();
   const navigateTo = () => history.push('/Classchat');
-  const authContext = useContext(AuthContext);
   const [myClasses, setMyClasses] = useState([]);
   const [alreadySet, setalreadySet] = useState(0);
-  const { isAdd, participants, myCreatedClass, allMyClasses } = authContext;
+  const [aLearnersClass, setALearnersClass] = useState([]);
+  const [loggedUser, setloggedUser] = useState(undefined);
+  const [handleModal, sethandleModal] = useState('none');
+  const [modalData, setmodalData] = useState({});
+
+  const [classModalstate, setclassModalstate] = useState('none');
 
   useEffect(() => {
     if (myClasses.length > 0) {
@@ -31,24 +51,73 @@ function ClassRoom() {
       setalreadySet(1);
     }
   }, [myClasses]);
+
+  
+  useEffect(async () => {
+    loadUser();
+  }, []);
+
+  let theID = user && user._id;
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+  useEffect(() => {
+    if (myClasses.length > 0) {
+      setalreadySet(1);
+    }
+  }, [myClasses]);
+
+  useEffect(async () => {
+    try {
+      user && getLearnersClassroom(user._id);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [theID]);
+  useEffect(async () => {
+    // Object(user).hasOwnProperty("_id") && getLearnersClassroom(user._id);
+
+    try {
+      if (Array.isArray(learnerClass)) {
+        new Promise(async (resolve, reject) => {
+          let temp = [...learnerClass];
+          temp.map(
+            (singleClass) =>
+              (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
+          );
+
+          resolve(temp);
+        }).then(async (newClasses) => {
+          await setALearnersClass(learnerClass);
+        });
+      } else {
+        console.log('no from learner class');
+      }
+    } catch (err) {
+      console.error(err + 'error from MainclassEntry');
+    }
+  }, [learnerClass]);
+
   useEffect(async () => {
     try {
       await myCreatedClass();
 
       if (alreadySet === 0) {
-        if (Object(allMyClasses).hasOwnProperty('classroom')) {
+        if (
+          Object(allMyClasses).hasOwnProperty('classroom') &&
+          Array.isArray(learnerClass)
+        ) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
-
-            let temp = [...allMyClasses.classroom];
+            let temp = [...allMyClasses.classroom, ...learnerClass];
             temp.map(
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
-            // console.log(temp);
+
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
-          // console.log(allMyClasses);
         } else {
           console.log('no');
         }
@@ -56,7 +125,7 @@ function ClassRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, [allMyClasses]);
+  }, [allMyClasses, learnerClass]);
   return (
     <div className="" style={{ width: '100%' }}>
       <div className="back">
