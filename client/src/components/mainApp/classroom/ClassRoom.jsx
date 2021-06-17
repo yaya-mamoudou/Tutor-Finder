@@ -1,25 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
-import { BsListTask } from "react-icons/bs";
-import ClassChat from "./ClassChat";
-import Classfooter from "./Classfooter";
-import { useHistory } from "react-router-dom";
-import AuthContext from "../../../context/auth/AuthContext";
-import "./classroom.css";
-import Room from "./Room";
+import React, { useState, useContext, useEffect } from 'react';
+import { BsListTask } from 'react-icons/bs';
+import ClassChat from './ClassChat';
+import Classfooter from './Classfooter';
+import { useHistory } from 'react-router-dom';
+import AuthContext from '../../../context/auth/AuthContext';
+import './classroom.css';
+import Room from './Room';
 
-import imgtry from "../../assets/img/1.jpg";
+import imgtry from '../../assets/img/1.jpg';
 
-import img1 from "../../assets/classImages/img1.png";
-import img2 from "../../assets/classImages/img2.png";
-import img3 from "../../assets/classImages/img3.png";
-import img4 from "../../assets/classImages/img4.png";
-import img5 from "../../assets/classImages/img5.png";
-import img6 from "../../assets/classImages/img6.png";
+import img1 from '../../assets/classImages/img1.png';
+import img2 from '../../assets/classImages/img2.png';
+import img3 from '../../assets/classImages/img3.png';
+import img4 from '../../assets/classImages/img4.png';
+import img5 from '../../assets/classImages/img5.png';
+import img6 from '../../assets/classImages/img6.png';
 
 function ClassRoom() {
   const classPics = [img1, img2, img3, img4, img5];
   const history = useHistory();
-  const navigateTo = () => history.push("/Classchat");
+  const navigateTo = () => history.push('/Classchat');
   const authContext = useContext(AuthContext);
   const [myClasses, setMyClasses] = useState([]);
   const [alreadySet, setalreadySet] = useState(0);
@@ -36,7 +36,7 @@ function ClassRoom() {
       await myCreatedClass();
 
       if (alreadySet === 0) {
-        if (Object(allMyClasses).hasOwnProperty("classroom")) {
+        if (Object(allMyClasses).hasOwnProperty('classroom')) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
 
@@ -45,12 +45,12 @@ function ClassRoom() {
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
-            console.log(temp);
+            // console.log(temp);
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
           // console.log(allMyClasses);
         } else {
-          console.log("no");
+          console.log('no');
         }
       }
     } catch (err) {
@@ -58,13 +58,13 @@ function ClassRoom() {
     }
   }, [allMyClasses]);
   return (
-    <div className="" style={{ width: "100%" }}>
+    <div className="" style={{ width: '100%' }}>
       <div className="back">
         <div className="classes">
           <div className="tutor">
           <h4> <span className='tutorName' >tutoring</span>/tutored</h4>
           </div>
-          <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
+          <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
             {myClasses.map((e, index) => (
               <Room e={e} key={index} />
             ))}
@@ -83,9 +83,6 @@ function ClassRoom() {
               </div>
             </div>
             <div className="chats">
-              <ClassChat />
-              <ClassChat />
-              <ClassChat />
               <ClassChat />
             </div>
           </div>

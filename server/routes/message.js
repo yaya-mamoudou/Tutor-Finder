@@ -41,7 +41,7 @@ route.get('/:conversationId', Auth, async (req, res) => {
 
 //new class message
 route.post(
-  '/classMsg/:senderID',
+  '/classMsg',
   [Auth, [check('text', 'Please enter A message').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
@@ -51,7 +51,7 @@ route.post(
     try {
       let { conversationId, sender, text } = req.body;
       let message = new ClassMessage({
-        sender: req.params.senderID,
+        sender: req.user.id,
         conversationId,
         text,
       });
@@ -69,7 +69,7 @@ route.get('/classMsg/:conversationId', Auth, async (req, res) => {
   try {
     let message = await ClassMessage.find({
       conversationId: req.params.conversationId,
-    });
+    }).populate('sender');
     res.status(200).json({ message });
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });

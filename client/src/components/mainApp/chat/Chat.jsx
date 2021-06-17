@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import Conversation from "./Conversation";
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import Conversation from './Conversation';
 // import Message from './Message';
-import AuthContext from "../../../context/auth/AuthContext";
-import axios from "axios";
-import { format } from "timeago.js";
-import yaya1 from "../../assets/yaya1.jpg";
-import "./Message.css";
-import { io } from "socket.io-client";
+import AuthContext from '../../../context/auth/AuthContext';
+import axios from 'axios';
+import { format } from 'timeago.js';
+import yaya1 from '../../assets/yaya1.jpg';
+import './Message.css';
+import { io } from 'socket.io-client';
 
 export default function Chat() {
-  const PF = "http://localhost:5000/images/";
+  const PF = 'http://localhost:5000/images/';
 
   const authContext = useContext(AuthContext);
   const {
@@ -25,7 +25,7 @@ export default function Chat() {
   const [myConv, setMyConv] = useState();
   const [currentChat, setCurrentChat] = useState();
   const [addedMsg, setAddedMsg] = useState();
-  const [conversationId, setconversationId] = useState("");
+  const [conversationId, setconversationId] = useState('');
   const socket = useRef();
   const [tryIt, setTryIt] = useState();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -33,19 +33,19 @@ export default function Chat() {
   const [newUser, setnewUser] = useState();
 
   const [newMsg, setNewMsg] = useState({
-    text: "",
+    text: '',
   });
-  if (Object(socket).hasOwnProperty("current")) {
+  if (Object(socket).hasOwnProperty('current')) {
     // console.log(socket.current);
-    if (Object(socket.current).hasOwnProperty("id")) {
+    if (Object(socket.current).hasOwnProperty('id')) {
       console.log(socket.current);
     }
   }
   const { text } = newMsg;
   //starts here
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    socket.current.on("getMessage", (data) => {
+    socket.current = io('ws://localhost:8900');
+    socket.current.on('getMessage', (data) => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -61,11 +61,11 @@ export default function Chat() {
   }, [arrivalMessage, currentChat]);
 
   useEffect(async () => {
-    if (Object(user).hasOwnProperty("_id")) {
+    if (Object(user).hasOwnProperty('_id')) {
       setnewUser(user._id);
       let userId = user._id;
-      socket.current.emit("addUser", userId);
-      socket.current.on("getUsers", (users) => {
+      socket.current.emit('addUser', userId);
+      socket.current.on('getUsers', (users) => {
         console.log(users);
       });
     }
@@ -82,15 +82,15 @@ export default function Chat() {
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
   const clicked = async (conv) => {
-    localStorage.setItem("conv_id", conv._id);
+    localStorage.setItem('conv_id', conv._id);
     setconversationId(conv._id);
     setCurrentChat(conv);
   };
 
   useEffect(async () => {
-    let anID = await localStorage.getItem("conv_id");
+    let anID = await localStorage.getItem('conv_id');
     getMsg(anID);
-  }, [anewMsg, localStorage.getItem("conv_id")]);
+  }, [anewMsg, localStorage.getItem('conv_id')]);
 
   useEffect(() => {
     loadUser();
@@ -113,14 +113,14 @@ export default function Chat() {
     createMessage({ sender: user && user._id, text, conversationId });
     setNewMsg({
       senderId: newUser,
-      text: "",
+      text: '',
     });
 
     const receiverId = currentChat.members.find((member) => member !== newUser);
     console.log(receiverId);
 
-    console.log(newUser + " from new User");
-    socket.current.emit("sendMessage", {
+    console.log(newUser + ' from new User');
+    socket.current.emit('sendMessage', {
       senderId: newUser,
       receiverId,
       text,
@@ -131,19 +131,19 @@ export default function Chat() {
     <>
       <div
         style={{
-          width: "100%",
-          height: "100vh",
-          overflowX: "hidden",
-          overflowY: "auto",
+          width: '100%',
+          height: '100vh',
+          overflowX: 'hidden',
+          overflowY: 'auto',
         }}
       >
         <div className=" ml-5  pl-5 w-25">
-          {typeof myConv === "object" &&
+          {typeof myConv === 'object' &&
             myConv.map((conv) => (
               <div
                 onClick={() => clicked(conv)}
                 style={{
-                  cursor: "pointer",
+                  cursor: 'pointer',
                 }}
                 key={conv.username}
               >
@@ -153,26 +153,26 @@ export default function Chat() {
         </div>
 
         <div className=" ml-5  pl-5 w-100">
-          {typeof currentChat === "undefined" ? (
+          {typeof currentChat === 'undefined' ? (
             <h1>Open a conversation to start a chat</h1>
           ) : (
             <div>
-              {typeof tryIt === "object" &&
+              {typeof tryIt === 'object' &&
                 tryIt.map((m) => (
                   <div>
                     <div
                       className={
-                        m.sender === user._id ? "message mine" : "message"
+                        m.sender === user._id ? 'message mine' : 'message'
                       }
                     >
                       <div className=" m-5 ">
                         <img
                           src={
                             m.sender === user._id
-                              ? user.profilePic === ""
-                                ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                              ? user.profilePic === ''
+                                ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
                                 : PF + user.profilePic
-                              : "message"
+                              : 'message'
                           }
                           width="60px"
                           height="60px"
@@ -181,7 +181,7 @@ export default function Chat() {
                         />
                         <div
                           className=" p-3 mt-4 txt text.white "
-                          style={{ maxWidth: "600px", borderRadius: "21px" }}
+                          style={{ maxWidth: '600px', borderRadius: '21px' }}
                         >
                           {m.text}
                         </div>

@@ -4,6 +4,7 @@ const ClassConversationSchema = mongoose.Schema(
   {
     members: {
       type: [mongoose.Schema.Types.ObjectId],
+      // default: null,
       ref: 'USER',
     },
   },

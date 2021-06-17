@@ -1,33 +1,78 @@
-import React from 'react'
-import {FiMoreVertical} from 'react-icons/fi'
-import './classroom.css'
+import React, { useContext, useState, useEffect } from 'react';
+import { FiMoreVertical } from 'react-icons/fi';
+import './classroom.css';
+import AuthContext from '../../../context/auth/AuthContext';
+import { format } from 'timeago.js';
+
 function ClassChat() {
-    return (
-        <div>
-             <div className="chat">
-                    <div className="up_box">
-                        <div className="up">
-                            <div className="person">
-                                <img src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"/>
-                                <div className="txt-2">
-                                    <p>Mr Donfack R</p>
-                                    <p>Apr 30,2020</p>
-                                </div>
-                            </div>
-                         <FiMoreVertical size={20} style={{cursor:'pointer'}} />
-                        </div>
-                        <div className="middle">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam voluptate voluptatum
-                                voluptatibus voluptatem dignissimos blanditiis? Exercitationem, quo. Quaerat voluptatum,
-                                officia, harum voluptas adipisci, ipsum dolores aspernatur deleniti impedit est qui?
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis atque laudantium iste.
-                            </p>
-                        </div>
-                    </div>
-                    </div>
-        </div>
-    )
+  const PF = 'http://localhost:5000/images/';
+
+  const authContext = useContext(AuthContext);
+
+  const {
+    classMessaging,
+    createAClassMessage,
+    getClassMsg,
+    getClassMessages,
+    user,
+  } = authContext;
+
+  useEffect(async () => {
+    try {
+      let conversationId = await localStorage.getItem('CLASSID');
+      getClassMsg(conversationId);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [localStorage.getItem('CLASSID'), classMessaging]);
+
+  const [storeChat, setStoreChat] = useState();
+
+  useEffect(async () => {
+    setStoreChat(getClassMessages.message);
+  }, [getClassMessages.message]);
+  return (
+    <div>
+      {typeof storeChat === 'object' &&
+        storeChat.map((chatData) => (
+          <div className=" p-3  m-3">
+            <div
+              style={{
+                backgroundColor:
+                  chatData.sender[0]._id === user && user._id ? 'teal' : 'pink',
+                alignItems:
+                  chatData.sender[0]._id === user && user._id
+                    ? 'flex-end'
+                    : null,
+              }}
+            >
+              <div>
+                <div className="d-flex">
+                  <img
+                    src={
+                      PF + chatData.sender[0].profilePic === ''
+                        ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                        : PF + chatData.sender[0].profilePic
+                    }
+                    alt=""
+                    height="50px"
+                    width="50px"
+                  />
+                  <h2 className="text-white">
+                    {' '}
+                    {chatData.sender[0].username}{' '}
+                  </h2>
+                </div>
+                <h2> {chatData.text} </h2>
+                <span className="text-secondary">
+                  {format(chatData.createdAt)}{' '}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+    </div>
+  );
 }
 
-export default ClassChat
+export default ClassChat;

@@ -29,6 +29,8 @@ export default function MainClassEntry() {
     filtered,
     loadUser,
     getLearnersClassroom,
+    classConversation,
+    createAClassConversation,
     learnerClass,
   } = authContext;
 
@@ -162,7 +164,6 @@ export default function MainClassEntry() {
         sethandleModal("flex");
       }
     }
-    console.log("clicked");
   };
 
   const search = async (e) => {
@@ -179,6 +180,15 @@ export default function MainClassEntry() {
     await console.log(newList);
     await setMyClasses(newList);
   };
+  // const routeToChat = async (e) => {
+  //   try {
+  //     let members = await e.participants;
+  //     createAClassConversation({ members });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   return (
     <div
       className="p-4"

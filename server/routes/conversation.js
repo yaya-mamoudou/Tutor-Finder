@@ -3,7 +3,7 @@ const route = express.Router();
 const Auth = require('../middleware/Auth');
 const Conversation = require('../models/Conversation');
 const ClassConversation = require('../models/ClassConv');
-
+const Classroom = require('../models/Classroom');
 const { check, validationResult } = require('express-validator');
 const Users = require('../models/User');
 
@@ -40,23 +40,8 @@ route.post('/classroom/createConversation', Auth, async (req, res) => {
   try {
     let check = await Users.findById(req.user.id);
     if (check.status === 'tutor') {
-      let aclassConversation = new ClassConversation({
-        members: [
-          req.body.tutID,
-          req.body.send1,
-          req.body.send2,
-          req.body.send3,
-          req.body.send4,
-          req.body.send5,
-          req.body.send6,
-          req.body.send7,
-          req.body.send8,
-          req.body.send9,
-          req.body.send10,
-          req.body.send11,
-          req.body.send12,
-        ],
-      });
+      let { members } = req.body;
+      let aclassConversation = new ClassConversation({ members });
       await aclassConversation.save();
       res.status(200).json({ aclassConversation });
     }
@@ -69,9 +54,10 @@ route.post('/classroom/createConversation', Auth, async (req, res) => {
 //get created classroom conversation : PRIVATE
 route.get('/classConversation/:userID', Auth, async (req, res) => {
   try {
-    let conversation = await ClassConversation.find({
-      members: { $in: [req.params.userID] },
-    }).populate('members');
+    let conversation = await Classroom.find({
+      participants: { $in: [req.params.userID] },
+    });
+    // .populate('participants');
     res.status(200).json({ conversation });
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });

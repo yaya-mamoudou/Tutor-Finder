@@ -163,5 +163,21 @@ export default (state, action) => {
         ...state,
         finaList: action.payload,
       };
+    case 'CREATE_A_CLass_CONVERSATION':
+      return {
+        ...state,
+        classConversation: action.payload,
+      };
+
+    case 'CREATE_A_CLASS_MESSAGE':
+      return {
+        ...state,
+        classMessaging: action.payload,
+      };
+    case 'GET_CLASS_MESSAGE':
+      return {
+        ...state,
+        getClassMessages: action.payload,
+      };
   }
 };
