@@ -1,20 +1,20 @@
-import React, { useState, useContext, useEffect } from "react";
-import { BsListTask } from "react-icons/bs";
-import ClassChat from "./ClassChat";
-import Classfooter from "./Classfooter";
-import { useHistory } from "react-router-dom";
-import AuthContext from "../../../context/auth/AuthContext";
-import "./classroom.css";
-import Room from "./Room";
+import React, { useState, useContext, useEffect } from 'react';
+import { BsListTask } from 'react-icons/bs';
+import ClassChat from './ClassChat';
+import Classfooter from './Classfooter';
+import { useHistory } from 'react-router-dom';
+import AuthContext from '../../../context/auth/AuthContext';
+import './classroom.css';
+import Room from './Room';
 
-import imgtry from "../../assets/img/1.jpg";
+import imgtry from '../../assets/img/1.jpg';
 
-import img1 from "../../assets/classImages/img1.png";
-import img2 from "../../assets/classImages/img2.png";
-import img3 from "../../assets/classImages/img3.png";
-import img4 from "../../assets/classImages/img4.png";
-import img5 from "../../assets/classImages/img5.png";
-import img6 from "../../assets/classImages/img6.png";
+import img1 from '../../assets/classImages/img1.png';
+import img2 from '../../assets/classImages/img2.png';
+import img3 from '../../assets/classImages/img3.png';
+import img4 from '../../assets/classImages/img4.png';
+import img5 from '../../assets/classImages/img5.png';
+import img6 from '../../assets/classImages/img6.png';
 
 function ClassRoom() {
   const authContext = useContext(AuthContext);
@@ -35,15 +35,15 @@ function ClassRoom() {
 
   const classPics = [img1, img2, img3, img4, img5];
   const history = useHistory();
-  const navigateTo = () => history.push("/Classchat");
+  const navigateTo = () => history.push('/Classchat');
   const [myClasses, setMyClasses] = useState([]);
   const [alreadySet, setalreadySet] = useState(0);
   const [aLearnersClass, setALearnersClass] = useState([]);
   const [loggedUser, setloggedUser] = useState(undefined);
-  const [handleModal, sethandleModal] = useState("none");
+  const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
 
-  const [classModalstate, setclassModalstate] = useState("none");
+  const [classModalstate, setclassModalstate] = useState('none');
 
   useEffect(() => {
     if (myClasses.length > 0) {
@@ -91,10 +91,10 @@ function ClassRoom() {
           await setALearnersClass(learnerClass);
         });
       } else {
-        console.log("no from learner class");
+        console.log('no from learner class');
       }
     } catch (err) {
-      console.error(err + "error from MainclassEntry");
+      console.error(err + 'error from MainclassEntry');
     }
   }, [learnerClass]);
 
@@ -103,12 +103,12 @@ function ClassRoom() {
       await myCreatedClass();
       if (alreadySet === 0) {
         if (
-          Object(allMyClasses).hasOwnProperty("classroom") &&
+          Object(allMyClasses).hasOwnProperty('classroom') &&
           Array.isArray(learnerClass)
         ) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
-            let temp = [...allMyClasses.classroom, ...learnerClass];
+            let temp = [...allMyClasses.classroom];
             temp.map(
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
@@ -117,28 +117,28 @@ function ClassRoom() {
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
         } else {
-          console.log("no");
+          console.log('no');
         }
       }
     } catch (err) {
       console.log(err);
     }
-  }, [allMyClasses, learnerClass]);
+  }, [allMyClasses]);
   return (
-    <div className="" style={{ width: "100%" }}>
+    <div className="" style={{ width: '100%' }}>
       <div className="back">
         <div className="classes">
           <div className="tutor">
             <h4>
-              {" "}
+              {' '}
               <span className="tutorName">tutoring</span>/tutored
             </h4>
           </div>
-          <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
-            {Object(user).hasOwnProperty("status") && user.status === "tutor"
+          <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
+            {Object(user).hasOwnProperty('status') && user.status === 'tutor'
               ? myClasses.map((e, index) => <Room e={e} key={index} />)
-              : Object(user).hasOwnProperty("status") &&
-                user.status === "learner" &&
+              : Object(user).hasOwnProperty('status') &&
+                user.status === 'learner' &&
                 aLearnersClass.map((e, index) => <Room e={e} key={index} />)}
           </div>
         </div>
@@ -151,7 +151,7 @@ function ClassRoom() {
               </div>
               <div className="task">
                 <p className="thread">New Thread</p>
-                <BsListTask size={20} style={{ cursor: "pointer" }} />
+                <BsListTask size={20} style={{ cursor: 'pointer' }} />
               </div>
             </div>
             <div className="chats">
