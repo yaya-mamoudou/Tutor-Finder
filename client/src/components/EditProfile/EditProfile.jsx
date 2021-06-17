@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/auth/AuthContext";
-import editProfile from "./editProfile.css";
-import axios from "axios";
-const PF = "http://localhost:5000/images/";
+import React, { useContext, useEffect, useState } from 'react';
+import AuthContext from '../../context/auth/AuthContext';
+import editProfile from './editProfile.css';
+import axios from 'axios';
+const PF = 'http://localhost:5000/images/';
 
 function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   const authContext = useContext(AuthContext);
@@ -13,14 +13,14 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
   const [file, setFile] = useState(null);
 
   useEffect(async () => {
-    if (typeof user === "object") {
+    if (typeof user === 'object') {
       await seteditedData(user);
     } else {
     }
   }, [user]);
 
   useEffect(async () => {
-    if (typeof user === "object") {
+    if (typeof user === 'object') {
       await settoggle(1);
     } else {
     }
@@ -43,11 +43,11 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
     if (file) {
       const data = new FormData();
       const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
+      data.append('name', filename);
+      data.append('file', file);
       editedData.profilePic = filename;
       try {
-        await axios.post("/athena/file/upload", data);
+        await axios.post('/athena/file/upload', data);
       } catch (err) {}
     }
     new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
             <div className="inputItem p-2 mt-3">
               <span>Name:</span>
               <input
-                onChange={(e) => handleChange(e, "username")}
+                onChange={(e) => handleChange(e, 'username')}
                 value={editedData.username}
                 className="p-2"
                 name="name"
@@ -101,9 +101,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>Email:</span>{" "}
+              <span>Email:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "email")}
+                onChange={(e) => handleChange(e, 'email')}
                 value={editedData.email}
                 className="p-2"
                 name="email"
@@ -112,9 +112,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>Location:</span>{" "}
+              <span>Location:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "location")}
+                onChange={(e) => handleChange(e, 'location')}
                 value={editedData.location}
                 className="p-2"
                 name="location"
@@ -123,9 +123,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3">
-              <span>phone:</span>{" "}
+              <span>phone:</span>{' '}
               <input
-                onChange={(e) => handleChange(e, "tel")}
+                onChange={(e) => handleChange(e, 'tel')}
                 value={editedData.tel}
                 className="p-2"
                 name="telephone"
@@ -134,9 +134,9 @@ function EditProfile({ modalStatus, editInfo, handleModal, user }) {
               />
             </div>
             <div className="inputItem p-2 mt-3 d-flex ">
-              <span className="align-self-center">Bio:</span>{" "}
+              <span className="align-self-center">Bio:</span>{' '}
               <textarea
-                onChange={(e) => handleChange(e, "bio")}
+                onChange={(e) => handleChange(e, 'bio')}
                 value={editedData.bio}
                 className="p-2"
                 name="bio"

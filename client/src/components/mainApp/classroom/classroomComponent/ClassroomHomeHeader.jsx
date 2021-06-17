@@ -1,27 +1,21 @@
-import React, { useRef, useContext, useEffect } from 'react';
-import AuthContext from '../../../../context/auth/AuthContext';
+import React, { useRef, useContext, useEffect, useState } from "react";
+import AuthContext from "../../../../context/auth/AuthContext";
 
 export default function ClassroomHomeHeader({
   toggleModal,
   showCreateClassroom,
   createClass,
+  search,
+  searchBarText,
 }) {
   const authContext = useContext(AuthContext);
-  const { clearFilter, user, filtered, filterClasses } = authContext;
-  const text = useRef('');
-  useEffect(() => {
-    if (filtered === null) {
-      text.current.value = '';
-    }
-  });
+  const [inputData, setinputData] = useState(searchBarText);
 
-  const onChange = (e) => {
-    if (text.current.value !== '') {
-      filterClasses(e.target.value);
-    } else {
-      clearFilter();
-    }
-  };
+  console.log(searchBarText);
+
+  useEffect(() => {
+    setinputData(searchBarText);
+  }, [searchBarText]);
 
   return (
     <div className="d-flex flex-column">
@@ -30,9 +24,9 @@ export default function ClassroomHomeHeader({
         <span
           style={{
             display:
-              showCreateClassroom === 'learner'
-                ? 'none'
-                : showCreateClassroom === 'tutor' && 'block',
+              showCreateClassroom === "learner"
+                ? "none"
+                : showCreateClassroom === "tutor" && "block",
           }}
           className="createClass text-danger text-decoration-underline"
         >
@@ -47,12 +41,12 @@ export default function ClassroomHomeHeader({
       <div className="classroom_search d-flex pl-4 pr-3 py-2">
         <form className="search_tutor">
           <input
-            ref={text}
+            value={inputData}
             type="text"
             placeholder="Search tutor/course"
-            style={{ backgroundColor: 'transparent' }}
+            style={{ backgroundColor: "transparent" }}
             className="w-100 border-0 pr-3"
-            onChange={onChange}
+            onChange={(e) => search(e)}
           />
         </form>
         <i class="fas view fa-search align-self-center"></i>

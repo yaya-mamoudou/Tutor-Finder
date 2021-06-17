@@ -398,6 +398,7 @@ const AuthState = (props) => {
         classConversation: state.classConversation,
         classMessaging: state.classMessaging,
         getClassMessages: state.getClassMessages,
+        createAClassMessage,
         getClassMsg,
         getLearnersClassroom,
         createAClassConversation,

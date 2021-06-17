@@ -46,12 +46,12 @@ function Card({ tut }) {
         />
       </div>
       <div className="nom">
-        <h2>{tut.username} </h2>
+        <h2 className="h4">{tut.username} </h2>
         <p className="pro">{tut.email}</p>
       </div>
       <div className="box">
         {tut.speciality.split(",").map((e) => (
-          <div className="props3">{e}</div>
+          <div className="props3 h5">{e}</div>
         ))}
 
         <div className="props4">+1</div>

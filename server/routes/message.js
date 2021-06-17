@@ -69,7 +69,7 @@ route.get('/classMsg/:conversationId', Auth, async (req, res) => {
   try {
     let message = await ClassMessage.find({
       conversationId: req.params.conversationId,
-    });
+    }).populate('sender');
     res.status(200).json({ message });
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });
