@@ -52,7 +52,6 @@ function ClassRoom() {
     }
   }, [myClasses]);
 
-  
   useEffect(async () => {
     loadUser();
   }, []);
@@ -75,29 +74,6 @@ function ClassRoom() {
       console.log(err);
     }
   }, [theID]);
-  useEffect(async () => {
-    // Object(user).hasOwnProperty("_id") && getLearnersClassroom(user._id);
-
-    try {
-      if (Array.isArray(learnerClass)) {
-        new Promise(async (resolve, reject) => {
-          let temp = [...learnerClass];
-          temp.map(
-            (singleClass) =>
-              (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
-          );
-
-          resolve(temp);
-        }).then(async (newClasses) => {
-          await setALearnersClass(learnerClass);
-        });
-      } else {
-        console.log('no from learner class');
-      }
-    } catch (err) {
-      console.error(err + 'error from MainclassEntry');
-    }
-  }, [learnerClass]);
 
   useEffect(async () => {
     try {
@@ -110,7 +86,7 @@ function ClassRoom() {
         ) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
-            let temp = [...allMyClasses.classroom, ...learnerClass];
+            let temp = [...allMyClasses.classroom];
             temp.map(
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
@@ -125,13 +101,16 @@ function ClassRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, [allMyClasses, learnerClass]);
+  }, [allMyClasses]);
   return (
     <div className="" style={{ width: '100%' }}>
       <div className="back">
         <div className="classes">
           <div className="tutor">
-          <h4> <span className='tutorName' >tutoring</span>/tutored</h4>
+            <h4>
+              {' '}
+              <span className="tutorName">tutoring</span>/tutored
+            </h4>
           </div>
           <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
             {myClasses.map((e, index) => (
@@ -148,7 +127,7 @@ function ClassRoom() {
               </div>
               <div className="task">
                 <p className="thread">New Thread</p>
-                <BsListTask size={20} style={{cursor:'pointer'}}/>
+                <BsListTask size={20} style={{ cursor: 'pointer' }} />
               </div>
             </div>
             <div className="chats">
