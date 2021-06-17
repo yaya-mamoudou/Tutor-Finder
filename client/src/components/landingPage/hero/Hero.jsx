@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./nav/Nav";
 import TrustAndExperience from "./TrustAndExperience";
 import Particles from "react-particles-js";
+import bottomPageSVG from "../../assets/landingPagePics/landingPageBottom.svg";
 export default function Hero() {
   return (
     <div className="hero">

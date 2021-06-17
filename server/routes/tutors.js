@@ -176,7 +176,7 @@ route.get('/learners/classes/:learnerID', Auth, async (req, res) => {
   try {
     const allLearnersClasses = await Classroom.find({
       participants: { $in: [req.params.learnerID] },
-    });
+    }).populate('participants');
     res.json(allLearnersClasses);
   } catch (err) {
     res.status(500).json({ msg: 'Server Error' });

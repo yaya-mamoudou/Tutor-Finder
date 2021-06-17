@@ -15,8 +15,9 @@ import img6 from '../../assets/classImages/img6.png';
 import MyModal from '../../myModal/Modal';
 import ClassDetails from './ClassDetails';
 
+const classPics = [img1, img2, img3, img4, img5, img6];
+
 export default function MainClassEntry() {
-  const classPics = [img1, img2, img3, img4, img5, img6];
   const authContext = useContext(AuthContext);
   const {
     isAdd,
@@ -28,6 +29,8 @@ export default function MainClassEntry() {
     filtered,
     loadUser,
     getLearnersClassroom,
+    classConversation,
+    createAClassConversation,
     learnerClass,
   } = authContext;
 
@@ -35,6 +38,7 @@ export default function MainClassEntry() {
   const [aLearnersClass, setALearnersClass] = useState([]);
 
   const [alreadySet, setalreadySet] = useState(0);
+  const [alreadySet2, setalreadySet2] = useState(undefined);
   const [loggedUser, setloggedUser] = useState(undefined);
   const [handleModal, sethandleModal] = useState('none');
   const [modalData, setmodalData] = useState({});
@@ -70,7 +74,27 @@ export default function MainClassEntry() {
   }, [theID]);
 
   useEffect(async () => {
-    await setALearnersClass(learnerClass);
+    // Object(user).hasOwnProperty("_id") && getLearnersClassroom(user._id);
+
+    try {
+      if (Array.isArray(learnerClass)) {
+        new Promise(async (resolve, reject) => {
+          let temp = [...learnerClass];
+          temp.map(
+            (singleClass) =>
+              (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
+          );
+
+          resolve(temp);
+        }).then(async (newClasses) => {
+          await setALearnersClass(learnerClass);
+        });
+      } else {
+        console.log('no from learner class');
+      }
+    } catch (err) {
+      console.error(err + 'error from MainclassEntry');
+    }
   }, [learnerClass]);
 
   useEffect(async () => {
@@ -78,15 +102,18 @@ export default function MainClassEntry() {
       await myCreatedClass();
 
       if (alreadySet === 0) {
-        if (Object(allMyClasses).hasOwnProperty('classroom')) {
+        if (
+          Object(allMyClasses).hasOwnProperty('classroom') &&
+          Array.isArray(learnerClass)
+        ) {
           new Promise(async (resolve, reject) => {
             await setalreadySet(1);
-
-            let temp = [...allMyClasses.classroom];
+            let temp = [...allMyClasses.classroom, ...learnerClass];
             temp.map(
               (singleClass) =>
                 (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
             );
+
             resolve(temp);
           }).then(async (newClasses) => await setMyClasses(newClasses));
         } else {
@@ -96,7 +123,7 @@ export default function MainClassEntry() {
     } catch (err) {
       console.log(err);
     }
-  }, [allMyClasses]);
+  }, [allMyClasses, learnerClass]);
 
   const classroomModaltoggle = () => {
     if (classModalstate === 'flex') {
@@ -111,15 +138,17 @@ export default function MainClassEntry() {
     classroomModaltoggle();
   };
 
-  const viewParticipants = () => {};
-  const toggleModal = (e = 'null', index = 'null') => {
+  const toggleModal = (e = 'null', index = 'null', from = 'null') => {
     e.preventDefault();
+
     if (handleModal === 'flex') {
       sethandleModal('none');
     } else {
       if (index !== 'null') {
         new Promise((resolve, reject) => {
-          resolve(myClasses[index]);
+          let arrayFrom =
+            from == 'learner' ? learnerClass : from == 'tutor' && myClasses;
+          resolve(arrayFrom[index]);
         })
           .then(async (data) => await setmodalData(data))
           .then(() => sethandleModal('flex'));
@@ -127,36 +156,22 @@ export default function MainClassEntry() {
         sethandleModal('flex');
       }
     }
-    console.log('clicked');
   };
+
+  const routeToChat = async (e) => {
+    try {
+      let members = await e.participants;
+      createAClassConversation({ members });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className="p-4"
       style={{ width: '100%', height: '100vh', overflowY: 'auto' }}
     >
-      {/* <MyModal
-        modalHeader={'Create new class'}
-        toggleModal={classroomModaltoggle}
-        modalStatus={classModalstate}
-        component={<CreateClassroom />}
-        header_bg={''}
-      /> */}
-
-      {/* {user && user.status === 'learner' ? (
-        <div>
-          {typeof aLearnersClass === 'object' &&
-            aLearnersClass.map((learnerClass) => (
-              <div>
-                <h2>{learnerClass.classCode}</h2>
-              </div>
-            ))}
-        </div>
-      ) : (
-        <div>
-          <h3>alice</h3>
-        </div>
-      )} */}
-
       <MyModal
         modalHeader={'Create new class'}
         toggleModal={classroomModaltoggle}
@@ -175,81 +190,163 @@ export default function MainClassEntry() {
         showCreateClassroom={
           Object(loggedUser).hasOwnProperty('status') && loggedUser.status
         }
-        viewParticipants={viewParticipants}
         toggleModal={toggleModal}
       />
       <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
-        {myClasses.map((e, index) => {
-          return (
-            <Link
-              className="classroomCard text-white rounded m-3"
-              style={{
-                backgroundImage: `url("${e.bg}")`,
-                backgroundSize: 'cover',
-              }}
-              key={index}
-              to="/Classchat"
-            >
-              <div className="w-100 h-100">
-                <div
-                  className="rounded px-4 pt-4"
+        {Object(loggedUser).hasOwnProperty('status') &&
+        loggedUser.status === 'tutor'
+          ? myClasses.map((e, index) => {
+              return (
+                <Link
+                  className="classroomCard text-white rounded m-3"
                   style={{
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    width: '100%',
-                    height: '100%',
-                    position: 'relative',
+                    backgroundImage: `url("${e.bg}")`,
+                    backgroundSize: 'cover',
                   }}
+                  key={index}
+                  to="/Classchat"
                 >
-                  <div className="w-100 d-flex position-relative">
+                  <div className="w-100 h-100">
                     <div
-                      className="pr-2"
-                      style={{ width: '90%', textOverflow: 'wrap' }}
+                      className="rounded px-4 pt-4"
+                      style={{
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        width: '100%',
+                        height: '100%',
+                        position: 'relative',
+                      }}
                     >
-                      <p className="h2 font-weight-bold">
-                        Course ID: {e.classCode}
+                      <div className="w-100 d-flex position-relative">
+                        <div
+                          className="pr-2"
+                          style={{ width: '90%', textOverflow: 'wrap' }}
+                        >
+                          <p className="h2 font-weight-bold">
+                            Course ID: {e.classCode}
+                          </p>
+                        </div>
+
+                        <div
+                          className="bg-dark"
+                          onClick={(e) => toggleModal(e, index, 'tutor')}
+                        >
+                          <i
+                            style={{
+                              position: 'absolute',
+                              right: 0,
+                              top: '.5rem',
+                            }}
+                            class="far fa-eye eyIcon"
+                          ></i>
+                        </div>
+                      </div>
+
+                      <p className="h4 mt-5 font-weight-bold">
+                        Title: {e.className}
                       </p>
-                    </div>
 
-                    <div
-                      className="bg-dark"
-                      onClick={(e) => toggleModal(e, index)}
-                    >
-                      <i
-                        style={{ position: 'absolute', right: 0, top: '.5rem' }}
-                        class="far fa-eye eyIcon"
-                      ></i>
+                      <div
+                        style={{ position: 'absolute', bottom: '1rem' }}
+                        className="d-flex align-items-end"
+                      >
+                        <div
+                          className="d-flex rounded-circle justify-content-center align-items-center bg-light"
+                          style={{ width: 53, height: 53 }}
+                        >
+                          <img
+                            className="rounded-circle"
+                            src={imgtry}
+                            width="50"
+                            height="50"
+                            alt=""
+                          />
+                        </div>
+                        <span className="h4 ml-3 font-weight-bold align-self-center">
+                          {e.tutorName}
+                        </span>
+                      </div>
                     </div>
                   </div>
-
-                  <p className="h4 mt-5 font-weight-bold">
-                    Title: {e.className}
-                  </p>
-
-                  <div
-                    style={{ position: 'absolute', bottom: '1rem' }}
-                    className="d-flex align-items-end"
-                  >
+                </Link>
+              );
+            })
+          : Object(loggedUser).hasOwnProperty('status') &&
+            loggedUser.status === 'learner' &&
+            learnerClass.map((e, index) => {
+              return (
+                <Link
+                  className="classroomCard text-white rounded m-3"
+                  style={{
+                    backgroundImage: `url("${e.bg}")`,
+                    backgroundSize: 'cover',
+                  }}
+                  key={index}
+                  to="/Classchat"
+                >
+                  <div className="w-100 h-100">
                     <div
-                      className="d-flex rounded-circle justify-content-center align-items-center bg-light"
-                      style={{ width: 53, height: 53 }}
+                      className="rounded px-4 pt-4"
+                      style={{
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        width: '100%',
+                        height: '100%',
+                        position: 'relative',
+                      }}
                     >
-                      <img
-                        className="rounded-circle"
-                        src={imgtry}
-                        width="50"
-                        height="50"
-                        alt=""
-                      />
+                      <div className="w-100 d-flex position-relative">
+                        <div
+                          className="pr-2"
+                          style={{ width: '90%', textOverflow: 'wrap' }}
+                        >
+                          <p className="h2 font-weight-bold">
+                            Course ID: {e.classCode}
+                          </p>
+                        </div>
+
+                        <div
+                          className="bg-dark"
+                          onClick={(e) => toggleModal(e, index, 'learner')}
+                        >
+                          <i
+                            style={{
+                              position: 'absolute',
+                              right: 0,
+                              top: '.5rem',
+                            }}
+                            class="far fa-eye eyIcon"
+                          ></i>
+                        </div>
+                      </div>
+
+                      <p className="h4 mt-5 font-weight-bold">
+                        Title: {e.className}
+                      </p>
+
+                      <div
+                        style={{ position: 'absolute', bottom: '1rem' }}
+                        className="d-flex align-items-end"
+                      >
+                        <div
+                          className="d-flex rounded-circle justify-content-center align-items-center bg-light"
+                          style={{ width: 53, height: 53 }}
+                        >
+                          <img
+                            className="rounded-circle"
+                            src={imgtry}
+                            width="50"
+                            height="50"
+                            alt=""
+                          />
+                        </div>
+                        <span className="h4 ml-3 font-weight-bold align-self-center">
+                          {e.tutorName}
+                        </span>
+                      </div>
                     </div>
-                    <span className="h4 ml-3 font-weight-bold align-self-center">
-                      {e.tutorName}
-                    </span>
                   </div>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+                </Link>
+              );
+            })}
       </div>
     </div>
   );

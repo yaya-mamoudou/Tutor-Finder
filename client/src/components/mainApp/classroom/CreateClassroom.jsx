@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 //import {Plus } from 'react-bootstrap-icons';
-import { Button, Form } from 'react-bootstrap';
-import MyModal from '../../myModal/Modal';
-import Participant from './Participant';
-import ButtonAddPart from './ButtonAddPart';
-import AuthContext from '../../../context/auth/AuthContext';
+import { Button, Form } from "react-bootstrap";
+import MyModal from "../../myModal/Modal";
+import Participant from "./Participant";
+import ButtonAddPart from "./ButtonAddPart";
+import AuthContext from "../../../context/auth/AuthContext";
 
 function CreateClassroom() {
   const authContext = useContext(AuthContext);
   const { IcreateClass, storePDATA, finaList, allMyClasses } = authContext;
   const [classData, setclassData] = useState({
-    className: '',
-    classCode: '',
+    className: "",
+    classCode: "",
   });
-  const [classModalstate, setclassModalstate] = useState('none');
+  const [classModalstate, setclassModalstate] = useState("none");
   const classroomModaltoggle = () => {
-    if (classModalstate === 'flex') {
-      setclassModalstate('none');
+    if (classModalstate === "flex") {
+      setclassModalstate("none");
     } else {
-      setclassModalstate('flex');
+      setclassModalstate("flex");
     }
   };
   const createClass = () => {
-    console.log('class created');
+    console.log("class created");
     classroomModaltoggle();
   };
   const { className, classCode } = classData;
@@ -35,8 +35,8 @@ function CreateClassroom() {
     let participants = finaList;
     IcreateClass({ className, classCode, participants });
     setclassData({
-      className: '',
-      classCode: '',
+      className: "",
+      classCode: "",
     });
   };
 
@@ -46,16 +46,17 @@ function CreateClassroom() {
   return (
     <div className="body p-4">
       <MyModal
-        modalHeader={'Add Participants'}
+        modalHeader={"Add Participants"}
         toggleModal={classroomModaltoggle}
         modalStatus={classModalstate}
         component={<Participant />}
-        header_bg={''}
+        header_bg={""}
       />
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-4" controlId="formBasicEmail">
           <Form.Label className="mb-2">Course Name</Form.Label>
           <Form.Control
+            style={{ fontSize: "1.4rem" }}
             className="px-4"
             type="text"
             required
@@ -73,6 +74,7 @@ function CreateClassroom() {
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="mb-2">Course Code</Form.Label>
           <Form.Control
+            style={{ fontSize: "1.4rem" }}
             className="mb-4 px-4"
             type="text"
             required
