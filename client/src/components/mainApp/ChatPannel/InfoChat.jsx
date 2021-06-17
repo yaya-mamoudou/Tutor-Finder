@@ -5,14 +5,6 @@ import {Button} from 'react-bootstrap'
 import {ArrowLeftSquare} from 'react-bootstrap-icons'
 
 function InfoChat() {
-      // const myFunction=() =>{
-      //     var x = document.querySelector("myTopnav");
-      //     if (x.className === "topnav") {
-      //       x.className += " responsive";
-      //     } else {
-      //       x.className = "topnav";
-      //     }
-      //   } onClick={myFunction()}
     
     return (
         <div className='infochat'>
