@@ -29,7 +29,7 @@ const AuthState = (props) => {
     finaList: [],
     classConversation: null,
     classMessaging: null,
-    getClassMessages: null,
+    getClassMessages: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   //load user
