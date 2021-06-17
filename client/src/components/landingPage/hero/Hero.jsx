@@ -35,15 +35,6 @@ export default function Hero() {
             },
           }}
         />
-        {/* <img
-          style={{
-            width: "100vw",
-            minHeight: "10%",
-            borderBottom: "solid 10px white",
-          }}
-          src={bottomPageSVG}
-          alt=""
-        /> */}
       </div>
     </div>
   );
