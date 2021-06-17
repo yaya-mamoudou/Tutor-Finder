@@ -74,11 +74,33 @@ function ClassRoom() {
       console.log(err);
     }
   }, [theID]);
+  useEffect(async () => {
+    // Object(user).hasOwnProperty("_id") && getLearnersClassroom(user._id);
+
+    try {
+      if (Array.isArray(learnerClass)) {
+        new Promise(async (resolve, reject) => {
+          let temp = [...learnerClass];
+          temp.map(
+            (singleClass) =>
+              (singleClass.bg = classPics[Math.floor(Math.random() * 7)])
+          );
+
+          resolve(temp);
+        }).then(async (newClasses) => {
+          await setALearnersClass(learnerClass);
+        });
+      } else {
+        console.log('no from learner class');
+      }
+    } catch (err) {
+      console.error(err + 'error from MainclassEntry');
+    }
+  }, [learnerClass]);
 
   useEffect(async () => {
     try {
       await myCreatedClass();
-
       if (alreadySet === 0) {
         if (
           Object(allMyClasses).hasOwnProperty('classroom') &&
@@ -113,9 +135,11 @@ function ClassRoom() {
             </h4>
           </div>
           <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
-            {myClasses.map((e, index) => (
-              <Room e={e} key={index} />
-            ))}
+            {Object(user).hasOwnProperty('status') && user.status === 'tutor'
+              ? myClasses.map((e, index) => <Room e={e} key={index} />)
+              : Object(user).hasOwnProperty('status') &&
+                user.status === 'learner' &&
+                aLearnersClass.map((e, index) => <Room e={e} key={index} />)}
           </div>
         </div>
         <div className="contener">
