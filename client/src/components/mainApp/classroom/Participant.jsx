@@ -34,7 +34,9 @@ function Participant(props) {
 
   const onSave = async () => {
     try {
-      theFinalList(storePDATA);
+      new Promise((resolve) => {
+        resolve(theFinalList(storePDATA));
+      }).then((e) => props.toggleModal());
     } catch (error) {
       console.log(error);
     }

@@ -224,36 +224,17 @@ function Chat() {
                 <div>
                   {typeof tryIt === "object" &&
                     tryIt.map((m) => (
-                      <div>
-                        <div
-                          className={
-                            m.sender === user._id ? "message mine" : "message"
-                          }
-                        >
-                          <div className=" m-5 ">
-                            {/* <img
-                          src={
-                            m.sender === user._id
-                              ? user.profilePic === ""
-                                ? "http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
-                                : PF + user.profilePic
-                              : "message"
-                          }
-                          width="60px"
-                          height="60px"
-                          alt=""
-                          className="rounded-circle"
-                        /> */}
-                            <MsgRcd
-                              //   className=" p-3 mt-4 txt text.white "
-                              style={{
-                                maxWidth: "600px",
-                                borderRadius: "21px",
-                              }}
-                              m={m}
-                            />
-                            <p className="h5 pt-3"> {format(m.createdAt)} </p>
-                          </div>
+                      <div
+                        className={
+                          m.sender === user._id ? "message mine" : "message"
+                        }
+                      >
+                        <div className=" m-5 ">
+                          <MsgRcd
+                            //   className=" p-3 mt-4 txt text.white "
+                            m={m}
+                          />
+                          <p className="h5 pt-3"> {format(m.createdAt)} </p>
                         </div>
                       </div>
                     ))}
