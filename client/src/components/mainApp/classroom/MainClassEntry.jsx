@@ -5,6 +5,7 @@ import AuthContext from "../../../context/auth/AuthContext";
 import CreateClassroom from "./CreateClassroom";
 import "./myclassroom.css";
 
+import notFound from "../../assets/classroom/notFound.png";
 import imgtry from "../../assets/img/1.jpg";
 import img1 from "../../assets/classImages/img1.png";
 import img2 from "../../assets/classImages/img2.png";
@@ -44,6 +45,7 @@ export default function MainClassEntry() {
   const [modalData, setmodalData] = useState({});
   const [searchText, setsearchText] = useState("");
   const [myClassesTemp, setmyClassesTemp] = useState();
+  const [learnerClassesTemp, setlearnerClassesTemp] = useState();
 
   const [classModalstate, setclassModalstate] = useState("none");
 
@@ -91,6 +93,7 @@ export default function MainClassEntry() {
           resolve(temp);
         }).then(async (newClasses) => {
           await setALearnersClass(learnerClass);
+          await setlearnerClassesTemp(learnerClass);
         });
       } else {
         console.log("no from learner class");
@@ -170,15 +173,31 @@ export default function MainClassEntry() {
     let text = await String(e.target.value).toLowerCase();
     setsearchText(text);
 
-    console.log(myClasses);
-    let newList = await myClassesTemp.filter(
-      (e) =>
-        e.classCode.toString().toLowerCase().indexOf(text) != -1 ||
-        e.className.toString().toLowerCase().indexOf(text) != -1 ||
-        e.tutorName.toString().toLowerCase().indexOf(text) != -1
-    );
+    let newList =
+      (await Object(loggedUser).hasOwnProperty("status")) &&
+      loggedUser.status === "tutor"
+        ? myClassesTemp.filter(
+            (e) =>
+              e.classCode.toString().toLowerCase().indexOf(text) != -1 ||
+              e.className.toString().toLowerCase().indexOf(text) != -1 ||
+              e.tutorName.toString().toLowerCase().indexOf(text) != -1
+          )
+        : Object(loggedUser).hasOwnProperty("status") &&
+          loggedUser.status === "learner" &&
+          learnerClassesTemp.filter(
+            (e) =>
+              e.classCode.toString().toLowerCase().indexOf(text) != -1 ||
+              e.className.toString().toLowerCase().indexOf(text) != -1 ||
+              e.tutorName.toString().toLowerCase().indexOf(text) != -1
+          );
     await console.log(newList);
-    await setMyClasses(newList);
+
+    (await Object(loggedUser).hasOwnProperty("status")) &&
+    loggedUser.status === "tutor"
+      ? setMyClasses(newList)
+      : Object(loggedUser).hasOwnProperty("status") &&
+        loggedUser.status === "learner" &&
+        setALearnersClass(newList);
   };
   // const routeToChat = async (e) => {
   //   try {
@@ -218,8 +237,23 @@ export default function MainClassEntry() {
       />
       <div className="w-100 d-flex mt-5" style={{ flexWrap: "wrap" }}>
         {Object(loggedUser).hasOwnProperty("status") &&
-        loggedUser.status === "tutor"
-          ? myClasses.map((e, index) => {
+        loggedUser.status === "tutor" ? (
+          myClasses.length == 0 ? (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                alignSelf: "center",
+                margin: "auto auto",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img src={notFound} width="35%" height="22%" alt="" />
+            </div>
+          ) : (
+            myClasses.map((e, index) => {
               return (
                 <Link
                   className="classroomCard text-white rounded m-3"
@@ -294,83 +328,86 @@ export default function MainClassEntry() {
                 </Link>
               );
             })
-          : Object(loggedUser).hasOwnProperty("status") &&
-            loggedUser.status === "learner" &&
-            learnerClass.map((e, index) => {
-              return (
-                <Link
-                  className="classroomCard text-white rounded m-3"
-                  style={{
-                    backgroundImage: `url("${e.bg}")`,
-                    backgroundSize: "cover",
-                  }}
-                  key={index}
-                  to="/Classchat"
-                >
-                  <div className="w-100 h-100">
-                    <div
-                      className="rounded px-4 pt-4"
-                      style={{
-                        backgroundColor: "rgba(0,0,0,0.5)",
-                        width: "100%",
-                        height: "100%",
-                        position: "relative",
-                      }}
-                    >
-                      <div className="w-100 d-flex position-relative">
-                        <div
-                          className="pr-2"
-                          style={{ width: "90%", textOverflow: "wrap" }}
-                        >
-                          <p className="h2 font-weight-bold">
-                            Course ID: {e.classCode}
-                          </p>
-                        </div>
-
-                        <div
-                          className="bg-dark"
-                          onClick={(e) => toggleModal(e, index, "learner")}
-                        >
-                          <i
-                            style={{
-                              position: "absolute",
-                              right: 0,
-                              top: ".5rem",
-                            }}
-                            class="far fa-eye eyIcon"
-                          ></i>
-                        </div>
+          )
+        ) : (
+          Object(loggedUser).hasOwnProperty("status") &&
+          loggedUser.status === "learner" &&
+          aLearnersClass.map((e, index) => {
+            return (
+              <Link
+                className="classroomCard text-white rounded m-3"
+                style={{
+                  backgroundImage: `url("${e.bg}")`,
+                  backgroundSize: "cover",
+                }}
+                key={index}
+                to="/Classchat"
+              >
+                <div className="w-100 h-100">
+                  <div
+                    className="rounded px-4 pt-4"
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      width: "100%",
+                      height: "100%",
+                      position: "relative",
+                    }}
+                  >
+                    <div className="w-100 d-flex position-relative">
+                      <div
+                        className="pr-2"
+                        style={{ width: "90%", textOverflow: "wrap" }}
+                      >
+                        <p className="h2 font-weight-bold">
+                          Course ID: {e.classCode}
+                        </p>
                       </div>
-
-                      <p className="h4 mt-5 font-weight-bold">
-                        Title: {e.className}
-                      </p>
 
                       <div
-                        style={{ position: "absolute", bottom: "1rem" }}
-                        className="d-flex align-items-end"
+                        className="bg-dark"
+                        onClick={(e) => toggleModal(e, index, "learner")}
                       >
-                        <div
-                          className="d-flex rounded-circle justify-content-center align-items-center bg-light"
-                          style={{ width: 53, height: 53 }}
-                        >
-                          <img
-                            className="rounded-circle"
-                            src={imgtry}
-                            width="50"
-                            height="50"
-                            alt=""
-                          />
-                        </div>
-                        <span className="h4 ml-3 font-weight-bold align-self-center">
-                          {e.tutorName}
-                        </span>
+                        <i
+                          style={{
+                            position: "absolute",
+                            right: 0,
+                            top: ".5rem",
+                          }}
+                          class="far fa-eye eyIcon"
+                        ></i>
                       </div>
                     </div>
+
+                    <p className="h4 mt-5 font-weight-bold">
+                      Title: {e.className}
+                    </p>
+
+                    <div
+                      style={{ position: "absolute", bottom: "1rem" }}
+                      className="d-flex align-items-end"
+                    >
+                      <div
+                        className="d-flex rounded-circle justify-content-center align-items-center bg-light"
+                        style={{ width: 53, height: 53 }}
+                      >
+                        <img
+                          className="rounded-circle"
+                          src={imgtry}
+                          width="50"
+                          height="50"
+                          alt=""
+                        />
+                      </div>
+                      <span className="h4 ml-3 font-weight-bold align-self-center">
+                        {e.tutorName}
+                      </span>
+                    </div>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            );
+          })
+        )}
       </div>
     </div>
   );
