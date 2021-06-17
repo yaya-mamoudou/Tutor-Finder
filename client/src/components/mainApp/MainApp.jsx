@@ -8,7 +8,7 @@ import {
 
 import "./mainApp.css";
 import SideNav from "./sideNav/SideNav";
-import Chat from "./chat/Chat";
+import Chat from "./ChatPannel/Chat";
 import Classroom from "./classroom/MainClassEntry";
 import Profile from "./Profile/Profile";
 import PrivateRoute from "../PrivateRouting/PrivateRoute";

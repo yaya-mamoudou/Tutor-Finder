@@ -7,7 +7,6 @@ import ButtonAddPart from './ButtonAddPart';
 import AuthContext from '../../../context/auth/AuthContext';
 
 function CreateClassroom() {
-  const [validated, setValidated] = useState(false);
   const authContext = useContext(AuthContext);
   const { IcreateClass, storePDATA, finaList, allMyClasses } = authContext;
   const [classData, setclassData] = useState({
@@ -31,13 +30,7 @@ function CreateClassroom() {
     setclassData({ ...classData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setValidated(true);
+    // e.preventDefault();
     // e.preventDefault();
     let participants = finaList;
     IcreateClass({ className, classCode, participants });
@@ -59,7 +52,7 @@ function CreateClassroom() {
         component={<Participant />}
         header_bg={''}
       />
-      <Form noValidate  validated={validated} onSubmit={(e) => handleSubmit(e)}>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-4" controlId="formBasicEmail">
           <Form.Label className="mb-2">Course Name</Form.Label>
           <Form.Control
@@ -71,7 +64,6 @@ function CreateClassroom() {
             value={className}
             onChange={(e) => handleChange(e)}
           />
-           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
               Please Enter Course Name
             </Form.Control.Feedback>
@@ -89,9 +81,6 @@ function CreateClassroom() {
             value={classCode}
             onChange={(e) => handleChange(e)}
           />
-          <Form.Control.Feedback type="invalid">
-              Please Enter Course Code
-            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <div className="d-flex justify-content-between">

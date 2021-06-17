@@ -125,7 +125,7 @@
 }
 .chatlinks {
   width: 100%;
-  height: 80%;
+  height: 50vh;
   overflow-y: auto;
 }
 .list {
@@ -152,15 +152,16 @@
 .avatar-pic {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .preview {
   margin-top: 5px !important;
   display: flex;
 }
 .title {
-  margin-top: 1em !important;
-  font-weight: bold;
-  font-size: 20px;
+  margin-top: 2.5em !important;
+    font-weight: 300;
+    font-size: 16px;
 }
 .ts {
   margin-top: 0em !important;
@@ -206,12 +207,12 @@
   margin-right: 1em !important;
 }
 .chatBody {
-  width: 100%;
-  height: 90%;
+  width: 100% !important;
+  height: 83vh!important;
 }
 .messages {
   width: 100%;
-  height: 80%;
+  height: 73vh;;
   overflow-y: auto;
   display: flex;
   flex-direction: row;
@@ -233,8 +234,10 @@
   height: 90%;
 }
 .msg-rcd {
+  width: 15vw;
   width: fit-content;
-  height: 34px;
+  height: 8vh;
+  line-height: 1.2;
   padding: 2em !important;
   margin-left: 2em !important;
   background: #d5c5c6;
@@ -256,25 +259,25 @@
 }
 .message-text {
   font-size: 15px;
-  line-height: 0.8;
+
   word-break: break-word;
   color: #333;
 }
-.chatFooter {
+.chatFooter1 {
   width: 100%;
-  height: 10%;
+  height:10vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;background-color: #b8bbca5c;
 }
-.typebar {
+.typebar-1 {
   width: 95%;
   height: 55px;
   background: #f8f8f8;
   border: 1px solid #c4c4c4;
   border-radius: 39px;
 }
-.typebar input {
+.typebar-1 input {
   width: 90%;
   height: 100%;
   background: #f8f8f8;
@@ -282,6 +285,10 @@
   padding-left: 0.8rem !important;
   outline: none;
   border: none;
+}
+.send-msg{
+  border: none;
+  outline: none;
 }
 @media screen and (max-width: 880px){
 .global-scope{
