@@ -93,14 +93,10 @@ function Chat() {
     setNewMsg({ ...newMsg, [e.target.name]: e.target.value });
 
   const clicked = async (conv) => {
-    try {
-      localStorage.setItem('conv_id', conv._id);
-      await setconversationId(conv._id);
-      await setCurrentChat(conv);
-      console.log(currentChat);
-    } catch (error) {
-      console.log(error);
-    }
+    localStorage.setItem('conv_id', conv._id);
+    setconversationId(conv._id);
+    setCurrentChat(conv);
+    console.log(currentChat);
   };
 
   useEffect(async () => {
@@ -151,7 +147,7 @@ function Chat() {
             <Button variant="none" style={{ width: '175px', height: '65px' }}>
               <i
                 className="fas fa-bars"
-                style={{ width: '80px', height: '45px', marginLeft: '2em' }}
+                style={{ width: '80px', height: '45px', marginLeft: '2rem' }}
               ></i>
             </Button>
           </div>
@@ -228,23 +224,17 @@ function Chat() {
                 <div>
                   {typeof tryIt === 'object' &&
                     tryIt.map((m) => (
-                      <div>
-                        <div
-                          className={
-                            m.sender === user._id ? 'message mine' : 'message'
-                          }
-                        >
-                          <div className=" m-5 ">
-                            <MsgRcd
-                              //   className=" p-3 mt-4 txt text.white "
-                              style={{
-                                maxWidth: '600px',
-                                borderRadius: '21px',
-                              }}
-                              m={m}
-                            />
-                            <p className="h5 pt-3"> {format(m.createdAt)} </p>
-                          </div>
+                      <div
+                        className={
+                          m.sender === user._id ? 'message mine' : 'message'
+                        }
+                      >
+                        <div className=" m-5 ">
+                          <MsgRcd
+                            //   className=" p-3 mt-4 txt text.white "
+                            m={m}
+                          />
+                          <p className="h5 pt-3"> {format(m.createdAt)} </p>
                         </div>
                       </div>
                     ))}
