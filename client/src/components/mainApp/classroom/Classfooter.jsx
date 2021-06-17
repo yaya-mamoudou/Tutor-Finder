@@ -7,7 +7,7 @@ function Classfooter() {
         <div className="chatFooter">
         <div className="typebar">
             <input type='text' placeholder='Type your message' />
-                <GrSend size={30} />
+                <GrSend size={30} style={{cursor:'pointer'}}/>
         </div>
     </div>
     )

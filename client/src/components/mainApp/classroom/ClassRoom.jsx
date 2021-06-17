@@ -62,7 +62,7 @@ function ClassRoom() {
       <div className="back">
         <div className="classes">
           <div className="tutor">
-            <h4>tutoring/tutored</h4>
+          <h4> <span className='tutorName' >tutoring</span>/tutored</h4>
           </div>
           <div className="w-100 d-flex mt-5" style={{ flexWrap: 'wrap' }}>
             {myClasses.map((e, index) => (
@@ -79,7 +79,7 @@ function ClassRoom() {
               </div>
               <div className="task">
                 <p className="thread">New Thread</p>
-                <BsListTask size={20} />
+                <BsListTask size={20} style={{cursor:'pointer'}}/>
               </div>
             </div>
             <div className="chats">
