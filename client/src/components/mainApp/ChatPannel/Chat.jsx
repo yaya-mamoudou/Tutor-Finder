@@ -222,12 +222,19 @@ function Chat() {
                 <h1>Open a conversation to start a chat</h1>
               ) : (
                 <div>
-                  {typeof tryIt === 'object' &&
-                    tryIt.map((m) => (
+                  {Array.isArray(currentChat) &&
+                    currentChat.map((m) => (
                       <div
                         className={
                           m.sender === user._id ? 'message mine' : 'message'
                         }
+                        style={{
+                          backgroundColor:
+                            Object(user).hasOwnProperty('_id') &&
+                            m._id === user._id
+                              ? 'red'
+                              : 'blue',
+                        }}
                       >
                         <div className=" m-5 ">
                           <MsgRcd
