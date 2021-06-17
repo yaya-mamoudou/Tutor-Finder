@@ -225,10 +225,6 @@ function Chat() {
                   {typeof tryIt === 'object' &&
                     tryIt.map((m) => (
                       <div
-                        style={{
-                          backgroundColor:
-                            m.sender !== user._id ? 'red' : 'blue',
-                        }}
                         className={
                           m.sender === user._id ? 'message mine' : 'message'
                         }
@@ -238,7 +234,7 @@ function Chat() {
                             //   className=" p-3 mt-4 txt text.white "
                             m={m}
                           />
-                          <p className="h5 pt-3"> {format(m.createdAt)} </p>
+                          <p className="h5 pt-3 pl-5">{format(m.createdAt)}</p>
                         </div>
                       </div>
                     ))}
