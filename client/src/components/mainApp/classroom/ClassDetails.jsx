@@ -4,10 +4,8 @@ import empty from "../../assets/classroom/empty.png";
 const PF = "http://localhost:5000/images/";
 
 export default function ClassDetails({ data }) {
-  console.log(data);
   const [aClass, setaClass] = useState({});
   useEffect(() => {
-    console.log(data);
     setaClass(data);
   }, [data]);
   return (

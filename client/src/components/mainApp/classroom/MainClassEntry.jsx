@@ -16,7 +16,7 @@ import MyModal from "../../myModal/Modal";
 import ClassDetails from "./ClassDetails";
 
 const classPics = [img1, img2, img3, img4, img5, img6];
-
+let searchState;
 export default function MainClassEntry() {
   const authContext = useContext(AuthContext);
   const {
@@ -36,10 +36,12 @@ export default function MainClassEntry() {
   const [aLearnersClass, setALearnersClass] = useState([]);
 
   const [alreadySet, setalreadySet] = useState(0);
-  const [alreadySet2, setalreadySet2] = useState(undefined);
+  const [firstSearch, setfirstSearch] = useState(0);
   const [loggedUser, setloggedUser] = useState(undefined);
   const [handleModal, sethandleModal] = useState("none");
   const [modalData, setmodalData] = useState({});
+  const [searchText, setsearchText] = useState("");
+  const [myClassesTemp, setmyClassesTemp] = useState();
 
   const [classModalstate, setclassModalstate] = useState("none");
 
@@ -61,6 +63,7 @@ export default function MainClassEntry() {
     if (myClasses.length > 0) {
       setalreadySet(1);
     }
+    console.log("I was changed");
   }, [myClasses]);
 
   useEffect(async () => {
@@ -113,7 +116,12 @@ export default function MainClassEntry() {
             );
 
             resolve(temp);
-          }).then(async (newClasses) => await setMyClasses(newClasses));
+          })
+            .then(async (newClasses) => {
+              await setMyClasses(newClasses);
+              return newClasses;
+            })
+            .then((e) => setmyClassesTemp(e));
         } else {
           console.log("no");
         }
@@ -156,6 +164,21 @@ export default function MainClassEntry() {
     }
     console.log("clicked");
   };
+
+  const search = async (e) => {
+    let text = await String(e.target.value).toLowerCase();
+    setsearchText(text);
+
+    console.log(myClasses);
+    let newList = await myClassesTemp.filter(
+      (e) =>
+        e.classCode.toString().toLowerCase().indexOf(text) != -1 ||
+        e.className.toString().toLowerCase().indexOf(text) != -1 ||
+        e.tutorName.toString().toLowerCase().indexOf(text) != -1
+    );
+    await console.log(newList);
+    await setMyClasses(newList);
+  };
   return (
     <div
       className="p-4"
@@ -175,6 +198,8 @@ export default function MainClassEntry() {
         toggleModal={toggleModal}
       />
       <ClassroomHomeHeader
+        searchBarText={searchText}
+        search={search}
         createClass={createClass}
         showCreateClassroom={
           Object(loggedUser).hasOwnProperty("status") && loggedUser.status
