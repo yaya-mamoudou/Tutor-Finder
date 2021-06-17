@@ -43,6 +43,9 @@ function Chat() {
 
   const [newUser, setnewUser] = useState();
 
+  const testing = (m) => {
+    console.log(m);
+  };
   const [newMsg, setNewMsg] = useState({
     text: '',
   });
@@ -229,6 +232,7 @@ function Chat() {
                           m.sender === user._id ? 'message mine' : 'message'
                         }
                       >
+                        <h2 onClick={() => testing(m)}>hi</h2>
                         <div className=" m-5 ">
                           <MsgRcd
                             //   className=" p-3 mt-4 txt text.white "
