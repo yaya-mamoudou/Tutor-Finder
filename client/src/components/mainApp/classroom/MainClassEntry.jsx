@@ -28,6 +28,8 @@ export default function MainClassEntry() {
     filtered,
     loadUser,
     getLearnersClassroom,
+    classConversation,
+    createAClassConversation,
     learnerClass,
   } = authContext;
 
@@ -127,8 +129,17 @@ export default function MainClassEntry() {
         sethandleModal('flex');
       }
     }
-    console.log('clicked');
   };
+
+  const routeToChat = async (e) => {
+    try {
+      let members = await e.participants;
+      createAClassConversation({ members });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className="p-4"
@@ -182,6 +193,7 @@ export default function MainClassEntry() {
         {myClasses.map((e, index) => {
           return (
             <Link
+              onClick={() => routeToChat(e)}
               className="classroomCard text-white rounded m-3"
               style={{
                 backgroundImage: `url("${e.bg}")`,

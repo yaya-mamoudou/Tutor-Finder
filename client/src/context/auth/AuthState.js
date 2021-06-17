@@ -27,6 +27,9 @@ const AuthState = (props) => {
     learnerClass: [],
     filtered: null,
     finaList: [],
+    classConversation: null,
+    classMessaging: null,
+    getClassMessages: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   //load user
@@ -313,6 +316,61 @@ const AuthState = (props) => {
     dispatch({ type: 'FINAL_LIST', payload: thatData });
   };
 
+  //
+  const createAClassConversation = async (formData) => {
+    console.log(formData);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(
+        '/athena/conversation/classroom/createConversation',
+        formData,
+        config
+      );
+      dispatch({
+        type: 'CREATE_A_CLass_CONVERSATION',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //send message in classroom
+  const createAClassMessage = async (formData) => {
+    // console.log(formData);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.post(
+        `/athena/message/classMsg`,
+        formData,
+        config
+      );
+      dispatch({
+        type: 'CREATE_A_CLASS_MESSAGE',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getClassMsg = async (conversationId) => {
+    try {
+      const res = await axios.get(`/athena/message/classMsg/${conversationId}`);
+      dispatch({ type: 'GET_CLASS_MESSAGE', payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -337,7 +395,12 @@ const AuthState = (props) => {
         learnerClass: state.learnerClass,
         filtered: state.filtered,
         finaList: state.finaList,
+        classConversation: state.classConversation,
+        classMessaging: state.classMessaging,
+        getClassMessages: state.getClassMessages,
+        getClassMsg,
         getLearnersClassroom,
+        createAClassConversation,
         createConversation,
         theFinalList,
         getMsg,
