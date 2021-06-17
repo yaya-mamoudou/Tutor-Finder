@@ -33,6 +33,7 @@ function Chat() {
     createMessage,
   } = authContext;
   const [myConv, setMyConv] = useState();
+
   const [currentChat, setCurrentChat] = useState();
   const [addedMsg, setAddedMsg] = useState();
   const [conversationId, setconversationId] = useState('');
@@ -95,6 +96,7 @@ function Chat() {
     localStorage.setItem('conv_id', conv._id);
     setconversationId(conv._id);
     setCurrentChat(conv);
+    console.log(currentChat);
   };
 
   useEffect(async () => {
@@ -155,7 +157,20 @@ function Chat() {
         <div className="info-person">
           <div className="avatar-contain">
             <div className="avatar">
-              <img className="avatar-img" src={user && PF + user.profilePic} />
+              <img
+                className="avatar-img"
+                src={
+                  Object(user).hasOwnProperty('profilePic') &&
+                  user.profilePic === ' '
+                    ? 'http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico'
+                    : Object(user).hasOwnProperty('profilePic') &&
+                      user.profilePic !== '' &&
+                      PF + user.profilePic
+                }
+                style={{
+                  borderRadius: 50,
+                }}
+              />
             </div>
           </div>
           <div className="person-name">
@@ -184,14 +199,17 @@ function Chat() {
         <div className="chatbox">
           <div className="chatHeader">
             <div className="me">
-              <div className="avatar-chat">
-                <img
-                  className="avatar-pic"
-                  src="http://www.iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
-                />
-              </div>
               <div className="list-name">
-                <p className="title">Fodjo Frank</p>
+                <p className="title">
+                  {typeof currentChat === 'object' &&
+                    currentChat.members.map((member) => (
+                      <div>
+                        {member.username === user.username
+                          ? null
+                          : member.username}
+                      </div>
+                    ))}
+                </p>
               </div>
             </div>
             <div className="more">
