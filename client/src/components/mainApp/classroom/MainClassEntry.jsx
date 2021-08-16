@@ -80,7 +80,6 @@ export default function MainClassEntry() {
   }, [theID]);
 
   useEffect(async () => {
-    // Object(user).hasOwnProperty("_id") && getLearnersClassroom(user._id);
 
     try {
       if (Array.isArray(learnerClass)) {
@@ -199,14 +198,6 @@ export default function MainClassEntry() {
         loggedUser.status === "learner" &&
         setALearnersClass(newList);
   };
-  // const routeToChat = async (e) => {
-  //   try {
-  //     let members = await e.participants;
-  //     createAClassConversation({ members });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const alice = (data) => {
     console.log(data);
